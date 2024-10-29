@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--   In the XML, I need you to call @strings instead of hardcoding the text. You can find the strings in the strings.xml in values in res and then you'll figure out how to do it-->
+<!-- Make sure that you add constraints to each view-->
+<!--    This asks the question, -->
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="400dp"
+        android:layout_height="49dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/Type_of_car_Q"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158" />
+
+<!--  Each of these buttons handles a response, be sure to make new buttons, and rename them.-->
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/gasoline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="@string/Diesel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="@string/Hybrid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="@string/Electric"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button9"
+        app:layout_constraintVertical_bias="0.24" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="@string/idk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button10"
+        app:layout_constraintVertical_bias="0.427" />
+</androidx.constraintlayout.widget.ConstraintLayout>
