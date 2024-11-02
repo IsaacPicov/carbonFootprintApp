@@ -9,6 +9,7 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+    <string name="register">Register</string>
 
     <string-array name="categories_array">
         <item>Books</item>
