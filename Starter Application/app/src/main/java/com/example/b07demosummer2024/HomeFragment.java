@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new RegisterationFragment());
+                loadFragment(new RegistrationFragment());
             }
         });
 
