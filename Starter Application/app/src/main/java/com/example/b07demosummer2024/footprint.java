@@ -71,7 +71,7 @@ public class footprint {
         }
     }
     public void setQ10(double info){
-        this.s10 = info;
+        this.q10 = info;
     }
     public void setQ11(double info){
         this.s12 = info;
