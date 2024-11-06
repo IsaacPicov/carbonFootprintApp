@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 
 public class RegistrationFragment extends Fragment{
 
@@ -21,8 +24,10 @@ public class RegistrationFragment extends Fragment{
 
     private Button buttonRegister;
 
+    private FirebaseAuth auth;
     private FirebaseDatabase db;
     private DatabaseReference itemsRef;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
@@ -33,6 +38,7 @@ public class RegistrationFragment extends Fragment{
         editConfirmPassword = view.findViewById(R.id.editConfirmPassword);
         buttonRegister = view.findViewById(R.id.buttonUserRegister);
 
+        auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -61,16 +67,35 @@ public class RegistrationFragment extends Fragment{
             return;
         }
 
-        itemsRef = db.getReference("users/");
-        String id = itemsRef.push().getKey();
-        System.out.println("My id" + id);
-        Item item = new Item(id, firstName, lastName, email, password);
-
-        itemsRef.child(id).setValue(item).addOnCompleteListener(task -> {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
+                FirebaseUser user = auth.getCurrentUser();
+                if (user != null) {
+                    user.sendEmailVerification().addOnCompleteListener(emailTask -> {
+                        if (emailTask.isSuccessful()) {
+                            Toast.makeText(getContext(), "Verification email sent. Please check your inbox", Toast.LENGTH_LONG).show();
+                            saveUserToDatabase(user.getUid(), firstName, lastName, email);
+                        } else {
+                            Toast.makeText(getContext(), "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             } else {
-                Toast.makeText(getContext(), "Failed to add item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void saveUserToDatabase(String userId, String firstName, String lastName, String email) {
+        itemsRef = db.getReference("users/" + userId);
+
+        Item item = new Item(userId, firstName, lastName, email, null);
+
+        itemsRef.setValue(item).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(getContext(), "User data saved successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
             }
         });
     }
