@@ -36,9 +36,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5854fd4-6c74-4eb8-ba8f-fc1c25483a70" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" afterDir="false" />
-    </list>
+    <list default="true" id="f5854fd4-6c74-4eb8-ba8f-fc1c25483a70" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
