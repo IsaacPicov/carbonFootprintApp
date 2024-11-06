@@ -35,6 +35,7 @@
 
     <RadioGroup
         android:layout_width="335dp"
+        android:id="@+id/radio_group"
         android:layout_height="398dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +48,7 @@
             android:id="@+id/radio_button1"
             android:layout_width="145dp"
             android:layout_height="122dp"
-            android:background="@drawable/button_backround"
+            android:background="@drawable/button_background"
             android:button="@null"
             android:padding="16dp"
             android:text="@string/yes"
@@ -58,7 +59,7 @@
             android:id="@+id/radio_button2"
             android:layout_width="190dp"
             android:layout_height="124dp"
-            android:background="@drawable/button_backround"
+            android:background="@drawable/button_background"
             android:button="@null"
             android:padding="16dp"
             android:text="@string/no"
