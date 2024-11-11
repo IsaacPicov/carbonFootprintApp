@@ -10,7 +10,7 @@ public class LoginPresenter {
         void showLoading();
         void hideLoading();
         void onLoginSuccess();
-        void onLoginFailure(String message);
+        void onLoginFail(String message);
     }
 
     private final LoginModel model;
@@ -23,7 +23,7 @@ public class LoginPresenter {
 
     public void handleLogin(@NonNull String email, @NonNull String password) {
         if (email.isEmpty() || password.isEmpty()) {
-            view.onLoginFailure("Please fill out all fields");
+            view.onLoginFail("Please fill out all fields");
             return;
         }
 
@@ -36,21 +36,21 @@ public class LoginPresenter {
             }
 
             @Override
-            public void onLoginFailure(String errorMessage) {
+            public void onLoginFail(String errorMessage) {
                 view.hideLoading();
-                view.onLoginFailure(errorMessage);
+                view.onLoginFail(errorMessage);
             }
         });
     }
 
     public void handleForgotPassword(@NonNull String email) {
         if (email.isEmpty()) {
-            view.onLoginFailure("Please enter your email address");
+            view.onLoginFail("Please enter your email address");
             return;
         }
 
         view.showLoading();
-        model.sendPasswordResetEmail(email, new LoginModel.LoginCallback() {
+        model.sendPasswordReset(email, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
                 view.hideLoading();
@@ -58,9 +58,9 @@ public class LoginPresenter {
             }
 
             @Override
-            public void onLoginFailure(String errorMessage) {
+            public void onLoginFail(String errorMessage) {
                 view.hideLoading();
-                view.onLoginFailure(errorMessage);
+                view.onLoginFail(errorMessage);
             }
         });
     }

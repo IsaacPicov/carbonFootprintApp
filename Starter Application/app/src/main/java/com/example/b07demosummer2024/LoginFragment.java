@@ -58,7 +58,7 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView 
     }
 
     @Override
-    public void onLoginFailure(String message) {
+    public void onLoginFail(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
