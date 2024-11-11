@@ -10,11 +10,6 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_login.xml">
-        <config>
-          <theme>@style/Theme.B07DemoSummer2024</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_main.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -36,7 +31,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5854fd4-6c74-4eb8-ba8f-fc1c25483a70" name="Changes" comment="" />
+    <list default="true" id="f5854fd4-6c74-4eb8-ba8f-fc1c25483a70" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +46,11 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gosqib\.android\avd\Pixel_9_Pro_API_35.avd)]" />
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gvbri\.android\avd\Medium_Phone_API_34.avd)]" />
+>>>>>>> f3897fef4c57898a7fc6d1efeef89eaed6c318ac
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/Starter Application">
       <ProjectState />
@@ -97,6 +102,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gansari8&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IsaacPicov/carbonFootprintApp.git&quot;,
+    &quot;accountId&quot;: &quot;bc0e0473-0473-4082-b0be-e99fe2b681b6&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -107,13 +124,14 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2oLwMDymKjWI6bu7SohKDNqEgxa" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Android App.B07_Demo_Summer_2024.app.executor&quot;: &quot;Run&quot;,
@@ -126,9 +144,27 @@
     &quot;git-widget-placeholder&quot;: &quot;feature/login&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/gosqib/Desktop/carbonFootprintApp&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.B07_Demo_Summer_2024.app.executor": "Run",
+    "Android App.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "Merging feature/login",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/gosqib/Desktop/carbonFootprintApp"
+>>>>>>> f3897fef4c57898a7fc6d1efeef89eaed6c318ac
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gvbri\StudioProjects\carbonFootprintApp\Starter Application\app" />
+    </key>
     <key name="android.template.1611754914">
       <recent name="com.example.b07demosummer2024" />
     </key>

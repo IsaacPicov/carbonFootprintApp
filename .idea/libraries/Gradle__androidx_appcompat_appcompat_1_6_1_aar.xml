@@ -5,8 +5,13 @@
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/0365f6b830ae8a26019cf18957b43146/transformed/appcompat-1.6.1/jars/classes.jar!/" />
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-4/0365f6b830ae8a26019cf18957b43146/transformed/appcompat-1.6.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-4/0365f6b830ae8a26019cf18957b43146/transformed/appcompat-1.6.1/AndroidManifest.xml" />
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/0365f6b830ae8a26019cf18957b43146/transformed/appcompat-1.6.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/0365f6b830ae8a26019cf18957b43146/transformed/appcompat-1.6.1/res" />
+>>>>>>> f3897fef4c57898a7fc6d1efeef89eaed6c318ac
     </CLASSES>
     <JAVADOC />
     <SOURCES>
