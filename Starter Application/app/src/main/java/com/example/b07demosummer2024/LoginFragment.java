@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView 
             String email = editEmail.getText().toString().trim();
             String password = editPassword.getText().toString().trim();
             presenter.handleLogin(email, password);
-            // Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
         });
 
         buttonForgotPassword.setOnClickListener(v -> {

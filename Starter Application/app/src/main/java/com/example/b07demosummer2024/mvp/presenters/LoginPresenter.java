@@ -50,7 +50,7 @@ public class LoginPresenter {
         }
 
         view.showLoading();
-        model.sendPasswordResetEmail(email, new LoginModel.LoginCallback() {
+        model.sendPasswordReset(email, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
                 view.closeLoading();
