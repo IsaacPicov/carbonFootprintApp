@@ -5,8 +5,13 @@
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/fd5f97916416b636ef8a793fc48c9e14/transformed/recyclerview-1.1.0/jars/classes.jar!/" />
+<<<<<<< HEAD
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/fd5f97916416b636ef8a793fc48c9e14/transformed/recyclerview-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/fd5f97916416b636ef8a793fc48c9e14/transformed/recyclerview-1.1.0/AndroidManifest.xml" />
+=======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-4/fd5f97916416b636ef8a793fc48c9e14/transformed/recyclerview-1.1.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-4/fd5f97916416b636ef8a793fc48c9e14/transformed/recyclerview-1.1.0/res" />
+>>>>>>> f3897fef4c57898a7fc6d1efeef89eaed6c318ac
     </CLASSES>
     <JAVADOC />
     <SOURCES>
