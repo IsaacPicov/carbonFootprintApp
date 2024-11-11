@@ -32,11 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5854fd4-6c74-4eb8-ba8f-fc1c25483a70" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +133,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging feature/login",
+    "git-widget-placeholder": "feature/login",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/gosqib/Desktop/carbonFootprintApp"
   }
@@ -297,5 +293,16 @@
       <updated>1730662114864</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
