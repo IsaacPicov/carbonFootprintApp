@@ -15,12 +15,15 @@ public class LoginModel {
 
     public interface LoginCallback {
         void onLoginSuccess();
+
         void onLoginFail(String errorMessage);
     }
 
     public void authenticateUser(@NonNull String email, @NonNull String password, final LoginCallback callback) {
-        // Sidenote: Do not do exception handling (empty email or empty password) here, it will be done
-        // in the Presenter which has access to the View and will show the error message to the user
+        // Sidenote: Do not do exception handling (empty email or empty password) here,
+        // it will be done
+        // in the Presenter which has access to the View and will show the error message
+        // to the user
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -29,14 +32,20 @@ public class LoginModel {
                     } else {
                         try {
                             throw task.getException();
-                        } catch (FirebaseAuthInvalidUserException e) {
-                            callback.onLoginFail("User does not exist");
-                        } catch (FirebaseAuthInvalidCredentialsException e) {
-                            callback.onLoginFail("Invalid password");
-                        } catch (FirebaseAuthException e) {
-                            callback.onLoginFail("An error occurred");
-                        } catch (Exception e) {
-                            callback.onLoginFail("An error occurred");
+                        }
+                        // } catch (FirebaseAuthInvalidUserException e) {
+                        // callback.onLoginFail("User does not exist");
+                        // } catch (FirebaseAuthInvalidCredentialsException e) {
+                        // callback.onLoginFail("Invalid password");
+                        // } catch (FirebaseAuthException e) {
+                        // callback.onLoginFail("An error occurred");
+                        // } catch (Exception e) {
+                        // callback.onLoginFail("A strange error occurred");
+                        // }
+
+                        // for debugging
+                        catch (Exception e) {
+                            callback.onLoginFail(e.getMessage());
                         }
                     }
                 });

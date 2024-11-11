@@ -8,7 +8,7 @@ import com.example.b07demosummer2024.mvp.models.LoginModel;
 public class LoginPresenter {
     public interface LoginView {
         void showLoading();
-        void hideLoading();
+        void closeLoading();
         void onLoginSuccess();
         void onLoginFail(String message);
     }
@@ -31,13 +31,13 @@ public class LoginPresenter {
         model.authenticateUser(email, password, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginSuccess();
             }
 
             @Override
             public void onLoginFail(String errorMessage) {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginFail(errorMessage);
             }
         });
@@ -53,13 +53,13 @@ public class LoginPresenter {
         model.sendPasswordReset(email, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginSuccess();
             }
 
             @Override
             public void onLoginFail(String errorMessage) {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginFail(errorMessage);
             }
         });
