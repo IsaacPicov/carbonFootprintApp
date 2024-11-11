@@ -8,9 +8,9 @@ import com.example.b07demosummer2024.mvp.models.LoginModel;
 public class LoginPresenter {
     public interface LoginView {
         void showLoading();
-        void hideLoading();
+        void closeLoading();
         void onLoginSuccess();
-        void onLoginFailure(String message);
+        void onLoginFail(String message);
     }
 
     private final LoginModel model;
@@ -23,7 +23,7 @@ public class LoginPresenter {
 
     public void handleLogin(@NonNull String email, @NonNull String password) {
         if (email.isEmpty() || password.isEmpty()) {
-            view.onLoginFailure("Please fill out all fields");
+            view.onLoginFail("Please fill out all fields");
             return;
         }
 
@@ -31,21 +31,21 @@ public class LoginPresenter {
         model.authenticateUser(email, password, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginSuccess();
             }
 
             @Override
-            public void onLoginFailure(String errorMessage) {
-                view.hideLoading();
-                view.onLoginFailure(errorMessage);
+            public void onLoginFail(String errorMessage) {
+                view.closeLoading();
+                view.onLoginFail(errorMessage);
             }
         });
     }
 
     public void handleForgotPassword(@NonNull String email) {
         if (email.isEmpty()) {
-            view.onLoginFailure("Please enter your email address");
+            view.onLoginFail("Please enter your email address");
             return;
         }
 
@@ -53,14 +53,14 @@ public class LoginPresenter {
         model.sendPasswordResetEmail(email, new LoginModel.LoginCallback() {
             @Override
             public void onLoginSuccess() {
-                view.hideLoading();
+                view.closeLoading();
                 view.onLoginSuccess();
             }
 
             @Override
-            public void onLoginFailure(String errorMessage) {
-                view.hideLoading();
-                view.onLoginFailure(errorMessage);
+            public void onLoginFail(String errorMessage) {
+                view.closeLoading();
+                view.onLoginFail(errorMessage);
             }
         });
     }

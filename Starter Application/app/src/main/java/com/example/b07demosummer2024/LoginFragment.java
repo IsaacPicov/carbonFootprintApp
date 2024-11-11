@@ -31,6 +31,7 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView 
             String email = editEmail.getText().toString().trim();
             String password = editPassword.getText().toString().trim();
             presenter.handleLogin(email, password);
+            // Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
         });
 
         buttonForgotPassword.setOnClickListener(v -> {
@@ -47,18 +48,18 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView 
     }
 
     @Override
-    public void hideLoading() {
+    public void closeLoading() {
     }
 
     @Override
     public void onLoginSuccess() {
         Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
-        
+
         // move back to the homepage somehow
     }
 
     @Override
-    public void onLoginFailure(String message) {
+    public void onLoginFail(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
