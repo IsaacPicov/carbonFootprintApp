@@ -9,6 +9,10 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+    <string name="eco_tracker">EcoTracker</string>
+    <string name="transportation">Transportation Activities</string>
+    <string name="foodConsumption">Food Consumption Activities</string>
+    <string name="consumptionAndShopping">Consumption and Shopping Activities</string>
 
     <string-array name="categories_array">
         <item>Books</item>
