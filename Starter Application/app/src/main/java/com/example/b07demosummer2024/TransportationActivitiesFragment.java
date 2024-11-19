@@ -22,23 +22,29 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class TransportationActivitiesFragment extends Fragment{
+
+
+    private Button buttonPersonalVehicle, buttonPublicTransport, buttonCyclingWalking, buttonFlight;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transportation, container, false);
 
-//        Button buttonTransportation = view.findViewById(R.id.buttonTransportation);
-//        Button buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
-//        Button buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
+        buttonPersonalVehicle = view.findViewById(R.id.buttonPersonalVehicle);
+        buttonPublicTransport = view.findViewById(R.id.buttonPublicTransport);
+        buttonCyclingWalking = view.findViewById(R.id.buttonCyclingWalking);
+        buttonFlight = view.findViewById(R.id.buttonFlight);
 //
-//        buttonTransportation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loadFragment(new RecyclerViewFragment());
-//            }
-//        });
+        buttonPersonalVehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new PersonalVehicleFragment());
+            }
+        });
 //
 //        buttonFoodConsumption.setOnClickListener(new View.OnClickListener() {
 //            @Override

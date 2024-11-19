@@ -24,14 +24,16 @@ import java.util.List;
 
 public class EcoTrackerFragment extends Fragment {
 
+    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ecotracker, container, false);
 
-        Button buttonTransportation = view.findViewById(R.id.buttonTransportation);
-        Button buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
-        Button buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
+        buttonTransportation = view.findViewById(R.id.buttonTransportation);
+        buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
+        buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
 
         buttonTransportation.setOnClickListener(new View.OnClickListener() {
             @Override
