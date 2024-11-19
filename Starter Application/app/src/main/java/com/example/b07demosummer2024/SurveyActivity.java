@@ -120,6 +120,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
     @Override
    public void onOption(int questionID, String selectedOption) {
         switch (questionID) {
+//            Questions for Transportation
             case 1:
                 survey.setQ1(selectedOption.equals("Yes") ? YES_OPTION : NO_OPTION);
                 survey.setTrue(0);
@@ -244,6 +245,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                 }
                 survey.setTrue(questionID-1);
                 break;
+//                Questions for Food
             case 8:
                 switch(selectedOption){
                     case "Vegetarian":
@@ -336,6 +338,206 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                 }
                 survey.setTrue(questionID-1);
                 break;
+//                We're gonna have to do add all these questions with if statements
+            case 14:
+                switch(selectedOption){
+                    case "Detached House":
+                        survey.setQ11(0);
+                        break;
+                    case "Semi-detached House":
+                        survey.setQ11(1);
+                        break;
+                    case "Townhouse":
+                        survey.setQ11(2);
+                        break;
+                    case "Condo/Apartment":
+                        survey.setQ11(3);
+                        break;
+                    case "Other":
+                        survey.setQ11(4);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 15:
+                switch(selectedOption){
+                    case "1":
+                        survey.setQ12(0);
+                        break;
+                    case "2":
+                        survey.setQ12(1);
+                        break;
+                    case "3-4":
+                        survey.setQ12(2);
+                        break;
+                    case "5 or more":
+                        survey.setQ12(3);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+//                Questions for Housing
+            case 16:
+                switch(selectedOption){
+                    case "Under 1000 Sqft":
+                        survey.setQ13(0);
+                        break;
+                    case"1000-2000 Sqft":
+                        survey.setQ13(1);
+                        break;
+                    case "Over 2000 Sqft":
+                        survey.setQ13(2);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 17:
+                switch(selectedOption) {
+                    case "Natural Gas":
+                        survey.setQ14(0);
+                        break;
+                    case "Electricity":
+                        survey.setQ14(1);
+                        break;
+                    case "Oil":
+                        survey.setQ14(2);
+                        break;
+                    case "Propane":
+                        survey.setQ14(3);
+                        break;
+                    case "Wood":
+                        survey.setQ14(4);
+                        break;
+                    case "Other":
+                        survey.setQ14(5);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 18:
+                switch(selectedOption){
+                    case "Under $50":
+                        survey.setQ15(0);
+                        break;
+                    case "$50-$100":
+                        survey.setQ15(1);
+                    case "$100-$150":
+                        survey.setQ15(2);
+                        break;
+                    case "$150-$200":
+                        survey.setQ15(3);
+                        break;
+                    case "Over $200":
+                        survey.setQ15(4);
+                        break;
+                }
+            case 19:
+                switch(selectedOption){
+                    case "Natural Gas":
+                        survey.setQ16(0);
+                        break;
+                    case "Electricity":
+                        survey.setQ16(1);
+                        break;
+                    case "Oil":
+                        survey.setQ16(2);
+                        break;
+                    case "Propane":
+                        survey.setQ16(3);
+                        break;
+                    case "Wood":
+                        survey.setQ16(4);
+                        break;
+                    case "Other":
+                        survey.setQ16(5);
+                        break;
+
+                }
+            case 20:
+                switch(selectedOption){
+                    case "Primarily":
+                        survey.setQ17(0);
+                        break;
+                    case "Partially":
+                        survey.setQ17(1);
+                        break;
+                    case "No":
+                        survey.setQ17(2);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+//                Need to be able to return to the results screen
+//                UI needs to be able to adapt to tablets and shit
+
+//            Questions for Consumption
+            case 21:
+                switch(selectedOption){
+                    case "Monthly":
+                        survey.setQ18(360);
+                        break;
+                    case "Quarterly":
+                        survey.setQ18(120);
+                        break;
+                    case "Annually":
+                        survey.setQ18(100);
+                        break;
+                    case "Rarely":
+                        survey.setQ18(5);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 22:
+                switch(selectedOption){
+                    case "Regularly":
+                        survey.setQ19(1);
+                        break;
+                    case "Occasionally":
+                        survey.setQ19(2);
+                        break;
+                    case "No":
+                        survey.setQ19(3);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 23:
+                switch (selectedOption){
+                    case "None":
+                        survey.setQ20(0);
+                        break;
+                    case"1":
+                        survey.setQ20(300);
+                        break;
+                    case "2":
+                        survey.setQ20(600);
+                        break;
+                    case "3":
+                        survey.setQ20(900);
+                        break;
+                    case "4 or More":
+                        survey.setQ20(1200);
+                }
+                survey.setTrue(questionID-1);
+                break;
+            case 24:
+                switch (selectedOption){
+                    case "Never":
+                        survey.setQ21(1);
+                        break;
+                    case "Occasionally":
+                        survey.setQ21(2);
+                        break;
+                    case "Frequently":
+                        survey.setQ21(3);
+                        break;
+                    case "Always":
+                        survey.setQ21(4);
+                        break;
+                }
+                survey.setTrue(questionID-1);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + questionID);
 
@@ -343,12 +545,14 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
     }
 
 
+//    TODO loading the fragments into an array of some kind and figuring out how to parse back and forth between them
    public void next (View view){
 //       handles case where question is not answered
        if(!survey.getAnswer(question-1)){
 //           Displays an Alert telling user to answer question
            Toast.makeText(this, "No Answer Selected", Toast.LENGTH_SHORT).show();
-//           Also need to handle the case where they don't have a car and a bunch of questions are skipped
+
+//           TODO handle the cases where questions are skipped in both forward and backward direction, example car, and meat questions
        }
        if(false){
 //           Use this one for editText fields where we save data to footprint when the user presses next
