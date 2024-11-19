@@ -13,32 +13,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
-
-public class FragmentQuestion1 extends Fragment {
+//For number of people in the household
+public class FragmentQuestion12 extends Fragment {
     private SurveyResponseListner listner;
     private int questionID;
-    public FragmentQuestion1 (int questionID){
+    public FragmentQuestion12 (int questionID){
         this.questionID = questionID;
     }
-    private Button yesButton;
-    private Button noButton;
+    private Button option1;
+    private Button option2;
+    private Button option3;
+    private Button option4;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_question1, container, false);
-        yesButton = view.findViewById(R.id.button5);
-        noButton = view.findViewById(R.id.button6);
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                answer(v);
-            }
-        });
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                answer(v);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_question12, container, false);
+        option1 = view.findViewById(R.id.option1);
+        option2 = view.findViewById(R.id.option2); // Change BUTTONS
+        option3 = view.findViewById(R.id.option3);
+        option4 = view.findViewById(R.id.option4); // Change BUTTONS
+
         return view;
 
     }
@@ -57,10 +50,14 @@ public class FragmentQuestion1 extends Fragment {
 
 
     public void answer(View view){
-        yesButton.setBackgroundColor(Color.MAGENTA);
-        noButton.setBackgroundColor(Color.MAGENTA);
-        yesButton.setActivated(true);
-        noButton.setActivated(true);
+        option1.setBackgroundColor(Color.MAGENTA);
+        option2.setBackgroundColor(Color.MAGENTA);
+        option3.setBackgroundColor(Color.MAGENTA);
+        option4.setBackgroundColor(Color.MAGENTA);
+        option1.setActivated(true);
+        option2.setActivated(true);
+        option3.setActivated(true);
+        option4.setActivated(true);
         Button option = (Button)view;
         String selectedOption = option.getText().toString();
         option.setBackgroundColor(Color.GRAY);

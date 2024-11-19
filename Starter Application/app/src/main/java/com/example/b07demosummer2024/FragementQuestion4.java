@@ -10,41 +10,38 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-
-public class FragmentQuestion2 extends Fragment {
+public class FragementQuestion4 extends Fragment {
     private SurveyResponseListner listner;
     private int questionID;
-//    Sets questionID for fragment which we use in the activity
-    public FragmentQuestion2 (int questionID){
+    //    Sets questionID for fragment which we use in the activity
+    public FragementQuestion4 (int questionID){
         this.questionID = questionID;
     }
-    private Button gas;
-    private Button diesel;
-    private Button hybrid;
-    private Button electric;
-    private Button idk;
+    private Button never;
+    private Button occasionally;
+    private Button frequently;
+    private Button always;
+    //private Button idk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_question2, container, false);
+        View view = inflater.inflate(R.layout.fragment_carbon_question2, container, false);
 //       Defines the buttons
-        gas = view.findViewById(R.id.gasoline);
-        diesel = view.findViewById(R.id.diesel);
-        hybrid = view.findViewById(R.id.hybrid);
-        electric = view.findViewById(R.id.electric);
-        idk = view.findViewById(R.id.idk);
+        never = view.findViewById(R.id.button7);
+        occasionally = view.findViewById(R.id.button8);
+        frequently = view.findViewById(R.id.button9);
+        always = view.findViewById(R.id.button10);
+        //idk = view.findViewById(R.id.button11);
 //      sets the callbacks for the buttons
-        gas.setOnClickListener(this::answer);
-        diesel.setOnClickListener(this::answer);
-        hybrid.setOnClickListener(this::answer);
-        electric.setOnClickListener(this::answer);
-        idk.setOnClickListener(this::answer);
+        never.setOnClickListener(this::answer);
+        occasionally.setOnClickListener(this::answer);
+        frequently.setOnClickListener(this::answer);
+        always.setOnClickListener(this::answer);
+        //idk.setOnClickListener(this::answer);
         return view;
 
     }
 
-
-
-//    Steal this code for all fragments
+    //    Steal this code for all fragments
     @Override
     public void onAttach(@NonNull Context context){
 
@@ -60,17 +57,16 @@ public class FragmentQuestion2 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        gas.setBackgroundColor(Color.MAGENTA);
-        diesel.setBackgroundColor(Color.MAGENTA);
-        hybrid.setBackgroundColor(Color.MAGENTA);
-        electric.setBackgroundColor(Color.MAGENTA);
-        idk.setBackgroundColor(Color.MAGENTA);
+        never.setBackgroundColor(Color.MAGENTA);
+        occasionally.setBackgroundColor(Color.MAGENTA);
+        frequently.setBackgroundColor(Color.MAGENTA);
+        always.setBackgroundColor(Color.MAGENTA);
+
 //      Reset the usability of all buttons, so user can press any other button
-        gas.setActivated(true);
-        diesel.setActivated(true);
-        hybrid.setActivated(true);
-        electric.setActivated(true);
-        idk.setActivated(true);
+        never.setActivated(true);
+        occasionally.setActivated(true);
+        frequently.setActivated(true);
+        always.setActivated(true);
 //        Disables the button the user selected, so they can't keep pressing it
         Button option = (Button)view;
         String selectedOption = option.getText().toString();
@@ -79,7 +75,7 @@ public class FragmentQuestion2 extends Fragment {
 //        Calls the function we override in the activity
         saveOption(selectedOption);
     }
-//    This guy deals with the cases
+    //    This guy deals with the cases
     private void saveOption(String selectedOption){
         if (listner != null){
             listner.onOption(questionID, selectedOption);
