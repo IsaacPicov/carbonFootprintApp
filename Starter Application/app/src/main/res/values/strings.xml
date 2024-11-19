@@ -9,6 +9,8 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
     <string name="eco_tracker">EcoTracker</string>
     <string name="transportation">Transportation Activities</string>
     <string name="foodConsumption">Food Consumption Activities</string>
