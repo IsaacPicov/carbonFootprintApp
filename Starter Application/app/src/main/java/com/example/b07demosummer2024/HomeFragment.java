@@ -17,13 +17,14 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_home_fragment, container, false);
 
 
+
         Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView);
         Button buttonRegister = view.findViewById(R.id.buttonRegisteration);
         Button buttonUserLogin = view.findViewById(R.id.buttonUserLogin);
-
         Button buttonScroller = view.findViewById(R.id.buttonScroller);
         Button buttonSpinner = view.findViewById(R.id.buttonSpinner);
         Button buttonManageItems = view.findViewById(R.id.buttonManageItems);
+        Button buttonEcoTracker = view.findViewById(R.id.buttonEcoTracker);
 
         buttonRecyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +64,11 @@ public class HomeFragment extends Fragment {
         buttonManageItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { loadFragment(new ManageItemsFragment());}
+        });
+
+        buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { loadFragment(new EcoTrackerFragment());}
         });
 
         return view;

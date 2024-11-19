@@ -11,10 +11,29 @@
     <string name="manage_items">Manage Items</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="eco_tracker">EcoTracker</string>
+    <string name="transportation">Transportation Activities</string>
+    <string name="foodConsumption">Food Consumption Activities</string>
+    <string name="consumptionAndShopping">Consumption and Shopping Activities</string>
+    <string name="personalVehicle">Drive Personal Vehicle</string>
+    <string name="publicTransportation">Take Public Transportation</string>
+    <string name="cyclingWalking">Cycling or walking</string>
+    <string name="flight">Flight (Short-Haul or Long-Haul)</string>
 
     <string-array name="categories_array">
         <item>Books</item>
         <item>Movies</item>
+    </string-array>
+
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>miles</item>
+    </string-array>
+
+    <string-array name="vehicle_types">
+        <item>car</item>
+        <item>bike</item>
+        <item>motorbike</item>
     </string-array>
 
 
