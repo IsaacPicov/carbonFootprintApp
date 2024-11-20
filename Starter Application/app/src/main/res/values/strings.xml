@@ -9,9 +9,24 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+
     <string name="register">Register</string>
     <string name="login">Login</string>
 
+
+    <!--    Strings for carbon question 1-->
+    <string name="own_car_Q"> Do You Own Or Regularly Use A Car? </string>
+    <string name="next"> Next</string>
+    <string name="yes"> Yes </string>
+    <string name="no"> No </string>
+    <!--    Strings for carbon question 2-->
+    <string name="Type_of_car_Q"> What Type of Car do You Drive?</string>
+    <string name="gasoline"> Gasoline</string>
+    <string name="Diesel"> Diesel </string>
+    <string name="Hybrid"> Hybrid</string>
+    <string name="Electric"> Electric </string>
+    <string name="idk"> I Don\'t Know </string>
+    <string name="carType">What type of car do you drive?</string>
     <string-array name="categories_array">
         <item>Books</item>
         <item>Movies</item>

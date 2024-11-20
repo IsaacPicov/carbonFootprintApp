@@ -2,13 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="B07_Demo_Summer_2024.app">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="app">
-
-      <SelectionState runConfigName="PleaseWork">
-
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
