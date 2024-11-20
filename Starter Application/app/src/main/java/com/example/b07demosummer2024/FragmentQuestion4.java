@@ -10,11 +10,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public class FragementQuestion4 extends Fragment {
+public class FragmentQuestion4 extends Fragment {
     private SurveyResponseListner listner;
     private int questionID;
     //    Sets questionID for fragment which we use in the activity
-    public FragementQuestion4 (int questionID){
+    public FragmentQuestion4 (int questionID){
         this.questionID = questionID;
     }
     private Button never;
@@ -24,12 +24,12 @@ public class FragementQuestion4 extends Fragment {
     //private Button idk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_carbon_question2, container, false);
+        View view = inflater.inflate(R.layout.fragment_question4, container, false);
 //       Defines the buttons
-        never = view.findViewById(R.id.button7);
-        occasionally = view.findViewById(R.id.button8);
-        frequently = view.findViewById(R.id.button9);
-        always = view.findViewById(R.id.button10);
+        never = view.findViewById(R.id.option1);
+        occasionally = view.findViewById(R.id.option2);
+        frequently = view.findViewById(R.id.option3);
+        always = view.findViewById(R.id.option4);
         //idk = view.findViewById(R.id.button11);
 //      sets the callbacks for the buttons
         never.setOnClickListener(this::answer);

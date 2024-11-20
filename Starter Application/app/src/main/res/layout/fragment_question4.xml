@@ -10,8 +10,7 @@
         android:layout_width="427dp"
         android:layout_height="85dp"
         android:fontFamily="sans-serif-black"
-        android:text="How much time do you spend on public transport
- per week (bus, train, subway)?"
+        android:text="How often do you use public transportation (bus, train, subway)?"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
@@ -27,7 +26,7 @@
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:layout_marginTop="40dp"
-        android:text="None"
+        android:text="Never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +36,7 @@
         android:id="@+id/option2"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="1-2 flights"
+        android:text="Occasionally (1-2 times/week)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.635"
@@ -49,7 +48,7 @@
         android:id="@+id/option3"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="3-5 flights"
+        android:text=" Frequently (3-4 times/week)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.635"
@@ -61,24 +60,12 @@
         android:id="@+id/option4"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="6-10 flights"
+        android:text="Always (5+ times/week)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/option3"
-        app:layout_constraintVertical_bias="0.078" />
-
-    <Button
-        android:id="@+id/option5"
-        android:layout_width="315dp"
-        android:layout_height="76dp"
-        android:text=" More than 10 flights"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option4"
         app:layout_constraintVertical_bias="0.078" />
 
 
