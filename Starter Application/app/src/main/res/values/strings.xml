@@ -31,9 +31,28 @@
     </string-array>
 
     <string-array name="vehicle_types">
-        <item>car</item>
-        <item>bike</item>
-        <item>motorbike</item>
+        <item>Gasoline</item>
+        <item>Diesel</item>
+        <item>Hybrid</item>
+        <item>Electric</item>
+        <item>I do not know</item>
+    </string-array>
+
+
+    <string-array name="public_transport">
+        <item>bus</item>
+        <item>train</item>
+        <item>subway</item>
+    </string-array>
+
+    <string-array name="time_units">
+        <item>minutes</item>
+        <item>hours</item>
+    </string-array>
+
+    <string-array name="flight_haul">
+        <item>Short-haul (&lt;1,500 km)</item>
+        <item>Long-haul (&gt;1,500 km)</item>
     </string-array>
 
 

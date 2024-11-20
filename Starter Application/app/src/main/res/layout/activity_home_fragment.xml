@@ -10,51 +10,51 @@
         android:id="@+id/buttonEcoTracker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/recyclerview"
+        android:text="@string/eco_tracker"
         app:layout_constraintBottom_toTopOf="@+id/buttonScroller"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
         android:id="@+id/buttonRegisteration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@+id/buttonScroller"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.553" />
 
     <Button
         android:id="@+id/buttonUserLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegisteration"
-        android:text="@string/eco_tracker"
-        app:layout_constraintBottom_toTopOf="@+id/buttonScroller"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
 
     <Button
         android:id="@+id/buttonRecyclerView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/recyclerview"
         app:layout_constraintBottom_toTopOf="@+id/buttonScroller"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintVertical_bias="0.535" />
 
     <Button
         android:id="@+id/buttonScroller"
@@ -62,13 +62,11 @@
         android:layout_height="wrap_content"
         android:text="@string/scroller"
         app:layout_constraintBottom_toTopOf="@+id/buttonSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEcoTracker"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUserLogin"
-        app:layout_constraintVertical_bias="0.631" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegisteration"
+        app:layout_constraintVertical_bias="0.488" />
 
     <Button
         android:id="@+id/buttonSpinner"
@@ -86,9 +84,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/manage_items"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSpinner"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

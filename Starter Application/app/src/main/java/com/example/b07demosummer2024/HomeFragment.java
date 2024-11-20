@@ -18,7 +18,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView);
+        Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView2);
         Button buttonRegister = view.findViewById(R.id.buttonRegisteration);
         Button buttonUserLogin = view.findViewById(R.id.buttonUserLogin);
         Button buttonScroller = view.findViewById(R.id.buttonScroller);
