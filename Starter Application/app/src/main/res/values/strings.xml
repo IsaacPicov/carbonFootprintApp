@@ -55,5 +55,14 @@
         <item>Long-haul (&gt;1,500 km)</item>
     </string-array>
 
+    <string name="meal">Meal</string>
+    <string-array name="meal_types">
+        <item>Beef</item>
+        <item>Pork</item>
+        <item>Chicken</item>
+        <item>Fish</item>
+        <item>Plant-Based</item>
+    </string-array>
+
 
 </resources>
