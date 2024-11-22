@@ -14,10 +14,10 @@ public class SurveyLandingPageActivity extends AppCompatActivity {
     }
 
     public void next (View view){
-        Intent userID = getIntent();
-        //String email = userID.getStringExtra("EMAIL");
+        Intent intent = getIntent();
+        String userID = intent.getStringExtra("USERID");
         Intent pass = new Intent(this, SurveyActivity.class);
-        //pass.putExtra("EMAIL", email);
+        pass.putExtra("USERID", userID);
         startActivity(pass);
     }
 }

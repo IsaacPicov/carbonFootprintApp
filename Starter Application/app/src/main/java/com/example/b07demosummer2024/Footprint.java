@@ -4,12 +4,16 @@ package com.example.b07demosummer2024;
 
 //Change to having only hash map as a field so we don't have a million fields
 
+import static com.example.b07demosummer2024.Constants.KGtoTONSCONSTANT;
 import static com.example.b07demosummer2024.Constants.housingData;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 //constructor
 public class Footprint {
     private boolean[] isAnswered;
-    private final String email; //For matching each footprint with a user
+    private String userID; //For matching each footprint with a user
     private double q1;
     private double q2;
     private double q3;
@@ -42,8 +46,8 @@ public class Footprint {
     private double totalConsumption;
     private double totalFootprint;
 
-    public Footprint(String user_email) {
-        this.email = user_email;
+    public Footprint(String userID) {
+        this.userID = userID;
         this.isAnswered = new boolean[24];
     }
 
@@ -147,27 +151,87 @@ public class Footprint {
         this.q21 = info;
     }
 
+//    TODO -- THIS SHIT IS
+//     WRONG WHAT THE FUCK, FIX IT AHHHHHH.
+//     Nah but it's computing the wrong value
+
+
+
     public void setTotalTransport() {
-        if (q1 == 1) {
-            totalTransport = q2 + q3 + q4 + q5 + q6 + q7;
-        } else {
-            totalTransport = q4 + q5 + q6 + q7;
-        }
+//        There is also a problem here
+            double placeholder = 0;
+            switch((int)q4){
+                case 0:
+                    placeholder =0;
+                    break;
+                case 1:
+                    switch((int)q5){
+                        case 1:
+                            placeholder = 246;
+                            break;
+                        case 2:
+                            placeholder = 819;
+                            break;
+                        case 3:
+                            placeholder = 1638;
+                            break;
+                        case 4:
+                            placeholder = 3071;
+                            break;
+                        case 5:
+                            placeholder = 4095;
+                }
+                case 2:
+                    switch((int)q5) {
+                        case 1:
+                            placeholder = 573;
+                            break;
+                        case 2:
+                            placeholder = 1911;
+                            break;
+                        case 3:
+                            placeholder = 3822;
+                            break;
+                        case 4:
+                            placeholder = 7166;
+                            break;
+                        case 5:
+                            placeholder = 9555;
+                    }
+                case 3:
+                    switch((int)q5) {
+                        case 1:
+                            placeholder = 573;
+                            break;
+                        case 2:
+                            placeholder = 1911;
+                            break;
+                        case 3:
+                            placeholder = 3822;
+                            break;
+                        case 4:
+                            placeholder = 7166;
+                            break;
+                        case 5:
+                            placeholder = 9555;
+                    }
+
+            }
+            totalTransport = (q2*q3 +placeholder+ q6 + q7)/KGtoTONSCONSTANT;
     }
 
     public void setTotalFood() {
-        if (q8 == 0) {
-            totalFood = q9_1 + q9_2 + q9_3 + q9_4 + q10;
-        } else {
-            totalFood = q8 + q10;
-        }
+            totalFood = (q8+ q9_1 + q9_2 + q9_3 + q9_4 + q10)/KGtoTONSCONSTANT;
     }
 
     public void setTotalHousing() {
+//       Potential Problem Point
         totalHousing =  housingData[q11][q12][q13][q15][q14];
         if(q16 != q14) totalHousing += 233;
+        totalHousing = totalHousing/KGtoTONSCONSTANT;
     }
 
+//    All of this can be a problem
     public void setTotalConsumption() {
 //      Regular Recycling
         if (q19 == 1) q19 = q19*0.5;
@@ -201,7 +265,7 @@ public class Footprint {
                 if(q20 == 300) q20 -= 90;
                 else if(q20 == 600) q20 -= 180;
                 else if(q20 == 900) q20 -= 270;
-                else  q20 -= 360;
+                else if(q20 == 1200)q20 -= 360;
             }
         }
 //      For Annual Buyers
@@ -253,7 +317,7 @@ public class Footprint {
                 else  q20 -= 360;
             }
         }
-        totalConsumption = q18+q19+q20;
+        totalConsumption = (q18+q19+q20)/KGtoTONSCONSTANT;
     }
 
     public void setTotalFootprint(){
@@ -311,7 +375,7 @@ public class Footprint {
         return q9_3;
     }
 
-    public double getQ_4() {
+    public double getQ9_4() {
         return q9_4;
     }
 
@@ -387,14 +451,13 @@ public class Footprint {
     }
 
 
-//    TODO add the final thing to the db
-//    public void addToDB(){
-//        User user;
-//        footprint fp = new footprint(user);
-//        DatabaseReference ref =
-//                FirebaseDatabase.getInstance("https://DATABASE_NAME.firebaseio.com").getReference();
-//        ref.child("footprints").child("s1").setValue(fp);
-//    }
+//    TODO add the final thing to the db//
+    public void addToDB(){
+
+      DatabaseReference ref =
+               FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/").getReference();
+       ref.child("users").child(userID).child("id").setValue(this);
+   }
 
 
 //    This project is so fucking stupid. Hard coding cases makes my brain hurt

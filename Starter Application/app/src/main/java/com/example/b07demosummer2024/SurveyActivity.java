@@ -57,6 +57,7 @@ import static com.example.b07demosummer2024.Constants.YES_OPTION;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -65,6 +66,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.example.b07demosummer2024.mvp.SurveyResultsActivity;
 
 
 public class SurveyActivity extends AppCompatActivity implements SurveyResponseListner {
@@ -83,10 +86,12 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
 
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_survey);
-       Intent userID = getIntent();
-       //String email = userID.getStringExtra("EMAIL");
+       Intent intent = getIntent();
+       String userID = intent.getStringExtra("USERID");
        //     Assume that we've already made sure the user hasn't filled a survey
-       survey = new Footprint("test");
+//       Keeps track of the user so we can add it to the firebase.
+//       survey = new Footprint(userID);  <-- this is the real one that should be used
+       survey = new Footprint("temp"); // <-- Stand in until I connect everything
        nextButton = findViewById(R.id.button4);
        backButton = findViewById(R.id.button3);
        backButton.setEnabled(false);//this doesn't work? fix this
@@ -106,11 +111,13 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
 
 //    This is an override so that the answers from the fragments can talk to the activity
     @Override
+//    TODO --- log everything to the db :)
    public void onOption(int questionID, String selectedOption) {
         switch (questionID) {
             case 1:
                 survey.setQ1(selectedOption.equals("Yes") ? YES_OPTION : NO_OPTION);
                 survey.setTrue(0);
+                Log.d("SurveyDebug", "Q1 set to: " + survey.getQ1() + ", selectedOption: " + selectedOption);
                 break;
 
             case 2:
@@ -131,29 +138,31 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         survey.setQ2(DEFAULT_FUEL_VALUE);
                 }
                 survey.setTrue(questionID - 1);
+                Log.d("SurveyDebug", "Q2 set to: " + survey.getQ2() + ", selectedOption: " + selectedOption);
                 break;
 
             case 3:
                 switch (selectedOption) {
-                    case "Up to 5000km":
+                    case "Up to 5,000 km (3,000 miles)":
                         survey.setQ3(UP_TO_5000KM);
                         break;
-                    case "5000-10,000km":
+                    case "5,000–10,000 km (3,000–6,000 miles)":
                         survey.setQ3(KM_5000_10000);
                         break;
-                    case "10,000-15,000km":
+                    case "10,000–15,000 km (6,000–9,000 miles)":
                         survey.setQ3(KM_10000_15000);
                         break;
-                    case "15,000-20,000km":
+                    case "15,000–20,000 km (9,000–12,000 miles)":
                         survey.setQ3(KM_15000_20000);
                         break;
-                    case "20,000-25,000km":
+                    case "20,000–25,000 km (12,000–15,000 miles)":
                         survey.setQ3(KM_20000_25000);
                         break;
                     default:
                         survey.setQ3(DEFAULT_DISTANCE);
                 }
                 survey.setTrue(questionID - 1);
+                Log.d("SurveyDebug", "Q3 set to: " + survey.getQ3() + ", selectedOption: " + selectedOption);
                 break;
 
             case 4:
@@ -161,32 +170,34 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                     case "Never":
                         survey.setQ4(NEVER_OPTION);
                         break;
-                    case "Occasionally(1-2 times/week)":
+                    case "Occasionally (1-2 times/week)":
                         survey.setQ4(OCCASIONAL_OPTION);
                         break;
-                    case "Frequently(3-4 times/week)":
+                    case "Frequently (3-4 times/week)":
                         survey.setQ4(FREQUENT_OPTION);
                         break;
                     default:
                         survey.setQ4(ALWAYS_OPTION);
                 }
                 survey.setTrue(questionID - 1);
+                Log.d("SurveyDebug", "Q4 set to: " + survey.getQ4() + ", selectedOption: " + selectedOption);
                 break;
 
             case 5:
                 double q4Value = survey.getQ4();
                 if (selectedOption.equals("Under 1 hour")) {
-                    survey.setQ5(q4Value == NEVER_OPTION ? 0 : (q4Value == OCCASIONAL_OPTION ? UNDER_1_HOUR_OCCASIONAL : UNDER_1_HOUR_FREQUENT));
+                    survey.setQ5(1);
                 } else if (selectedOption.equals("1-3 hours")) {
-                    survey.setQ5(q4Value == NEVER_OPTION ? 0 : (q4Value == OCCASIONAL_OPTION ? HOUR_1_3_OCCASIONAL : HOUR_1_3_FREQUENT));
+                    survey.setQ5(2);
                 } else if (selectedOption.equals("3-5 hours")) {
-                    survey.setQ5(q4Value == NEVER_OPTION ? 0 : (q4Value == OCCASIONAL_OPTION ? HOUR_3_5_OCCASIONAL : HOUR_3_5_FREQUENT));
+                    survey.setQ5(3);
                 } else if (selectedOption.equals("5-10 hours")) {
-                    survey.setQ5(q4Value == NEVER_OPTION ? 0 : (q4Value == OCCASIONAL_OPTION ? HOUR_5_10_OCCASIONAL : HOUR_5_10_FREQUENT));
-                } else {
-                    survey.setQ5(q4Value == NEVER_OPTION ? 0 : (q4Value == OCCASIONAL_OPTION ? ABOVE_10_HOURS_OCCASIONAL : ABOVE_10_HOURS_FREQUENT));
+                    survey.setQ5(4);
+                } else if (selectedOption.equals("More than 10 hours")) {
+                    survey.setQ5(5);
                 }
                 survey.setTrue(questionID - 1);
+                Log.d("SurveyDebug", "Q5 set to: " + survey.getQ5() + ", selectedOption: " + selectedOption);
                 break;
 
             case 6:
@@ -210,6 +221,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                     default: survey.setQ6(FLIGHTS_10_PLUS);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q6 set to: " + survey.getQ6() + ", selectedOption: " + selectedOption);
                 break;
             case 7:
                 switch (selectedOption){
@@ -231,6 +243,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                     default: survey.setQ7(FLIGHTS_10_LONG);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q7 set to: " + survey.getQ7() + ", selectedOption: " + selectedOption);
                 break;
             case 8:
                 switch(selectedOption){
@@ -245,8 +258,12 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                     case "Meat-based (all animal products)":
                         survey.setQ8(MEATBASED);
+                        Log.d("SurveyDebug", "Q8 set to: " + survey.getQ8() + ", selectedOption: " + selectedOption);
                         break;
                 }
+                survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q8 set to: " + survey.getQ8() + ", selectedOption: " + selectedOption);
+                break;
 //                The logic here is that all of question 9 is optional, so we have to skip like 4 cases if non meat based
 //                Cases 9-12 all cover question 9
             case 9:
@@ -254,60 +271,64 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                     case "Daily":
                         survey.setQ9_1(BEEF_DAILY);
                         break;
-                    case "Frequently(3-5 times/week)":
+                    case "Frequently (3-5 times/week)":
                         survey.setQ9_1(BEEF_FREQUENT);
                         break;
-                    case "Occasionally(1-2 times/week)":
+                    case "Occasionally (1-2 times/week)":
                         survey.setQ9_1(BEEF_OCCASIONALLY);
                         break;
                     default: survey.setQ9_1(NEVER_OPTION);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q9_1 set to: " + survey.getQ9_1() + ", selectedOption: " + selectedOption);
                 break;
             case 10:
                 switch (selectedOption){
                     case "Daily":
                         survey.setQ9_2(PORK_DAILY);
                         break;
-                    case "Frequently(3-5 times/week)":
+                    case "Frequently (3-5 times/week)":
                         survey.setQ9_2(PORK_FREQUENT);
                         break;
-                    case "Occasionally(1-2 times/week)":
+                    case "Occasionally (1-2 times/week)":
                         survey.setQ9_2(PORK_OCCASIONALLY);
                         break;
                     default: survey.setQ9_2(NEVER_OPTION);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q9_2 set to: " + survey.getQ9_2() + ", selectedOption: " + selectedOption);
                 break;
             case 11:
                 switch (selectedOption){
                     case "Daily":
                         survey.setQ9_3(CHICKEN_DAILY);
                         break;
-                    case "Frequently(3-5 times/week)":
+                    case "Frequently (3-5 times/week)":
                         survey.setQ9_3(CHICKEN_FREQUENTLY);
                         break;
-                    case "Occasionally(1-2 times/week)":
+                    case "Occasionally (1-2 times/week)":
                         survey.setQ9_3(CHICKEN_OCCASIONALLY);
                         break;
                     default: survey.setQ9_3(NEVER_OPTION);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q9_3 set to: " + survey.getQ9_3() + ", selectedOption: " + selectedOption);
                 break;
             case 12:
                 switch (selectedOption){
                 case "Daily":
                     survey.setQ9_4(FISH_DAILY);
                     break;
-                case "Frequently(3-5 times/week)":
+                case "Frequently (3-5 times/week)":
                     survey.setQ9_4(FISH_FREQUENTLY);
                     break;
-                case "Occasionally(1-2 times/week)":
+                case "Occasionally (1-2 times/week)":
                     survey.setQ9_4(FISH_OCCASIONALLY);
                     break;
                 default: survey.setQ9_4(NEVER_OPTION);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q9_4 set to: " + survey.getQ9_4() + ", selectedOption: " + selectedOption);
                 break;
             case 13:
                 switch (selectedOption){
@@ -323,6 +344,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                     default: survey.setQ10(NEVER_OPTION);
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q10 set to: " + survey.getQ10() + ", selectedOption: " + selectedOption);
                 break;
             case 14:
                 switch(selectedOption){
@@ -343,6 +365,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q11 set to: " + survey.getQ11() + ", selectedOption: " + selectedOption);
                 break;
             case 15:
                 switch(selectedOption){
@@ -360,21 +383,23 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q12 set to: " + survey.getQ12() + ", selectedOption: " + selectedOption);
                 break;
 //                Questions for Housing
             case 16:
                 switch(selectedOption){
-                    case "Under 1000 Sqft":
+                    case "Under 1000 sq. ft.":
                         survey.setQ13(0);
                         break;
-                    case"1000-2000 Sqft":
+                    case"1000-2000 sq. ft.":
                         survey.setQ13(1);
                         break;
-                    case "Over 2000 Sqft":
+                    case "Over 2000 sq. ft.":
                         survey.setQ13(2);
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q13 set to: " + survey.getQ13() + ", selectedOption: " + selectedOption);
                 break;
             case 17:
                 switch(selectedOption) {
@@ -395,6 +420,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q14 set to: " + survey.getQ14() + ", selectedOption: " + selectedOption);
                 break;
             case 18:
                 switch(selectedOption){
@@ -403,6 +429,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                     case "$50-$100":
                         survey.setQ15(1);
+                        break;
                     case "$100-$150":
                         survey.setQ15(2);
                         break;
@@ -414,6 +441,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q15 set to: " + survey.getQ15() + ", selectedOption: " + selectedOption);
                 break;
             case 19:
                 switch(selectedOption){
@@ -434,6 +462,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q16 set to: " + survey.getQ16() + ", selectedOption: " + selectedOption);
                 break;
             case 20:
                 switch(selectedOption){
@@ -448,6 +477,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q17 set to: " + survey.getQ17() + ", selectedOption: " + selectedOption);
                 break;
 //                Need to be able to return to the results screen
 //                UI needs to be able to adapt to tablets and shit
@@ -469,6 +499,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q18 set to: " + survey.getQ18() + ", selectedOption: " + selectedOption);
                 break;
             case 22:
                 switch(selectedOption){
@@ -483,6 +514,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q19 set to: " + survey.getQ19() + ", selectedOption: " + selectedOption);
                 break;
             case 23:
                 switch (selectedOption){
@@ -500,8 +532,10 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                     case "4 or More":
                         survey.setQ20(1200);
+                        break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q20 set to: " + survey.getQ20() + ", selectedOption: " + selectedOption);
                 break;
             case 24:
                 switch (selectedOption){
@@ -519,6 +553,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
                         break;
                 }
                 survey.setTrue(questionID-1);
+                Log.d("SurveyDebug", "Q21 set to: " + survey.getQ21() + ", selectedOption: " + selectedOption);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + questionID);
@@ -554,8 +589,25 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
     };
 
    public void next (View view){
+//       Handles case when we've reached the end of the survey and need to see results
+       if(question == 24){
+           Intent intent = new Intent(this, SurveyResultsActivity.class);
+           survey.setTotalConsumption();
+           survey.setTotalFood();
+           survey.setTotalHousing();
+           survey.setTotalTransport();
+           survey.setTotalFootprint();
+           intent.putExtra("HOUSING", survey.getTotalHousing());
+           intent.putExtra("FOOD", survey.getTotalFood());
+           intent.putExtra("CONSUMPTION", survey.getTotalConsumption());
+           intent.putExtra("TRANSPORTATION", survey.getTotalTransport());
+           intent.putExtra("TOTAL", survey.getTotalFootprint());
+//           survey.addToDB();
+           startActivity(intent);
+
+       }
 //       handles case where question is not answered
-       if(!survey.getAnswer(question-1)){
+       else if(!survey.getAnswer(question-1)){
 //           Displays an Alert telling user to answer question
            Toast.makeText(this, "No Answer Selected", Toast.LENGTH_SHORT).show();
 //           Also need to handle the case where they don't have a car and a bunch of questions are skipped

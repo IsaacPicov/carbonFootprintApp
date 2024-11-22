@@ -24,7 +24,7 @@ public class FragmentQuestion12 extends Fragment {
     private Button option2;
     private Button option3;
     private Button option4;
-    private Button option5;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_question12, container, false);
@@ -32,13 +32,11 @@ public class FragmentQuestion12 extends Fragment {
         option2 = view.findViewById(R.id.q12option2); // Change BUTTONS
         option3 = view.findViewById(R.id.q12option3);
         option4 = view.findViewById(R.id.q12option4); // Change BUTTONS
-        option5 = view.findViewById(R.id.q12other);
 
         option1.setOnClickListener(this::answer);
         option2.setOnClickListener(this::answer);
         option3.setOnClickListener(this::answer);
         option4.setOnClickListener(this::answer);
-        option5.setOnClickListener(this::answer);
 
         return view;
 

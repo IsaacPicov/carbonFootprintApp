@@ -34,14 +34,17 @@
 <!--        <activity-->
 <!--            android:name=".Activity2"-->
 <!--            android:exported="false" />-->
-        <activity
-            android:name=".SurveyActivity"
-            android:exported="false"/>
+<!--        <activity-->
+<!--            android:name=".SurveyActivity"-->
+<!--            android:exported="false"/>-->
         <activity
             android:name=".SurveyLandingPageActivity"
             android:exported="false"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".mvp.SurveyResultsActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SurveyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

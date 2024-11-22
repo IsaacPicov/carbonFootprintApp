@@ -28,7 +28,7 @@ public class FragmentQuestion20 extends Fragment {
     private Button option2;
     private Button option3;
     private Button option4;
-
+    private Button option5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -37,11 +37,13 @@ public class FragmentQuestion20 extends Fragment {
         option2 = view.findViewById(R.id.q20option2); // Change BUTTONS
         option3 = view.findViewById(R.id.q20option3);
         option4 = view.findViewById(R.id.q20option4);
+        option5 = view.findViewById(R.id.q20option5);
 
         option1.setOnClickListener(this::answer);
         option2.setOnClickListener(this::answer);
         option3.setOnClickListener(this::answer);
         option4.setOnClickListener(this::answer);
+        option5.setOnClickListener(this::answer);
 
         return view;
 
@@ -65,10 +67,12 @@ public class FragmentQuestion20 extends Fragment {
         option2.setBackgroundColor(Color.MAGENTA);
         option3.setBackgroundColor(Color.MAGENTA);
         option4.setBackgroundColor(Color.MAGENTA);
+        option5.setBackgroundColor(Color.MAGENTA);
         option1.setActivated(true);
         option2.setActivated(true);
         option3.setActivated(true);
         option4.setActivated(true);
+        option5.setActivated(true);
         Button option = (Button)view;
         String selectedOption = option.getText().toString();
         option.setBackgroundColor(Color.GRAY);

@@ -2,7 +2,7 @@ package com.example.b07demosummer2024;
 
 
 public class Constants {
-//    TODO -- Implement these constants in the survey Activity & make them all public
+//    ALL OF THIS IS SURVEY STUFF
     public static final int YES_OPTION = 1;
     public static final int NO_OPTION = 0;
 
@@ -69,6 +69,10 @@ public class Constants {
     public static final double FOOD_WASTE_RARELY = 23.4;
     public static final double FOOD_WASTE_OCCASIONALLY = 70.2;
     public static final double FOOD_WASTE_FREQUENTLY = 140.4;
+    public static final double KGtoTONSCONSTANT = 907.2;
+
+
+
 //    Housing data stuff
 //    Size of house, monthly electricity bill,type of energy, number of occupants
 public static final double[][][][][] housingData = {
