@@ -600,7 +600,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
            intent.putExtra("FOOD", survey.getTotalFood());
            intent.putExtra("CONSUMPTION", survey.getTotalConsumption());
            intent.putExtra("TRANSPORTATION", survey.getTotalTransport());
-//           survey.addToDB();
+           survey.addToDB();
            startActivity(intent);
 
        }

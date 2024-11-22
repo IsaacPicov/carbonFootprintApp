@@ -471,7 +471,7 @@ public class Footprint {
 
       DatabaseReference ref =
                FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/").getReference();
-       ref.child("users").child(userID).child("id").setValue(this);
+       ref.child("users").child(userID).child("SurveyData").setValue(this);
    }
 
 
