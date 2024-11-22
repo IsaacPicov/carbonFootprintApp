@@ -1,10 +1,8 @@
 package com.example.b07demosummer2024.mvp;
 
-import static android.content.Intent.getIntent;
 import static com.example.b07demosummer2024.CountriesConstants.COUNTRIES;
 import static com.example.b07demosummer2024.CountriesConstants.countryConstants;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +17,7 @@ import com.example.b07demosummer2024.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -48,7 +47,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
         totalFood = carbonValues.getDoubleExtra("FOOD", 0.0);
         totalConsumption = carbonValues.getDoubleExtra("CONSUMPTION", 0.0);
         totalTransportation = carbonValues.getDoubleExtra("TRANSPORTATION", 0.0);
-        totalCarbon = carbonValues.getDoubleExtra("TOTAL",0.0);
+        totalCarbon = totalConsumption +totalFood+totalTransportation+totalHousing;
         PieChart breakdown = (PieChart) findViewById(R.id.pieChart);
         BarChart byCountry = (BarChart) findViewById(R.id.barChart);
 
@@ -108,8 +107,30 @@ public class SurveyResultsActivity extends AppCompatActivity {
             BarData data = new BarData(dataSet);
             byCountry.setFitBars(true);
             byCountry.setData(data);
-            byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita");
             byCountry.animateY(2000);
+            YAxis leftAxis = byCountry.getAxisLeft();
+            YAxis rightAxis = byCountry.getAxisRight();
+            XAxis xAxis1 = byCountry.getXAxis();
+
+            byCountry.getDescription().setEnabled(true);
+            byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita");
+            byCountry.getDescription().setTextSize(11f);
+            byCountry.getDescription().setTextColor(Color.BLACK);
+             byCountry.getDescription().setPosition(720f, 50f);
+
+            byCountry.getLegend().setEnabled(false);
+
+
+            leftAxis.setAxisMinimum(0f);
+            leftAxis.setAxisMaximum(80f); // Adjust based on your expected range
+            leftAxis.setGranularity(1f);
+            rightAxis.setEnabled(false);
+
+
+            xAxis1.setDrawGridLines(false);
+            leftAxis.setDrawGridLines(false);
+            data.setBarWidth(0.4f);
+            byCountry.setExtraTopOffset(20f);
 
 
 
@@ -132,7 +153,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCountry = parent.getItemAtPosition(position).toString();
                 String[] userLabels = {"Yours", selectedCountry};
-                xAxis.setValueFormatter(new ValueFormatter() {
+                xAxis1.setValueFormatter(new ValueFormatter() {
                     @Override
                     public String getFormattedValue(float value) {
                         int index = (int) value;

@@ -7,6 +7,8 @@ package com.example.b07demosummer2024;
 import static com.example.b07demosummer2024.Constants.KGtoTONSCONSTANT;
 import static com.example.b07demosummer2024.Constants.housingData;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -180,7 +182,9 @@ public class Footprint {
                             break;
                         case 5:
                             placeholder = 4095;
+                            break;
                 }
+                break;
                 case 2:
                     switch((int)q5) {
                         case 1:
@@ -197,7 +201,10 @@ public class Footprint {
                             break;
                         case 5:
                             placeholder = 9555;
+                            break;
                     }
+                    break;
+//                    This code is a little redundant but... better safe than sorry
                 case 3:
                     switch((int)q5) {
                         case 1:
@@ -214,10 +221,18 @@ public class Footprint {
                             break;
                         case 5:
                             placeholder = 9555;
+                            break;
                     }
-
+                    break;
             }
-            totalTransport = (q2*q3 +placeholder+ q6 + q7)/KGtoTONSCONSTANT;
+        Log.d("q2","q2"+ q2 );
+        Log.d("q3","q3"+ q3 );
+        Log.d("placeholder","placeholder"+ placeholder );
+        Log.d("q6","q6"+ q6 );
+        Log.d("q7","q7"+ q7 );
+
+        totalTransport = ((q2*q3) +placeholder+ q6 + q7)/KGtoTONSCONSTANT;
+        Log.d("totalTransport",""+ totalTransport );
     }
 
     public void setTotalFood() {
