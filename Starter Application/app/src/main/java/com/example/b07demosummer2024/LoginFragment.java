@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,12 +28,18 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView,
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         editEmail = view.findViewById(R.id.editEmail);
         editPassword = view.findViewById(R.id.editPassword);
-
+        
+        ImageButton loginBackButton = view.findViewById(R.id.loginBackButton);
         Button buttonLogin = view.findViewById(R.id.buttonLogin);
         Button buttonForgotPassword = view.findViewById(R.id.buttonForgotPassword);
 
         loginPresenter = new LoginPresenter(this);
         forgotPasswordPresenter = new ForgotPasswordPresenter(this);
+
+        loginBackButton.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.popBackStack();
+        });
 
         buttonLogin.setOnClickListener(v -> {
             String email = editEmail.getText().toString().trim();
