@@ -71,7 +71,7 @@ public class LoginFragment extends Fragment implements LoginPresenter.LoginView,
     public void onLoginSuccess() {
         Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
 
-        // redirect back to homepage
+        // Redirect to survey fragment
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.popBackStack();
 
