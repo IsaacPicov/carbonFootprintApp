@@ -29,5 +29,49 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-public class ClothesFragment extends Fragment{
+public class ClothesFragment extends Fragment {
+
+    private EditText clothingItemsInput;
+    private Button submitButton;
+    private FirebaseAuth auth;
+    private FirebaseDatabase db;
+    private DatabaseReference itemsRef;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_clothes, container, false);
+
+        submitButton = view.findViewById(R.id.buttonClothesSubmit);
+        clothingItemsInput = view.findViewById(R.id.editTextClothingItems);
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+
+        submitButton.setOnClickListener(v -> {
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String numItems = clothingItemsInput.getText().toString().trim();
+                addToDatabase(currentUser.getUid(), numItems);
+            } else {
+                Toast.makeText(getContext(), "Login required", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
+    }
+
+    private void addToDatabase(String userId, String numItems) {
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/shopping/clothes");
+
+        itemsRef.push().setValue(new Object() {
+            public String items = numItems;
+        }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+

@@ -30,4 +30,51 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class ElectronicsFragment extends Fragment {
+
+    private EditText deviceTypeInput, deviceCountInput;
+    private Button submitButton;
+    private FirebaseAuth auth;
+    private FirebaseDatabase db;
+    private DatabaseReference itemsRef;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_electronics, container, false);
+
+        submitButton = view.findViewById(R.id.buttonElectronicsSubmit);
+        deviceTypeInput = view.findViewById(R.id.editTextDeviceType);
+        deviceCountInput = view.findViewById(R.id.editTextDeviceCount);
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+
+        submitButton.setOnClickListener(v -> {
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String deviceType = deviceTypeInput.getText().toString().trim();
+                String deviceCount = deviceCountInput.getText().toString().trim();
+                addToDatabase(currentUser.getUid(), deviceType, deviceCount);
+            } else {
+                Toast.makeText(getContext(), "Login required", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
+    }
+
+    private void addToDatabase(String userId, String deviceType, String deviceCount) {
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/shopping/electronics");
+
+        itemsRef.push().setValue(new Object() {
+            public String type = deviceType;
+            public String count = deviceCount;
+        }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+
