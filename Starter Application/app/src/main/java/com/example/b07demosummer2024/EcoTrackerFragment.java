@@ -4,27 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EcoTrackerFragment extends Fragment {
 
-    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping;
+    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping, buttonCO2eDisplay;
 
     @Nullable
     @Override
@@ -34,6 +23,7 @@ public class EcoTrackerFragment extends Fragment {
         buttonTransportation = view.findViewById(R.id.buttonTransportation);
         buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
         buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
+        buttonCO2eDisplay = view.findViewById(R.id.buttonDailyCO2eDisplay);
 
         buttonTransportation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +43,13 @@ public class EcoTrackerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loadFragment(new RecyclerViewFragment());
+            }
+        });
+
+        buttonCO2eDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CO2eDisplayFragment());
             }
         });
 
