@@ -457,9 +457,6 @@ public class Footprint {
     public double getTotalConsumption() {
         return totalConsumption;
     }
-    public double getTotalFootprint(){
-        return totalFootprint;
-    }
 
     public boolean getAnswer(int i) {
         return isAnswered[i];
@@ -469,11 +466,11 @@ public class Footprint {
 //    TODO add the final thing to the db//
     public void addToDB(){
 
+      Double [] totals = {totalTransport,totalFood,totalHousing,totalConsumption};
       DatabaseReference ref =
                FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/").getReference();
-       ref.child("users").child(userID).child("SurveyData").setValue(this);
+       ref.child("users").child(userID).child("SurveyData").setValue(totals);
    }
 
 
-//    This project is so fucking stupid. Hard coding cases makes my brain hurt
 }
