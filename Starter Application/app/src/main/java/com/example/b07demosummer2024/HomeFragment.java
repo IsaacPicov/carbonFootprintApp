@@ -18,14 +18,14 @@ public class HomeFragment extends Fragment {
 
 
 
-        Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView);
+        Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView2);
         Button buttonRegister = view.findViewById(R.id.buttonRegisteration);
         Button buttonUserLogin = view.findViewById(R.id.buttonUserLogin);
         Button buttonScroller = view.findViewById(R.id.buttonScroller);
         Button buttonSpinner = view.findViewById(R.id.buttonSpinner);
         Button buttonManageItems = view.findViewById(R.id.buttonManageItems);
         Button buttonEcoTracker = view.findViewById(R.id.buttonEcoTracker);
-
+        Button buttonHabitTracker = view.findViewById(R.id.buttonHabitTracker);
         buttonRecyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +69,11 @@ public class HomeFragment extends Fragment {
         buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { loadFragment(new EcoTrackerFragment());}
+        });
+
+        buttonHabitTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { loadFragment(new HabitTrackerFragment());}
         });
 
         return view;
