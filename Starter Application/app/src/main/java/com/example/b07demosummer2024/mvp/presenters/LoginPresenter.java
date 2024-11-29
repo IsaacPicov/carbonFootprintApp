@@ -38,29 +38,7 @@ public class LoginPresenter {
             @Override
             public void onLoginFail(String errorMessage) {
                 view.closeLoading();
-                view.onLoginFail(errorMessage);
-            }
-        });
-    }
-
-    public void handleForgotPassword(@NonNull String email) {
-        if (email.isEmpty()) {
-            view.onLoginFail("Please enter your email address");
-            return;
-        }
-
-        view.showLoading();
-        model.sendPasswordReset(email, new LoginModel.LoginCallback() {
-            @Override
-            public void onLoginSuccess() {
-                view.closeLoading();
-                view.onLoginSuccess();
-            }
-
-            @Override
-            public void onLoginFail(String errorMessage) {
-                view.closeLoading();
-                view.onLoginFail(errorMessage);
+                view.onLoginFail("An error occurred");
             }
         });
     }
