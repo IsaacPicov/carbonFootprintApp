@@ -55,7 +55,7 @@ public class ExampleUnitTest {
             String email = "test@example.com";
             String password = "password123";
 
-            LoginModel.LoginCallback callback = new LoginModel.LoginCallback()
+            // LoginModel.LoginCallback callback = new LoginModel.LoginCallback()
 
 
 
@@ -75,7 +75,7 @@ public class ExampleUnitTest {
             String email = "test@example.com";
             String password = "wrongpassword";
 
-            LoginModel.LoginCallback callback = mock(LoginModel.LoginCallback.class);
+            // LoginModel.LoginCallback callback = LoginModel.LoginCallback.class;
 
 
 
@@ -89,7 +89,7 @@ public class ExampleUnitTest {
             verify(mockView).onLoginFail("An error occurred");
         }
 
-        
+
     }
 
 
