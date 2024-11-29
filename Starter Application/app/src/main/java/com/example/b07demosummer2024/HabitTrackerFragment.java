@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HabitTrackerFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private HabitAdapter habitAdapter;
+    private List<Habit> habitList = new ArrayList<>();
 
     private Button btnFetchHabit;
     private Spinner spinner;
@@ -49,6 +58,15 @@ public class HabitTrackerFragment extends Fragment {
         btnFetchHabit = view.findViewById(R.id.btnFetchHabit);
         searchBar = view.findViewById(R.id.searchBar);
         resultView = view.findViewById(R.id.resultView); // Result view for displaying habits
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        habitAdapter = new HabitAdapter(habitList, habit -> {
+            // Handle button click for a specific habit
+            // Example: Display a toast or perform an action
+            Toast.makeText(getContext(), "Action clicked for: " + habit.getTitle(), Toast.LENGTH_SHORT).show();
+        });
+        recyclerView.setAdapter(habitAdapter);
+
 
         // Spinner setup
         String[] items = {"consumption", "energy", "transportation"};
@@ -143,28 +161,26 @@ public class HabitTrackerFragment extends Fragment {
     private void fetchHabitsByType(String selectedItem) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("habits");
 
-        // Create a query for habits where the type equals the selectedItem
         Query query = databaseReference.orderByChild("type").equalTo(selectedItem);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                StringBuilder habitsResult = new StringBuilder();
+                habitList.clear();
                 for (DataSnapshot habitSnapshot : snapshot.getChildren()) {
-                    // Assuming each habit has a 'title' field
-                    String habitTitle = habitSnapshot.child("title").getValue(String.class);
-                    if (habitTitle != null) {
-                        habitsResult.append(habitTitle).append("\n");
+                    Habit habit = habitSnapshot.getValue(Habit.class);
+                    if (habit != null) {
+                        habitList.add(habit);
                     }
                 }
-                // Display fetched habits in the TextView
-                selectedItemText.setText("Selected: " + selectedItem + "\nHabits:\n" + habitsResult.toString());
+                habitAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                selectedItemText.setText("Error: " + error.getMessage());
+                Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }
