@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +66,10 @@ public class HabitTrackerFragment extends Fragment {
             // Handle button click for a specific habit
             // Example: Display a toast or perform an action
             Toast.makeText(getContext(), "Action clicked for: " + habit.getTitle(), Toast.LENGTH_SHORT).show();
+            if (habit.getType().equals("transportation") && habit.getTitle().equals("Personal Vehicle")){
+                navigateToPersonalVehicleFragment();
+
+            }
         });
         recyclerView.setAdapter(habitAdapter);
 
@@ -157,6 +163,16 @@ public class HabitTrackerFragment extends Fragment {
             }
         });
     }
+
+    private void navigateToPersonalVehicleFragment(){
+        PersonalVehicleFragment dest = new PersonalVehicleFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     private void fetchHabitsByType(String selectedItem) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("habits");

@@ -19,6 +19,8 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
     public interface OnHabitActionClickListener {
         void onActionClick(Habit habit);
     }
+
+
     //Take in the list of habits as well as a button
     public HabitAdapter(List<Habit> habits, OnHabitActionClickListener listener){
         this.habits = habits;
@@ -60,5 +62,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
             habitTitle = itemView.findViewById(R.id.habitTitle);
             btnAction = itemView.findViewById(R.id.btnAction);
         }
+
+
     }
 }
