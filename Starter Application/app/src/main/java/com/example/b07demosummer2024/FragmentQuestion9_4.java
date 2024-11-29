@@ -31,10 +31,10 @@ public class FragmentQuestion9_4 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question9_4, container, false);
 
         // Assign buttons for each category
-        fish_never = view.findViewById(R.id.fish1);
-        fish_daily = view.findViewById(R.id.fish2);
-        fish_frequent = view.findViewById(R.id.fish3);
-        fish_occasional = view.findViewById(R.id.fish4);
+        fish_never = view.findViewById(R.id.q9_4option1);
+        fish_daily = view.findViewById(R.id.q9_4option2);
+        fish_frequent = view.findViewById(R.id.q9_4option3);
+        fish_occasional = view.findViewById(R.id.q9_4option4);
 
         fish_never.setOnClickListener(this::answer);
         fish_daily.setOnClickListener(this::answer);

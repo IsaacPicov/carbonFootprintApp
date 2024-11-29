@@ -466,11 +466,16 @@ public class Footprint {
 //    TODO add the final thing to the db//
     public void addToDB(){
 
-      Double [] totals = {totalTransport,totalFood,totalHousing,totalConsumption};
+
       DatabaseReference ref =
                FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/").getReference();
-       ref.child("users").child(userID).child("SurveyData").setValue(totals);
-   }
+       ref.child("users").child(userID).child("SurveyData").child("Total").setValue(totalConsumption+totalFood+totalTransport+totalHousing);
+       ref.child("users").child(userID).child("SurveyData").child("Transportation").setValue(totalTransport);
+       ref.child("users").child(userID).child("SurveyData").child("Food").setValue(totalFood);
+       ref.child("users").child(userID).child("SurveyData").child("Housing").setValue(totalHousing);
+       ref.child("users").child(userID).child("SurveyData").child("Consumption").setValue(totalConsumption);
+
+    }
 
 
 }
