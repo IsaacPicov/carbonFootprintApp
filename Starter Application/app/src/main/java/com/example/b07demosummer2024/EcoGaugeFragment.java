@@ -1,3 +1,5 @@
+/*
+
 package com.example.b07demosummer2024;
 
 import android.os.Bundle;
@@ -34,3 +36,5 @@ public class EcoGaugeFragment extends Fragment {
         comparisonChart.setImageResource(R.drawable.ic_bar_chart);
     }
 }
+
+ */

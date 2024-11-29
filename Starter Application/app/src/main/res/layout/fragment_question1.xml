@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcgradient">
 
     <TextView
         android:id="@+id/textView4"
@@ -14,6 +15,8 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,21 +25,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.158" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/button5"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:layout_marginTop="120dp"
         android:text="Yes"
+        android:background="@drawable/appgradient"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/button6"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="No"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@drawable/appgradient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
