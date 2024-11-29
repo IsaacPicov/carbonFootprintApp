@@ -46,4 +46,5 @@ dependencies {
     testImplementation("org.mockito:mockito-core:2.8.47")
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

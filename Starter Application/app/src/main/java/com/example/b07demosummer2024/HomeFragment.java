@@ -1,5 +1,6 @@
 package com.example.b07demosummer2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,6 @@ public class HomeFragment extends Fragment {
         });
         */
 
-
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,8 @@ public class HomeFragment extends Fragment {
         buttonUserLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new LoginFragment());
+                Intent intent = new Intent(requireActivity(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -54,8 +55,6 @@ public class HomeFragment extends Fragment {
                 loadFragment(new ScrollerFragment());
             }
         });
-
-
 
         buttonSpinner.setOnClickListener(new View.OnClickListener() {
             @Override

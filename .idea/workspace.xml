@@ -21,6 +21,11 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_login.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_main.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -32,6 +37,7 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+<<<<<<< HEAD
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_login.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -47,6 +53,8 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+=======
+>>>>>>> 7f8bb76a50f9a95f7c4b5e075183754a62c1bea9
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -54,10 +62,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/src/test/java/com/example/b07demosummer2024/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/test/java/com/example/b07demosummer2024/ExampleUnitTest.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" afterDir="false" />
+>>>>>>> 7f8bb76a50f9a95f7c4b5e075183754a62c1bea9
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,18 +80,32 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gvbri\.android\avd\Medium_Phone_API_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gosqib\.android\avd\Pixel_6a_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/Starter Application">
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
       </list>
     </option>
+=======
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+>>>>>>> 7f8bb76a50f9a95f7c4b5e075183754a62c1bea9
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -95,6 +122,9 @@
     &quot;accountId&quot;: &quot;bc0e0473-0473-4082-b0be-e99fe2b681b6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_login.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
