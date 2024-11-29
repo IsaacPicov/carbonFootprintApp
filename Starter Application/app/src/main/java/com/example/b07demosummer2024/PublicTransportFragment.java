@@ -29,13 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-public class PersonalVehicleFragment extends Fragment {
+public class PublicTransportFragment extends Fragment {
 
 
-    private EditText distanceTravel;
+    private EditText timeSpent;
 
     private FirebaseAuth auth;
-    private Spinner units, vehicleType;
+    private Spinner transportation, unit;
 
     private Button submit;
     private FirebaseDatabase db;
@@ -45,23 +45,23 @@ public class PersonalVehicleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_personalvehicle, container, false);
+        View view = inflater.inflate(R.layout.fragment_publictransport, container, false);
 
-        submit = view.findViewById(R.id.buttonPersonalVehicleSubmit);
-        distanceTravel = view.findViewById(R.id.editTextDistanceTravel);
-        units = view.findViewById(R.id.spinnerUnits);
+        submit = view.findViewById(R.id.buttonSubmit);
+        timeSpent = view.findViewById(R.id.editTextTimeSpent);
+        transportation= view.findViewById(R.id.spinnerPublicTransport);
+        ArrayAdapter<CharSequence> transportationAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.public_transport, android.R.layout.simple_spinner_item);
+        transportationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transportation.setAdapter(transportationAdapter);
+
+
+
+        unit = view.findViewById(R.id.spinnerTimeUnit);
         ArrayAdapter<CharSequence> unitAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.distance_units, android.R.layout.simple_spinner_item);
+                R.array.time_units, android.R.layout.simple_spinner_item);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        units.setAdapter(unitAdapter);
-
-
-
-        vehicleType = view.findViewById(R.id.spinnerVehicleType);
-        ArrayAdapter<CharSequence> vehicleAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.vehicle_types, android.R.layout.simple_spinner_item);
-        vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vehicleType.setAdapter(vehicleAdapter);
+        unit.setAdapter(unitAdapter);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,7 @@ public class PersonalVehicleFragment extends Fragment {
                 db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
                 FirebaseUser currentUser = auth.getCurrentUser();
                 if(currentUser != null){
-                    addToDatabase(currentUser.getUid(), distanceTravel.getText().toString().trim(), units.getSelectedItem().toString(), vehicleType.getSelectedItem().toString());
+                    addToDatabase(currentUser.getUid(), transportation.getSelectedItem().toString().trim(), timeSpent.getText().toString().trim(), unit.getSelectedItem().toString().trim());
                 }
                 else{
                     Toast.makeText(getContext(), "Logged in requried.", Toast.LENGTH_SHORT).show();
@@ -81,12 +81,12 @@ public class PersonalVehicleFragment extends Fragment {
     }
 
 
-    private void addToDatabase(String userId, String distanceTravel, String units, String vehicleType) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/vehicle");
+    private void addToDatabase(String userId, String transportation, String timeSpent, String unit) {
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/publicTransport");
 
         itemsRef.push().setValue(new Object(){
-            public String distance = distanceTravel + units;
-            public String type = vehicleType;
+            public String type = transportation;
+            public String duration = timeSpent + " " + unit;
         }).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();

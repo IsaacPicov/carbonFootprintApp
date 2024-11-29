@@ -19,6 +19,10 @@
     <string name="publicTransportation">Take Public Transportation</string>
     <string name="cyclingWalking">Cycling or walking</string>
     <string name="flight">Flight (Short-Haul or Long-Haul)</string>
+    <string name="clothes">Buying New Clothes</string>
+    <string name="electronics">Buying New Electronics</string>
+    <string name="miscellaneous">Buying Miscellaneous Items</string>
+    <string name="bills">Bills (Electricity, Gas, Hydro)</string>
 
     <string-array name="categories_array">
         <item>Books</item>
@@ -31,9 +35,37 @@
     </string-array>
 
     <string-array name="vehicle_types">
-        <item>car</item>
-        <item>bike</item>
-        <item>motorbike</item>
+        <item>Gasoline</item>
+        <item>Diesel</item>
+        <item>Hybrid</item>
+        <item>Electric</item>
+        <item>I do not know</item>
+    </string-array>
+
+
+    <string-array name="public_transport">
+        <item>bus</item>
+        <item>train</item>
+        <item>subway</item>
+    </string-array>
+
+    <string-array name="time_units">
+        <item>minutes</item>
+        <item>hours</item>
+    </string-array>
+
+    <string-array name="flight_haul">
+        <item>Short-haul (&lt;1,500 km)</item>
+        <item>Long-haul (&gt;1,500 km)</item>
+    </string-array>
+
+    <string name="meal">Meal</string>
+    <string-array name="meal_types">
+        <item>Beef</item>
+        <item>Pork</item>
+        <item>Chicken</item>
+        <item>Fish</item>
+        <item>Plant-Based</item>
     </string-array>
 
 

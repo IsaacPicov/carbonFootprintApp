@@ -29,13 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-public class PersonalVehicleFragment extends Fragment {
+public class FlightFragment extends Fragment {
 
 
-    private EditText distanceTravel;
+    private EditText numberFlight;
 
     private FirebaseAuth auth;
-    private Spinner units, vehicleType;
+    private Spinner flightType;
 
     private Button submit;
     private FirebaseDatabase db;
@@ -45,23 +45,16 @@ public class PersonalVehicleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_personalvehicle, container, false);
+        View view = inflater.inflate(R.layout.fragment_flight, container, false);
 
-        submit = view.findViewById(R.id.buttonPersonalVehicleSubmit);
-        distanceTravel = view.findViewById(R.id.editTextDistanceTravel);
-        units = view.findViewById(R.id.spinnerUnits);
+        submit = view.findViewById(R.id.buttonFlightSubmit);
+        numberFlight = view.findViewById(R.id.editTextFlightNumber);
+        flightType = view.findViewById(R.id.spinnerFlight);
         ArrayAdapter<CharSequence> unitAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.distance_units, android.R.layout.simple_spinner_item);
+                R.array.flight_haul, android.R.layout.simple_spinner_item);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        units.setAdapter(unitAdapter);
+        flightType.setAdapter(unitAdapter);
 
-
-
-        vehicleType = view.findViewById(R.id.spinnerVehicleType);
-        ArrayAdapter<CharSequence> vehicleAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.vehicle_types, android.R.layout.simple_spinner_item);
-        vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vehicleType.setAdapter(vehicleAdapter);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +63,7 @@ public class PersonalVehicleFragment extends Fragment {
                 db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
                 FirebaseUser currentUser = auth.getCurrentUser();
                 if(currentUser != null){
-                    addToDatabase(currentUser.getUid(), distanceTravel.getText().toString().trim(), units.getSelectedItem().toString(), vehicleType.getSelectedItem().toString());
+                    addToDatabase(currentUser.getUid(), numberFlight.getText().toString().trim(), flightType.getSelectedItem().toString());
                 }
                 else{
                     Toast.makeText(getContext(), "Logged in requried.", Toast.LENGTH_SHORT).show();
@@ -81,12 +74,13 @@ public class PersonalVehicleFragment extends Fragment {
     }
 
 
-    private void addToDatabase(String userId, String distanceTravel, String units, String vehicleType) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/vehicle");
+    private void addToDatabase(String userId, String numberFlight, String flightType) {
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/flight");
 
         itemsRef.push().setValue(new Object(){
-            public String distance = distanceTravel + units;
-            public String type = vehicleType;
+            public String noOfFlight = numberFlight;
+            public String haul = flightType;
+
         }).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();

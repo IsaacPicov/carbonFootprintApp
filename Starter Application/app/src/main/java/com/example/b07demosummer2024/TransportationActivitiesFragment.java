@@ -46,19 +46,27 @@ public class TransportationActivitiesFragment extends Fragment{
             }
         });
 //
-//        buttonFoodConsumption.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loadFragment(new RecyclerViewFragment());
-//            }
-//        });
+        buttonPublicTransport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new PublicTransportFragment());
+            }
+        });
 //
-//        buttonConsumptionAndShopping.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loadFragment(new RecyclerViewFragment());
-//            }
-//        });
+        buttonCyclingWalking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CyclingWalkingFragment());
+            }
+        });
+
+
+        buttonFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new FlightFragment());
+            }
+        });
 
 
         return view;
