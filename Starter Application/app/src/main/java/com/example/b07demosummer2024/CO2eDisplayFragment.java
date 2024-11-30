@@ -35,14 +35,16 @@ public class CO2eDisplayFragment extends Fragment {
 
 
     private CalendarView calendarView;
-
+    private RecyclerView activityRecyclerView;
     private Calendar calendar;
-    private EditText distanceTravel;
+
+    private List<Activity> activityLists;
 
     private FirebaseAuth auth;
-    private Spinner units, vehicleType;
 
-    private Button submit;
+    private ActivityAdapter activityAdapter;
+
+    private Button add;
     private FirebaseDatabase db;
     private DatabaseReference itemsRef;
 
@@ -55,19 +57,38 @@ public class CO2eDisplayFragment extends Fragment {
         calendarView = view.findViewById(R.id.calendarView);
         LocalDate currentDate = LocalDate.now();
         setDate(currentDate.getDayOfMonth(), currentDate.getMonthValue(), currentDate.getYear());
+//
+        activityRecyclerView = view.findViewById(R.id.activityRecyclerView);
+        activityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+        activityLists = new ArrayList<>();
+        activityAdapter = new ActivityAdapter(activityLists);
+        activityRecyclerView.setAdapter(activityAdapter);
+
+        add = view.findViewById(R.id.buttonAddActivity);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Toast.makeText(getContext(), "Data selected" + year + month + dayOfMonth, Toast.LENGTH_SHORT).show();
+                String date = year + "-" + month + "-" + dayOfMonth;
+                setDate(dayOfMonth, month, year);
+                fetchItemsFromDatabase(date);
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalVariable.setDate(calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+                loadFragment(new EcoTrackerFragment());
             }
         });
         return view;
     }
 
 
-//    private void
 
+//    private void
     private void setDate(int day, int month, int year){
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -77,19 +98,43 @@ public class CO2eDisplayFragment extends Fragment {
     }
 
 
-    private void addToDatabase(String userId, String distanceTravel, String units) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/cycle_walk");
+    private void fetchItemsFromDatabase(String date) {
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String userId = currentUser.getUid();
+        System.out.println("User id is " + userId);
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + date);
+        itemsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                activityLists.clear();
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Activity activity = new Activity(snapshot.child("activityType").getValue().toString(), snapshot.child("information").getValue().toString());
+                        activityLists.add(activity);
+                    }
+                }
+                else{
+                    activityLists.add(new Activity("No Activity", ""));
+                }
 
-        itemsRef.push().setValue(new Object(){
-            public String distance = distanceTravel + units;
+                activityAdapter.notifyDataSetChanged();
+            }
 
-        }).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors
             }
         });
+
     }
 
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
+

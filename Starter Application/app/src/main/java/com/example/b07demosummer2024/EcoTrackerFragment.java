@@ -52,8 +52,6 @@ public class EcoTrackerFragment extends Fragment {
                 loadFragment(new CO2eDisplayFragment());
             }
         });
-
-
         return view;
     }
 

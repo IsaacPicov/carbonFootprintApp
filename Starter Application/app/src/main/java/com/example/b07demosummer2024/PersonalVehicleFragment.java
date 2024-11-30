@@ -82,7 +82,14 @@ public class PersonalVehicleFragment extends Fragment {
 
 
     private void addToDatabase(String userId, String distanceTravel, String units, String vehicleType) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/vehicle");
+        if (GlobalVariable.getDate().equals(null)){
+            itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/vehicle");
+        }
+        else{
+            itemsRef = db.getReference("users/" + userId + "/dailylogs/" + GlobalVariable.getDate() + "/transportation/vehicle");
+        }
+
+
 
         itemsRef.push().setValue(new Object(){
             public String distance = distanceTravel + units;
