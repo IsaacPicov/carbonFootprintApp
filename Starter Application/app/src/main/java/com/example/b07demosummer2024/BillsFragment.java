@@ -71,7 +71,14 @@ public class BillsFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String billType, String billAmount) {
-        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+
+        DatabaseReference logRef;
+
+        if (GlobalVariable.getDate() == null) {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        } else {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(GlobalVariable.getDate());
+        }
         String id = logRef.push().getKey(); // Generate a unique ID for the activity
 
         if (id != null) {

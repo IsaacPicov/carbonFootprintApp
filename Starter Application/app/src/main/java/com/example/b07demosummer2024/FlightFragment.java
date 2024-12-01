@@ -64,7 +64,14 @@ public class FlightFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String numberOfFlights, String flightType) {
-        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+
+        DatabaseReference logRef;
+
+        if (GlobalVariable.getDate() == null) {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        } else {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(GlobalVariable.getDate());
+        }
         String id = logRef.push().getKey();
 
         if (id != null) {
