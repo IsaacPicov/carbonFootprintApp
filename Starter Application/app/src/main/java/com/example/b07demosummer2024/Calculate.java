@@ -3,8 +3,6 @@ package com.example.b07demosummer2024;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.DatabaseError;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -46,10 +44,13 @@ public class Calculate {
                 DataSnapshot dailyLogs = task.getResult();
                 double totalEmissions = 0.0;
 
-                for (String type : EMISSION_FACTORS.keySet()) {
-                    double factor = EMISSION_FACTORS.get(type);
-                    double quantity = getQuantityForType(dailyLogs, type);
-                    totalEmissions += factor * quantity;
+                for (DataSnapshot activitySnapshot : dailyLogs.getChildren()) {
+                    String activityType = activitySnapshot.child("activity_type").getValue(String.class);
+                    Map<String, Object> information = (Map<String, Object>) activitySnapshot.child("information").getValue();
+
+                    if (activityType != null && information != null) {
+                        totalEmissions += calculateActivityEmissions(activityType, information);
+                    }
                 }
 
                 dailyLogsRef.child("total_emissions").setValue(totalEmissions);
@@ -57,31 +58,20 @@ public class Calculate {
         });
     }
 
-    private static double getQuantityForType(DataSnapshot dailyLogs, String type) {
-        if (type.equalsIgnoreCase("gasoline")) {
-            DataSnapshot vehicle = dailyLogs.child("transportation/vehicle");
-            return vehicle.child("distance").getValue(Double.class) != null ? vehicle.child("distance").getValue(Double.class) : 0.0;
+    private static double calculateActivityEmissions(String activityType, Map<String, Object> information) {
+        double totalEmissions = 0.0;
+
+        for (Map.Entry<String, Object> entry : information.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof Number) {
+                double numericValue = ((Number) value).doubleValue();
+                double factor = EMISSION_FACTORS.getOrDefault(key.toLowerCase(), 0.0);
+                totalEmissions += numericValue * factor;
+            }
         }
-        if (type.equalsIgnoreCase("bus") || type.equalsIgnoreCase("train") || type.equalsIgnoreCase("subway")) {
-            DataSnapshot publicTransport = dailyLogs.child("transportation/publicTransport");
-            return publicTransport.child("hours").getValue(Double.class) != null ? publicTransport.child("hours").getValue(Double.class) : 0.0;
-        }
-        if (type.equalsIgnoreCase("shorthaul") || type.equalsIgnoreCase("mediumhaul") || type.equalsIgnoreCase("longhaul")) {
-            DataSnapshot flights = dailyLogs.child("transportation/flights");
-            return flights.child(type).getValue(Double.class) != null ? flights.child(type).getValue(Double.class) : 0.0;
-        }
-        if (type.equalsIgnoreCase("beef") || type.equalsIgnoreCase("plantbased") || type.equalsIgnoreCase("chicken")) {
-            DataSnapshot meals = dailyLogs.child("food/meals");
-            return meals.child(type).getValue(Double.class) != null ? meals.child(type).getValue(Double.class) : 0.0;
-        }
-        if (type.equalsIgnoreCase("electricity") || type.equalsIgnoreCase("water") || type.equalsIgnoreCase("gas")) {
-            DataSnapshot energyBills = dailyLogs.child("energyBills");
-            return energyBills.child(type).getValue(Double.class) != null ? energyBills.child(type).getValue(Double.class) : 0.0;
-        }
-        if (type.equalsIgnoreCase("tshirt") || type.equalsIgnoreCase("jeans") || type.equalsIgnoreCase("shoes")) {
-            DataSnapshot shopping = dailyLogs.child("shopping");
-            return shopping.child(type).getValue(Double.class) != null ? shopping.child(type).getValue(Double.class) : 0.0;
-        }
-        return 0.0;
+
+        return totalEmissions;
     }
 }

@@ -71,7 +71,8 @@ public class CyclingWalkingFragment extends Fragment {
             Map<String, Object> activityData = new HashMap<>();
             activityData.put("activity_type", "transportation");
             activityData.put("information", Map.of(
-                    "distance", distanceTravel + " " + units
+                    "distance", distanceTravel,
+                    "units", units
             ));
 
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {

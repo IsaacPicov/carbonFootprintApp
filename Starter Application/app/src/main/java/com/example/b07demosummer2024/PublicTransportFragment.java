@@ -77,7 +77,8 @@ public class PublicTransportFragment extends Fragment {
                     "activity_type", "transportation",
                     "information", Map.of(
                             "transportType", transportType,
-                            "duration", duration + " " + timeUnit
+                            "duration", duration,
+                            "timeUnit", timeUnit
                     )
             )).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
