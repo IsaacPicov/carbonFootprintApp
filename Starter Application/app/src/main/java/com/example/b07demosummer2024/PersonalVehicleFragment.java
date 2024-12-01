@@ -83,11 +83,11 @@ public class PersonalVehicleFragment extends Fragment {
             Map<String, Object> activityData = Map.of(
                     "activity_type", "transportation",
                     "information", Map.of(
-                            "distance", distanceTravel + " " + units,
+                            "distance", distanceTravel,
+                            "units", units,
                             "vehicleType", vehicleType
                     )
             );
-
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();

@@ -23,7 +23,7 @@
     <string name="electronics">Buying New Electronics</string>
     <string name="miscellaneous">Buying Miscellaneous Items</string>
     <string name="bills">Bills (Electricity, Gas, Hydro)</string>
-    <string name="bills_prompt">Enter Bill Amount:</string>
+    <string name="bills_prompt">Enter Bill Amount in USD:</string>
     <string name="submit">Submit</string>
 
     <string-array name="categories_array">
