@@ -41,7 +41,7 @@
             android:name=".SurveyLandingPageActivity"
             android:exported="false"/>
         <activity
-            android:name=".mvp.SurveyResultsActivity"
+            android:name=".SurveyResultsActivity"
             android:exported="false"/>
         <activity
             android:name=".MainActivity"

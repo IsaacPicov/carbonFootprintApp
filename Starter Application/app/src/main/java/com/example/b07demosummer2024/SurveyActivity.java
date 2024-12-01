@@ -1,6 +1,4 @@
 package com.example.b07demosummer2024;
-import static com.example.b07demosummer2024.Constants.ABOVE_10_HOURS_FREQUENT;
-import static com.example.b07demosummer2024.Constants.ABOVE_10_HOURS_OCCASIONAL;
 import static com.example.b07demosummer2024.Constants.ALWAYS_OPTION;
 import static com.example.b07demosummer2024.Constants.BEEF_DAILY;
 import static com.example.b07demosummer2024.Constants.BEEF_FREQUENT;
@@ -28,12 +26,6 @@ import static com.example.b07demosummer2024.Constants.FOOD_WASTE_OCCASIONALLY;
 import static com.example.b07demosummer2024.Constants.FOOD_WASTE_RARELY;
 import static com.example.b07demosummer2024.Constants.FREQUENT_OPTION;
 import static com.example.b07demosummer2024.Constants.GAS_VALUE;
-import static com.example.b07demosummer2024.Constants.HOUR_1_3_FREQUENT;
-import static com.example.b07demosummer2024.Constants.HOUR_1_3_OCCASIONAL;
-import static com.example.b07demosummer2024.Constants.HOUR_3_5_FREQUENT;
-import static com.example.b07demosummer2024.Constants.HOUR_3_5_OCCASIONAL;
-import static com.example.b07demosummer2024.Constants.HOUR_5_10_FREQUENT;
-import static com.example.b07demosummer2024.Constants.HOUR_5_10_OCCASIONAL;
 import static com.example.b07demosummer2024.Constants.HYBRID_VALUE;
 import static com.example.b07demosummer2024.Constants.KM_10000_15000;
 import static com.example.b07demosummer2024.Constants.KM_15000_20000;
@@ -47,8 +39,6 @@ import static com.example.b07demosummer2024.Constants.PESCATARIAN;
 import static com.example.b07demosummer2024.Constants.PORK_DAILY;
 import static com.example.b07demosummer2024.Constants.PORK_FREQUENT;
 import static com.example.b07demosummer2024.Constants.PORK_OCCASIONALLY;
-import static com.example.b07demosummer2024.Constants.UNDER_1_HOUR_FREQUENT;
-import static com.example.b07demosummer2024.Constants.UNDER_1_HOUR_OCCASIONAL;
 import static com.example.b07demosummer2024.Constants.UP_TO_5000KM;
 import static com.example.b07demosummer2024.Constants.VEGAN;
 import static com.example.b07demosummer2024.Constants.VEGETARIAN;
@@ -66,8 +56,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import com.example.b07demosummer2024.mvp.SurveyResultsActivity;
 
 
 public class SurveyActivity extends AppCompatActivity implements SurveyResponseListner {

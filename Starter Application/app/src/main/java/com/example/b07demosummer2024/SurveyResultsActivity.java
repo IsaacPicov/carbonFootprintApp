@@ -1,4 +1,4 @@
-package com.example.b07demosummer2024.mvp;
+package com.example.b07demosummer2024;
 
 import static com.example.b07demosummer2024.CountriesConstants.COUNTRIES;
 import static com.example.b07demosummer2024.CountriesConstants.countryConstants;
@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.b07demosummer2024.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
