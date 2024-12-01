@@ -8,38 +8,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CyclingWalkingFragment extends Fragment {
 
-
     private EditText distanceTravel;
-
-    private FirebaseAuth auth;
-    private Spinner units, vehicleType;
-
+    private Spinner units;
     private Button submit;
+    private FirebaseAuth auth;
     private FirebaseDatabase db;
-    private DatabaseReference itemsRef;
 
     @Nullable
     @Override
@@ -50,43 +40,49 @@ public class CyclingWalkingFragment extends Fragment {
         submit = view.findViewById(R.id.buttonCycleWalkSubmit);
         distanceTravel = view.findViewById(R.id.editTextDistanceCycleWalk);
         units = view.findViewById(R.id.spinnerCycleWalkUnits);
+
         ArrayAdapter<CharSequence> unitAdapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.distance_units, android.R.layout.simple_spinner_item);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         units.setAdapter(unitAdapter);
 
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth = FirebaseAuth.getInstance();
-                db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
-                FirebaseUser currentUser = auth.getCurrentUser();
-                if(currentUser != null){
-                    addToDatabase(currentUser.getUid(), distanceTravel.getText().toString().trim(), units.getSelectedItem().toString());
-                }
-                else{
-                    Toast.makeText(getContext(), "Logged in requried.", Toast.LENGTH_SHORT).show();
-                }
+        submit.setOnClickListener(v -> {
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String distance = distanceTravel.getText().toString().trim();
+                String unit = units.getSelectedItem().toString();
+                addToDatabase(currentUser.getUid(), distance, unit);
+            } else {
+                Toast.makeText(getContext(), "Login required.", Toast.LENGTH_SHORT).show();
             }
         });
+
         return view;
     }
 
-
     private void addToDatabase(String userId, String distanceTravel, String units) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/cycle_walk");
+        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        String id = logRef.push().getKey();
 
-        itemsRef.push().setValue(new Object(){
-            public String distance = distanceTravel + units;
+        if (id != null) {
+            Map<String, Object> activityData = new HashMap<>();
+            activityData.put("activity_type", "transportation");
+            activityData.put("information", Map.of(
+                    "distance", distanceTravel + " " + units
+            ));
 
-        }).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+            logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Failed to generate unique ID", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }

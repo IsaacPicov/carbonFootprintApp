@@ -28,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.HashMap;
 
 public class ClothesFragment extends Fragment {
 
@@ -61,17 +63,27 @@ public class ClothesFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String numItems) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/shopping/clothes");
+        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        String id = logRef.push().getKey();
 
-        itemsRef.push().setValue(new Object() {
-            public String items = numItems;
-        }).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (id != null) {
+            Map<String, Object> activityData = new HashMap<>();
+            activityData.put("activity_type", "consumption");
+            activityData.put("information", Map.of(
+                    "itemType", "Clothes",
+                    "quantity", numItems
+            ));
+
+            logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Failed to generate unique ID", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
