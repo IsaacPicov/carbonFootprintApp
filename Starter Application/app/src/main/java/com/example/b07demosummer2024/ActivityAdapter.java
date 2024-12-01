@@ -10,9 +10,14 @@ import java.util.List;
 
 public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder> {
     private List<Activity> activityList;
+    private OnActivityClickListener listener;
 
     public ActivityAdapter(List<Activity> activityList) {
         this.activityList = activityList;
+    }
+
+    public interface OnActivityClickListener {
+        void onActivityClick(Activity activity, String activityId);
     }
 
     @NonNull
