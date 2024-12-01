@@ -48,9 +48,13 @@ public class CO2eDisplayFragment extends Fragment {
     private FirebaseDatabase db;
     private DatabaseReference itemsRef;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
 
         View view = inflater.inflate(R.layout.fragment_daily_co2e_display, container, false);
         calendar = Calendar.getInstance();
@@ -62,7 +66,12 @@ public class CO2eDisplayFragment extends Fragment {
         activityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //
         activityLists = new ArrayList<>();
-        activityAdapter = new ActivityAdapter(activityLists);
+        activityAdapter = new ActivityAdapter(activityLists, listener -> {
+            // Handle button click for a specific habit
+            // Example: Display a toast or perform an action
+               deleteFromDatabase(listener.getId());
+
+            });
         activityRecyclerView.setAdapter(activityAdapter);
 
         add = view.findViewById(R.id.buttonAddActivity);
@@ -70,8 +79,12 @@ public class CO2eDisplayFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String date = year + "-" + month + "-" + dayOfMonth;
                 setDate(dayOfMonth, month, year);
+                month += 1;
+                String monthValue = String.valueOf(month).length() > 1 ? String.valueOf(month): "0" + month;
+                String dayValue = String.valueOf(dayOfMonth).length() > 1 ? String.valueOf(dayOfMonth): "0" + dayOfMonth;
+                String date = year + "-" + monthValue + "-" + dayValue;
+                System.out.println(date);
                 fetchItemsFromDatabase(date);
             }
         });
@@ -99,11 +112,8 @@ public class CO2eDisplayFragment extends Fragment {
 
 
     private void fetchItemsFromDatabase(String date) {
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
         FirebaseUser currentUser = auth.getCurrentUser();
         String userId = currentUser.getUid();
-        System.out.println("User id is " + userId);
         itemsRef = db.getReference("users/" + userId + "/dailylogs/" + date);
         itemsRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -111,12 +121,15 @@ public class CO2eDisplayFragment extends Fragment {
                 activityLists.clear();
                 if(dataSnapshot.exists()){
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Activity activity = new Activity(snapshot.child("activityType").getValue().toString(), snapshot.child("information").getValue().toString());
+                        System.out.println(snapshot.getKey());
+                        System.out.println(snapshot.child("activity_type").getValue());
+                        System.out.println(snapshot.child("information").getValue());
+                        Activity activity = new Activity(snapshot.getKey(), snapshot.child("activity_type").getValue().toString(), snapshot.child("information").getValue().toString());
                         activityLists.add(activity);
                     }
                 }
                 else{
-                    activityLists.add(new Activity("No Activity", ""));
+                    activityLists.add(new Activity("","No Activity", ""));
                 }
 
                 activityAdapter.notifyDataSetChanged();
@@ -128,6 +141,39 @@ public class CO2eDisplayFragment extends Fragment {
             }
         });
 
+    }
+
+    private void deleteFromDatabase(String id) {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String userId = currentUser.getUid();
+        String month = String.valueOf(Math.abs(calendar.get(Calendar.MONTH))).length() > 1 ? String.valueOf(Math.abs(calendar.get(Calendar.MONTH) + 1)) : "0" + calendar.get(Calendar.MONTH) + 1;
+        String day = String.valueOf(Math.abs(calendar.get(Calendar.DAY_OF_MONTH))).length() > 1 ? String.valueOf(Math.abs(calendar.get(Calendar.DAY_OF_MONTH))) : "0" + calendar.get(Calendar.DAY_OF_MONTH);
+        String date = calendar.get(Calendar.YEAR) + "-" + month + "-" + day;
+        System.out.println(userId);
+        System.out.println(date);
+        System.out.println(id);
+        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + date);
+        itemsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (snapshot.getKey().equals(id)) {
+                        snapshot.getRef().removeValue().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getContext(), "Activity deleted", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Failed to delete activity", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(), "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loadFragment(Fragment fragment) {
