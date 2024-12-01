@@ -69,12 +69,6 @@
         <item>Plant-Based</item>
     </string-array>
 
-    <string-array name="bill_types">
-        <item>Electricity</item>
-        <item>Gas</item>
-        <item>Water</item>
-    </string-array>
-
 
     <string-array name="bill_types">
         <item>Electricity</item>
