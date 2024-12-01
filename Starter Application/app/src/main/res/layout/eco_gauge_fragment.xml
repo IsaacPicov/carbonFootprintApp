@@ -1,0 +1,148 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#d8dbe2"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sacelly &amp; Emissions"
+        android:textColor="#373f51"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Grid for Cards -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_marginBottom="16dp"
+        android:gap="8dp">
+
+        <!-- Total Emissions Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:clipToPadding="false"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Emissions"
+                android:textColor="#009999"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/total_emissions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="723 kg"
+                android:textSize="30sp"
+                android:textColor="#1b1b1e"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Emissions Breakdown Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:clipToPadding="false"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emissions Breakdown"
+                android:textColor="#009999"
+                android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/breakdown_chart"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_pie_chart"/>
+        </LinearLayout>
+
+        <!-- Trend Graph Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:clipToPadding="false"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trend Graph"
+                android:textColor="#009999"
+                android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/trend_graph"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_line_graph"/>
+        </LinearLayout>
+
+        <!-- Comparison Card -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:clipToPadding="false"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comparison to Averages"
+                android:textColor="#009999"
+                android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/comparison_chart"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_bar_chart"/>
+        </LinearLayout>
+
+    </GridLayout>
+</LinearLayout>

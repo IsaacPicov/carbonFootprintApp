@@ -13,7 +13,7 @@ public class SurveyLandingPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_landing_page);
     }
 
-    public void next (View view){
+    public void next(View view){
         Intent intent = getIntent();
         String userID = intent.getStringExtra("USERID");
         Intent pass = new Intent(this, SurveyActivity.class);

@@ -1,16 +1,20 @@
 package com.example.b07demosummer2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,10 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegistrationFragment extends Fragment{
-
     private EditText editFirstName, editLastName, editEmail, editPassword, editConfirmPassword;
 
     private Button buttonRegister;
+    private ImageButton registerBackButton;
 
     private FirebaseAuth auth;
     private FirebaseDatabase db;
@@ -36,10 +40,20 @@ public class RegistrationFragment extends Fragment{
         editEmail = view.findViewById(R.id.editEmail);
         editPassword = view.findViewById(R.id.editPassword);
         editConfirmPassword = view.findViewById(R.id.editConfirmPassword);
+        
+        registerBackButton = view.findViewById(R.id.registerBackButton);
         buttonRegister = view.findViewById(R.id.buttonUserRegister);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+
+        registerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +94,9 @@ public class RegistrationFragment extends Fragment{
                         }
                     });
                 }
+
+                // Redirect to login
+                loadLoginActivity();
             } else {
                 Toast.makeText(getContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -98,5 +115,10 @@ public class RegistrationFragment extends Fragment{
                 Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void loadLoginActivity() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 }
