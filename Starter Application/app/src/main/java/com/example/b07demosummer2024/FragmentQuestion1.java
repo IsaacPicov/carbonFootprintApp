@@ -57,8 +57,8 @@ public class FragmentQuestion1 extends Fragment {
 
 
     public void answer(View view){
-        yesButton.setBackgroundColor(Color.MAGENTA);
-        noButton.setBackgroundColor(Color.MAGENTA);
+        yesButton.setBackgroundColor(Color.rgb(0, 153, 153));
+        noButton.setBackgroundColor(Color.rgb(0, 153, 153));
         yesButton.setActivated(true);
         noButton.setActivated(true);
         Button option = (Button)view;

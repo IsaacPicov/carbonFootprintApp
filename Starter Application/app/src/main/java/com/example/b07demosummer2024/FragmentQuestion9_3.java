@@ -61,10 +61,10 @@ public class FragmentQuestion9_3 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        chicken_never.setBackgroundColor(Color.MAGENTA);
-        chicken_daily.setBackgroundColor(Color.MAGENTA);
-        chicken_frequent.setBackgroundColor(Color.MAGENTA);
-        chicken_occasional.setBackgroundColor(Color.MAGENTA);
+        chicken_never.setBackgroundColor(Color.rgb(0, 153, 153));
+        chicken_daily.setBackgroundColor(Color.rgb(0, 153, 153));
+        chicken_frequent.setBackgroundColor(Color.rgb(0, 153, 153));
+        chicken_occasional.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         chicken_never.setActivated(true);
         chicken_daily.setActivated(true);

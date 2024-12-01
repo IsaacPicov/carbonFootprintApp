@@ -61,10 +61,10 @@ public class FragmentQuestion18 extends Fragment {
 
 
     public void answer(View view){
-        monthly.setBackgroundColor(Color.MAGENTA);
-        quarterly.setBackgroundColor(Color.MAGENTA);
-        annually.setBackgroundColor(Color.MAGENTA);
-        rarely.setBackgroundColor(Color.MAGENTA);
+        monthly.setBackgroundColor(Color.rgb(0, 153, 153));
+        quarterly.setBackgroundColor(Color.rgb(0, 153, 153));
+        annually.setBackgroundColor(Color.rgb(0, 153, 153));
+        rarely.setBackgroundColor(Color.rgb(0, 153, 153));
 
         monthly.setActivated(true);
         quarterly.setActivated(true);

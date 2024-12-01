@@ -31,10 +31,10 @@ public class FragmentQuestion9_4 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question9_4, container, false);
 
         // Assign buttons for each category
-        fish_never = view.findViewById(R.id.fish1);
-        fish_daily = view.findViewById(R.id.fish2);
-        fish_frequent = view.findViewById(R.id.fish3);
-        fish_occasional = view.findViewById(R.id.fish4);
+        fish_never = view.findViewById(R.id.q9_4option1);
+        fish_daily = view.findViewById(R.id.q9_4option2);
+        fish_frequent = view.findViewById(R.id.q9_4option3);
+        fish_occasional = view.findViewById(R.id.q9_4option4);
 
         fish_never.setOnClickListener(this::answer);
         fish_daily.setOnClickListener(this::answer);
@@ -60,10 +60,10 @@ public class FragmentQuestion9_4 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        fish_never.setBackgroundColor(Color.MAGENTA);
-        fish_daily.setBackgroundColor(Color.MAGENTA);
-        fish_frequent.setBackgroundColor(Color.MAGENTA);
-        fish_occasional.setBackgroundColor(Color.MAGENTA);
+        fish_never.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_daily.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_frequent.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_occasional.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         fish_never.setActivated(true);
         fish_daily.setActivated(true);

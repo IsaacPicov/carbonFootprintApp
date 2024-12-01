@@ -3,71 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcgradient">
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="411dp"
-        android:layout_height="97dp"
+        style="@style/SurveyTitle"
+        android:layout_width="362dp"
+        android:layout_height="221dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="sans-serif-black"
-        android:text="How often do you eat the following animal-based products? Fish/seafood"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        android:text="How often do you eat the following animal-based products? \nFish/Seafood"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/fish1"
+    <android.widget.Button
+        android:id="@+id/q9_4option1"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:text="Daily"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
-        android:id="@+id/fish2"
+    <android.widget.Button
+        android:id="@+id/q9_4option2"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="Frequently (3-5 times/week)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fish1"
-        app:layout_constraintVertical_bias="0.07" />
+        android:text="Frequently \n(3-5 times/week)"
+        app:layout_constraintStart_toStartOf="@+id/q9_4option1"
+        app:layout_constraintTop_toBottomOf="@+id/q9_4option1" />
 
-    <Button
-        android:id="@+id/fish3"
+    <android.widget.Button
+        android:id="@+id/q9_4option3"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="Occasionally (1-2 times/week)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fish2"
-        app:layout_constraintVertical_bias="0.078" />
+        android:text="Occasionally \n(1-2 times/week)"
+        app:layout_constraintStart_toStartOf="@+id/q9_4option2"
+        app:layout_constraintTop_toBottomOf="@+id/q9_4option2" />
 
-    <Button
-        android:id="@+id/fish4"
+    <android.widget.Button
+        android:id="@+id/q9_4option4"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fish3"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintStart_toStartOf="@+id/q9_4option3"
+        app:layout_constraintTop_toBottomOf="@+id/q9_4option3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

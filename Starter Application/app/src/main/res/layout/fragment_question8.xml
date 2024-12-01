@@ -3,70 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcgradient">
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="400dp"
-        android:layout_height="49dp"
+        style="@style/SurveyTitle"
+        android:layout_width="344dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="sans-serif-black"
         android:text="What best describes your diet?"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/vegetarian"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:layout_marginTop="40dp"
         android:text="Vegetarian"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/vegan"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Vegan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vegetarian"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintStart_toStartOf="@+id/vegetarian"
+        app:layout_constraintTop_toBottomOf="@+id/vegetarian" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/pescatarian"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="Pescatarian (fish/seafood)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vegan"
-        app:layout_constraintVertical_bias="0.078" />
+        android:text="Pescatarian \n(fish/seafood)"
+        app:layout_constraintStart_toStartOf="@+id/vegan"
+        app:layout_constraintTop_toBottomOf="@+id/vegan" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/meatbased"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:text="Meat-based (all animal products)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pescatarian"
-        app:layout_constraintVertical_bias="0.099" />
+        android:text="Meat-based \n(all animal products)"
+        app:layout_constraintStart_toStartOf="@+id/pescatarian"
+        app:layout_constraintTop_toBottomOf="@+id/pescatarian" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
