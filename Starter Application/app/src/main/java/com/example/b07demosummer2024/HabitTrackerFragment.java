@@ -1,8 +1,12 @@
 package com.example.b07demosummer2024;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,16 +70,48 @@ public class HabitTrackerFragment extends Fragment {
             // Handle button click for a specific habit
             // Example: Display a toast or perform an action
             Toast.makeText(getContext(), "Action clicked for: " + habit.getTitle(), Toast.LENGTH_SHORT).show();
-            if (habit.getType().equals("transportation") && habit.getTitle().equals("Personal Vehicle")){
+            if (habit.getType().equals("transportation") && habit.getTitle().equals("Drive Personal Vehicle")){
                 navigateToPersonalVehicleFragment();
 
+            }
+
+            if (habit.getType().equals("transportation") && habit.getTitle().equals("Take Public Transportation")){
+                navigateToTakePublicTransportation();
+            }
+
+            if (habit.getType().equals("transportation") && habit.getTitle().equals("Cycling or Walking")){
+                navigateToCycleOrWalk();
+            }
+
+            if (habit.getType().equals("transportation") && habit.getTitle().equals("Flight (Short-Haul or Long-Haul)")){
+                navigateToFlight();
+            }
+
+            if (habit.getType().equals("food consumption") && habit.getTitle().equals("Meal")){
+                navigateToMeal();
+            }
+
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy New Clothes") ){
+                navigateToBuyClothes();
+            }
+
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy Electronics")){
+                navigateToBuyElectronics();
+            }
+
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Other purchases")){
+                navigateToOtherPurchases();
+            }
+
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Energy Bills")){
+                navigateToEnergyBills();
             }
         });
         recyclerView.setAdapter(habitAdapter);
 
 
         // Spinner setup
-        String[] items = {"consumption", "energy", "transportation"};
+        String[] items = {"Food & Consumption Activities", "Consumption & Shopping Activities", "transportation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(),
                 android.R.layout.simple_spinner_item,
@@ -87,17 +123,29 @@ public class HabitTrackerFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Get the selected item
-                String selectedItem = items[position];
-                // Display the selected item in the TextView
-                selectedItemText.setText("Selected: " + selectedItem);
+                filterData(searchBar.getQuery().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                selectedItemText.setText("Nothing selected");
+                filterData(searchBar.getQuery().toString());
             }
         });
+
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                filterData(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterData(newText);
+                return true;
+            }
+        });
+
 
         btnFetchHabit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,30 +178,53 @@ public class HabitTrackerFragment extends Fragment {
 
     private void filterData(String query) {
         String selectedType = spinner.getSelectedItem().toString();
+        boolean isSpinnerUsed = spinner.getSelectedItemPosition() != AdapterView.INVALID_POSITION; // Check if spinner is used
+        boolean isSearchViewUsed = query != null && !query.isEmpty(); // Check if search query is entered
 
-        // Reference to the database
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("habits");
+        Query resultQuery;
 
-        // Query to filter by both title and type
-        Query resultQuery = dbref.orderByChild("type").equalTo(selectedType);
+        if (isSpinnerUsed && isSearchViewUsed) {
+            // Filter by both type and search query
+            resultQuery = dbref.orderByChild("type").equalTo(selectedType);
+        } else if (isSpinnerUsed) {
+            // Filter by type only
+            resultQuery = dbref.orderByChild("type").equalTo(selectedType);
+        } else if (isSearchViewUsed) {
+            // Filter by search query only
+            resultQuery = dbref.orderByChild("title");
+        } else {
+            // Neither spinner nor search is used; fetch all
+            resultQuery = dbref;
+        }
 
         resultQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                StringBuilder filteredResults = new StringBuilder();
+                habitList.clear();
                 for (DataSnapshot habitSnapshot : snapshot.getChildren()) {
-                    // Assuming each habit has a 'title' field
-                    String habitTitle = habitSnapshot.child("title").getValue(String.class);
-                    if (habitTitle != null && habitTitle.toLowerCase().contains(query.toLowerCase())) {
-                        filteredResults.append(habitTitle).append("\n");
+                    Habit habit = habitSnapshot.getValue(Habit.class);
+                    if (habit != null) {
+                        boolean matches = true;
+
+                        if (isSpinnerUsed && !habit.getType().equalsIgnoreCase(selectedType)) {
+                            matches = false;
+                        }
+                        if (isSearchViewUsed && (habit.getTitle() == null || !habit.getTitle().toLowerCase().contains(query.toLowerCase()))) {
+                            matches = false;
+                        }
+
+                        if (matches) {
+                            habitList.add(habit);
+                        }
                     }
                 }
 
-                // Display filtered habits in the result view
-                if (filteredResults.length() > 0) {
-                    resultView.setText(filteredResults.toString());
+                habitAdapter.notifyDataSetChanged();
+                if (habitList.isEmpty()) {
+                    resultView.setText("No habits match your filters.");
                 } else {
-                    resultView.setText("No habits found for the search query.");
+                    resultView.setText(""); // Clear the result view if habits are displayed
                 }
             }
 
@@ -164,14 +235,7 @@ public class HabitTrackerFragment extends Fragment {
         });
     }
 
-    private void navigateToPersonalVehicleFragment(){
-        PersonalVehicleFragment dest = new PersonalVehicleFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, dest);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
+
 
 
     private void fetchHabitsByType(String selectedItem) {
@@ -197,6 +261,119 @@ public class HabitTrackerFragment extends Fragment {
                 Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private static final String CHANNEL_ID = "habit_reminder_channel";
+    private static final int NOTIFICATION_ID = 1; // Unique ID for the notification
+
+    private void remindActivity(String title) {
+        // Step 1: Create a NotificationChannel (required for API 26+)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            CharSequence name = "Habit Reminder";
+            String description = "Channel for habit reminder notifications";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            // Register the channel with the system
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+
+        // Step 2: Build the notification
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+//                .setSmallIcon(R.drawable.notification_icon) // Replace with your app's icon
+//                .setContentTitle("Remember to log your activity: " + title + " today")
+//                .setContentText("Tap to log your activity now!")
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT) // Set priority for older devices
+//                .setAutoCancel(true); // Dismiss notification when clicked
+//
+//        // Step 3: Get the NotificationManager and send the notification
+//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+//        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    private void navigateToPersonalVehicleFragment(){
+        PersonalVehicleFragment dest = new PersonalVehicleFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToTakePublicTransportation(){
+        PublicTransportFragment dest = new PublicTransportFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToCycleOrWalk(){
+        CyclingWalkingFragment dest = new CyclingWalkingFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToFlight(){
+        FlightFragment dest = new FlightFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToMeal(){
+        FoodConsumptionFragment dest = new FoodConsumptionFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToBuyClothes(){
+        ClothesFragment dest = new ClothesFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToBuyElectronics(){
+        ElectronicsFragment dest = new ElectronicsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToOtherPurchases(){
+        BillsFragment dest = new BillsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToEnergyBills(){
+        BillsFragment dest = new BillsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dest);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 }

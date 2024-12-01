@@ -45,14 +45,14 @@ public class EcoTrackerFragment extends Fragment {
         buttonFoodConsumption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new RecyclerViewFragment());
+                loadFragment(new FoodConsumptionFragment());
             }
         });
 
         buttonConsumptionAndShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new RecyclerViewFragment());
+                loadFragment(new ConsumptionActivitiesFragment());
             }
         });
 
