@@ -69,24 +69,35 @@ public class PersonalVehicleFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String distanceTravel, String units, String vehicleType) {
-        if (GlobalVariable.getDate().equals(null)){
-            itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/transportation/vehicle");
+        DatabaseReference logRef;
+
+        if (GlobalVariable.getDate() == null) {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        } else {
+            logRef = db.getReference("users").child(userId).child("dailylogs").child(GlobalVariable.getDate());
         }
-        else{
-            itemsRef = db.getReference("users/" + userId + "/dailylogs/" + GlobalVariable.getDate() + "/transportation/vehicle");
+
+        String id = logRef.push().getKey();
+
+        if (id != null) {
+            Map<String, Object> activityData = Map.of(
+                    "activity_type", "transportation",
+                    "information", Map.of(
+                            "distance", distanceTravel + " " + units,
+                            "vehicleType", vehicleType
+                    )
+            );
+
+            logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Failed to generate unique ID", Toast.LENGTH_SHORT).show();
         }
-
-
-
-        itemsRef.push().setValue(new Object(){
-            public String distance = distanceTravel + units;
-            public String type = vehicleType;
-        }).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
+
 }
