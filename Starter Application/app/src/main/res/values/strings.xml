@@ -23,6 +23,8 @@
     <string name="electronics">Buying New Electronics</string>
     <string name="miscellaneous">Buying Miscellaneous Items</string>
     <string name="bills">Bills (Electricity, Gas, Hydro)</string>
+    <string name="bills_prompt">Enter Bill Amount:</string>
+    <string name="submit">Submit</string>
 
     <string-array name="categories_array">
         <item>Books</item>
@@ -41,7 +43,6 @@
         <item>Electric</item>
         <item>I do not know</item>
     </string-array>
-
 
     <string-array name="public_transport">
         <item>bus</item>
@@ -66,6 +67,12 @@
         <item>Chicken</item>
         <item>Fish</item>
         <item>Plant-Based</item>
+    </string-array>
+
+    <string-array name="bill_types">
+        <item>Electricity</item>
+        <item>Gas</item>
+        <item>Water</item>
     </string-array>
 
 
