@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,55 +21,48 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CyclingWalkingFragment extends Fragment {
+public class ElectronicsFragment extends Fragment {
 
-    private EditText distanceTravel;
-    private Spinner units;
-    private Button submit;
+    private EditText deviceTypeInput, deviceCountInput;
+    private Button submitButton;
     private FirebaseAuth auth;
     private FirebaseDatabase db;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_electronics, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_cyclewalk, container, false);
-
-        submit = view.findViewById(R.id.buttonCycleWalkSubmit);
-        distanceTravel = view.findViewById(R.id.editTextDistanceCycleWalk);
-        units = view.findViewById(R.id.spinnerCycleWalkUnits);
-
-        ArrayAdapter<CharSequence> unitAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.distance_units, android.R.layout.simple_spinner_item);
-        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        units.setAdapter(unitAdapter);
-
+        submitButton = view.findViewById(R.id.buttonElectronicsSubmit);
+        deviceTypeInput = view.findViewById(R.id.editTextDeviceType);
+        deviceCountInput = view.findViewById(R.id.editTextDeviceCount);
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
 
-        submit.setOnClickListener(v -> {
+        submitButton.setOnClickListener(v -> {
             FirebaseUser currentUser = auth.getCurrentUser();
             if (currentUser != null) {
-                String distance = distanceTravel.getText().toString().trim();
-                String unit = units.getSelectedItem().toString();
-                addToDatabase(currentUser.getUid(), distance, unit);
+                String deviceType = deviceTypeInput.getText().toString().trim();
+                String deviceCount = deviceCountInput.getText().toString().trim();
+                addToDatabase(currentUser.getUid(), deviceType, deviceCount);
             } else {
-                Toast.makeText(getContext(), "Login required.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Login required", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
     }
 
-    private void addToDatabase(String userId, String distanceTravel, String units) {
+    private void addToDatabase(String userId, String deviceType, String deviceCount) {
         DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
         String id = logRef.push().getKey();
 
         if (id != null) {
             Map<String, Object> activityData = new HashMap<>();
-            activityData.put("activity_type", "transportation");
+            activityData.put("activity_type", "consumption");
             activityData.put("information", Map.of(
-                    "distance", distanceTravel + " " + units
+                    "deviceType", deviceType,
+                    "quantity", deviceCount
             ));
 
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {

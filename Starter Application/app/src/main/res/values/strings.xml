@@ -19,6 +19,10 @@
     <string name="publicTransportation">Take Public Transportation</string>
     <string name="cyclingWalking">Cycling or walking</string>
     <string name="flight">Flight (Short-Haul or Long-Haul)</string>
+    <string name="clothes">Buying New Clothes</string>
+    <string name="electronics">Buying New Electronics</string>
+    <string name="miscellaneous">Buying Miscellaneous Items</string>
+    <string name="bills">Bills (Electricity, Gas, Hydro)</string>
 
     <string-array name="categories_array">
         <item>Books</item>

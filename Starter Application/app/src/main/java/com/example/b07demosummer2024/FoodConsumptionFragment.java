@@ -20,16 +20,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FoodConsumptionFragment extends Fragment {
 
     private EditText servings;
     private Spinner mealType;
     private Button submit;
-
     private FirebaseAuth auth;
     private FirebaseDatabase db;
-    private DatabaseReference itemsRef;
 
     @Nullable
     @Override
@@ -41,23 +41,22 @@ public class FoodConsumptionFragment extends Fragment {
         servings = view.findViewById(R.id.editTextServings);
         mealType = view.findViewById(R.id.spinnerMealType);
 
-        // Set up spinner for meal types
         ArrayAdapter<CharSequence> mealTypeAdapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.meal_types, android.R.layout.simple_spinner_item);
         mealTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mealType.setAdapter(mealTypeAdapter);
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth = FirebaseAuth.getInstance();
-                db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
-                FirebaseUser currentUser = auth.getCurrentUser();
-                if (currentUser != null) {
-                    addToDatabase(currentUser.getUid(), mealType.getSelectedItem().toString().trim(), servings.getText().toString().trim());
-                } else {
-                    Toast.makeText(getContext(), "Login required to submit data.", Toast.LENGTH_SHORT).show();
-                }
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+
+        submit.setOnClickListener(v -> {
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String selectedMealType = mealType.getSelectedItem().toString().trim();
+                String enteredServings = servings.getText().toString().trim();
+                addToDatabase(currentUser.getUid(), selectedMealType, enteredServings);
+            } else {
+                Toast.makeText(getContext(), "Login required to submit data.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -65,17 +64,26 @@ public class FoodConsumptionFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String mealType, String servings) {
-        itemsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now() + "/food/meals");
+        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
+        String id = logRef.push().getKey();
 
-        itemsRef.push().setValue(new Object() {
-            public String type = mealType;
-            public String quantity = servings + " servings";
-        }).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Meal data saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Failed to save meal data", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (id != null) {
+            Map<String, Object> activityData = new HashMap<>();
+            activityData.put("activity_type", "food");
+            activityData.put("information", Map.of(
+                    "mealType", mealType,
+                    "servings", servings
+            ));
+
+            logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Meal data saved successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Failed to save meal data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Failed to generate unique ID", Toast.LENGTH_SHORT).show();
+        }
     }
 }
