@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class Activity {
 
+    private String id;
+
     private String activity_type;
     private String information;
 
@@ -12,9 +14,18 @@ public class Activity {
 
     public Activity() {}
 
-    public Activity(String activity_type, String information) {
+    public Activity(String id, String activity_type, String information) {
+        this.id = id;
         this.activity_type = activity_type;
         this.information = information;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String activity_type) {
+        this.id = id;
     }
 
     public String getActivity_type() {
