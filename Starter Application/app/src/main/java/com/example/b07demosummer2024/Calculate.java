@@ -38,27 +38,24 @@ public class Calculate {
     }
 
     public static void calculateAndUpdateDailyTotal(String userId) {
-        DatabaseReference dailyLogsRef = db.getReference("users/" + userId + "/dailyLogs/" + LocalDate.now());
+        DatabaseReference dailyLogsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now());
         dailyLogsRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 DataSnapshot dailyLogs = task.getResult();
-                double totalEmissions = 0.0;
 
-                for (DataSnapshot activitySnapshot : dailyLogs.getChildren()) {
-                    String activityType = activitySnapshot.child("activity_type").getValue(String.class);
-                    Map<String, Object> information = (Map<String, Object>) activitySnapshot.child("information").getValue();
+                double transportationTotal = calculateCategoryTotal(dailyLogs, "transportation");
+                double foodTotal = calculateCategoryTotal(dailyLogs, "food");
+                double consumptionTotal = calculateCategoryTotal(dailyLogs, "consumption");
 
-                    if (activityType != null && information != null) {
-                        totalEmissions += calculateActivityEmissions(activityType, information);
-                    }
-                }
+                double totalEmissions = transportationTotal + foodTotal + consumptionTotal;
 
                 dailyLogsRef.child("total_emissions").setValue(totalEmissions);
             }
         });
     }
 
-    private static double calculateActivityEmissions(String activityType, Map<String, Object> information) {
+
+    private static double calculateActivityEmissions(Map<String, Object> information) {
         double totalEmissions = 0.0;
 
         for (Map.Entry<String, Object> entry : information.entrySet()) {
@@ -71,7 +68,21 @@ public class Calculate {
                 totalEmissions += numericValue * factor;
             }
         }
+        return totalEmissions;
+    }
 
+    private static double calculateCategoryTotal(DataSnapshot dailyLogs, String category) {
+        double totalEmissions = 0.0;
+
+        for (DataSnapshot activitySnapshot : dailyLogs.getChildren()) {
+            String activityType = activitySnapshot.child("activity_type").getValue(String.class);
+            if (activityType != null && activityType.equalsIgnoreCase(category)) {
+                Map<String, Object> information = (Map<String, Object>) activitySnapshot.child("information").getValue();
+                if (information != null) {
+                    totalEmissions += calculateActivityEmissions(information);
+                }
+            }
+        }
         return totalEmissions;
     }
 }

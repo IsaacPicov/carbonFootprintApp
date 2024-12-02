@@ -90,6 +90,7 @@ public class PublicTransportFragment extends Fragment {
             )).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                    Calculate.calculateAndUpdateDailyTotal(userId);
                 } else {
                     Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
                 }
