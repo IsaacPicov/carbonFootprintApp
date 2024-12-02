@@ -87,23 +87,23 @@ public class HabitTrackerFragment extends Fragment {
                 navigateToFlight();
             }
 
-            if (habit.getType().equals("food consumption") && habit.getTitle().equals("Meal")){
+            if (habit.getType().equals("Food & Consumption Activities") && habit.getTitle().equals("Meal")){
                 navigateToMeal();
             }
 
-            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy New Clothes") ){
+            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Buy New Clothes") ){
                 navigateToBuyClothes();
             }
 
-            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy Electronics")){
+            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Buy Electronics")){
                 navigateToBuyElectronics();
             }
 
-            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Other purchases")){
+            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Other purchases")){
                 navigateToOtherPurchases();
             }
 
-            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Energy Bills")){
+            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Energy Bills")){
                 navigateToEnergyBills();
             }
         });
