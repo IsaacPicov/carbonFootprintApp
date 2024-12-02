@@ -1,5 +1,6 @@
 package com.example.b07demosummer2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,21 +18,22 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_home_fragment, container, false);
 
 
-
-        Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView2);
+        // Button buttonRecyclerView = view.findViewById(R.id.buttonRecyclerView);
         Button buttonRegister = view.findViewById(R.id.buttonRegisteration);
         Button buttonUserLogin = view.findViewById(R.id.buttonUserLogin);
-        Button buttonScroller = view.findViewById(R.id.buttonScroller);
-        Button buttonSpinner = view.findViewById(R.id.buttonSpinner);
-        Button buttonManageItems = view.findViewById(R.id.buttonManageItems);
-        Button buttonEcoTracker = view.findViewById(R.id.buttonEcoTracker);
-        Button buttonHabitTracker = view.findViewById(R.id.buttonHabitTracker);
-        buttonRecyclerView.setOnClickListener(new View.OnClickListener() {
+
+        // Button buttonScroller = view.findViewById(R.id.buttonScroller);
+        // Button buttonSpinner = view.findViewById(R.id.buttonSpinner);
+        // Button buttonManageItems = view.findViewById(R.id.buttonManageItems);
+
+        /* buttonRecyclerView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 loadFragment(new RecyclerViewFragment());
             }
         });
+        */
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +45,12 @@ public class HomeFragment extends Fragment {
         buttonUserLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new LoginFragment());
+                Intent intent = new Intent(requireActivity(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
-        buttonScroller.setOnClickListener(new View.OnClickListener() {
+        /* buttonScroller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadFragment(new ScrollerFragment());
@@ -65,6 +68,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) { loadFragment(new ManageItemsFragment());}
         });
+        */
 
         buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +83,12 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+
+        private void loadFragment (Fragment fragment){
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
-}
