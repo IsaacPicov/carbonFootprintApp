@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.b07demosummer2024"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -40,6 +40,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     testImplementation("org.mockito:mockito-all:1.10.19")
     testImplementation("junit:junit:4.12")

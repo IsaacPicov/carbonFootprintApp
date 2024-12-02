@@ -27,6 +27,7 @@ public class HomeFragment extends Fragment {
         // Button buttonManageItems = view.findViewById(R.id.buttonManageItems);
 
         /* buttonRecyclerView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 loadFragment(new RecyclerViewFragment());
@@ -68,6 +69,16 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) { loadFragment(new ManageItemsFragment());}
         });
         */
+
+        buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { loadFragment(new EcoTrackerFragment());}
+        });
+
+        buttonHabitTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { loadFragment(new HabitTrackerFragment());}
+        });
 
         return view;
     }
