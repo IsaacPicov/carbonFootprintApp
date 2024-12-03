@@ -1,5 +1,7 @@
 package com.example.b07demosummer2024;
 
+import static com.example.b07demosummer2024.Calculate.calculateAndUpdateDailyTotal;
+
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,6 +54,8 @@ public class CO2eDisplayFragment extends Fragment {
     private Button add;
     private FirebaseDatabase db;
     private DatabaseReference itemsRef;
+    private TextView emissionDisplay;
+    private Button getEmission;
 
 
     @Nullable
@@ -64,7 +69,7 @@ public class CO2eDisplayFragment extends Fragment {
         calendar = Calendar.getInstance();
         calendarView = view.findViewById(R.id.calendarView);
 
-
+        emissionDisplay = view.findViewById(R.id.emissionDisplay);
         selectedDate = LocalDate.now().toString();
         setDate(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
 
@@ -92,6 +97,51 @@ public class CO2eDisplayFragment extends Fragment {
             GlobalVariable.setDate(selectedDate);
             loadFragment(new EcoTrackerFragment());
         });
+
+        getEmission = view.findViewById(R.id.buttonGetEmission);
+        getEmission.setOnClickListener(v -> {
+            // Get the current user and userId
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser == null) {
+                Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String userId = currentUser.getUid();
+
+            // Reference to the total_emissions field for the selected date
+            DatabaseReference totalEmissionsRef = db.getReference("users/" + userId + "/dailylogs/" + selectedDate + "/total_emissions");
+
+
+
+            // Trigger the calculation method
+            calculateAndUpdateDailyTotal(userId);
+            System.out.println("WE DID IT YEAHHHHHH");
+            System.out.println(userId);
+            // Fetch and display the total_emissions value
+            totalEmissionsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Double totalEmissions = dataSnapshot.getValue(Double.class);
+                        if (totalEmissions != null) {
+                            emissionDisplay.setText(String.format("Daily Emissions: %.2f kg CO₂", totalEmissions));
+                            System.out.println("the emissionDisplay should have information");
+                        } else {
+                            emissionDisplay.setText("No emissions recorded for today.");
+                        }
+                    } else {
+                        emissionDisplay.setText("No emissions recorded for today.");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getContext(), "Failed to retrieve emissions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+
 
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             setDate(dayOfMonth, month, year);
@@ -187,4 +237,6 @@ public class CO2eDisplayFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 }

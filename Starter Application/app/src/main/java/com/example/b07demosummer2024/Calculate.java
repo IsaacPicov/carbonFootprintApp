@@ -38,7 +38,7 @@ public class Calculate {
     }
 
     public static void calculateAndUpdateDailyTotal(String userId) {
-        DatabaseReference dailyLogsRef = db.getReference("users/" + userId + "/dailyLogs/" + LocalDate.now());
+        DatabaseReference dailyLogsRef = db.getReference("users/" + userId + "/dailylogs/" + LocalDate.now());
         dailyLogsRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 DataSnapshot dailyLogs = task.getResult();
@@ -48,7 +48,11 @@ public class Calculate {
                     String activityType = activitySnapshot.child("activity_type").getValue(String.class);
                     Map<String, Object> information = (Map<String, Object>) activitySnapshot.child("information").getValue();
 
+                    if (information== null){
+                        System.out.println("something is wrong information is null");
+                    }
                     if (activityType != null && information != null) {
+                        System.out.println("totalEmissions value should be updated");
                         totalEmissions += calculateActivityEmissions(activityType, information);
                     }
                 }
