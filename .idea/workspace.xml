@@ -215,10 +215,8 @@
   <component name="ChangeListManager">
     <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/test/java/com/example/b07demosummer2024/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/test/java/com/example/b07demosummer2024/ExampleUnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +280,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "feature/user-interface",
+    "git-widget-placeholder": "Merging feature/user-interface",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>

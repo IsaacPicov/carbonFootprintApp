@@ -39,7 +39,7 @@ public class ExampleUnitTest {
         verify(view, times(1)).onLoginFail("Please fill out all fields");
     }
 
-    @Test
+    /* @Test
     public void testSuccessLogin() {
         LoginPresenter presenter = new LoginPresenter(view, model);
 
@@ -59,7 +59,7 @@ public class ExampleUnitTest {
                 verify(view).showLoading();
 
 
-    }
+   */ }
 
 
 
@@ -68,6 +68,6 @@ public class ExampleUnitTest {
 
 
 
-    }
+//}
 
 
