@@ -46,14 +46,20 @@ public class Calculate {
                 double transportationTotal = calculateCategoryTotal(dailyLogs, "transportation");
                 double foodTotal = calculateCategoryTotal(dailyLogs, "food");
                 double consumptionTotal = calculateCategoryTotal(dailyLogs, "consumption");
+                double billsTotal = calculateCategoryTotal(dailyLogs, "bills");
 
-                double totalEmissions = transportationTotal + foodTotal + consumptionTotal;
+                double totalEmissions = transportationTotal + foodTotal + consumptionTotal + billsTotal;
 
                 dailyLogsRef.child("total_emissions").setValue(totalEmissions);
+                dailyLogsRef.child("emissions_by_category").setValue(Map.of(
+                        "transportation", transportationTotal,
+                        "food", foodTotal,
+                        "consumption", consumptionTotal,
+                        "bills", billsTotal
+                ));
             }
         });
     }
-
 
     private static double calculateActivityEmissions(Map<String, Object> information) {
         double totalEmissions = 0.0;
