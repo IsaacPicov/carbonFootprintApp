@@ -51,9 +51,9 @@ public class FragmentQuestion13 extends Fragment {
 
 
     public void answer(View view){
-        option1.setBackgroundColor(Color.MAGENTA);
-        option2.setBackgroundColor(Color.MAGENTA);
-        option3.setBackgroundColor(Color.MAGENTA);
+        option1.setBackgroundColor(Color.rgb(0, 153, 153));
+        option2.setBackgroundColor(Color.rgb(0, 153, 153));
+        option3.setBackgroundColor(Color.rgb(0, 153, 153));
 
         option1.setActivated(true);
         option2.setActivated(true);
