@@ -1,5 +1,6 @@
 package com.example.b07demosummer2024;
 
+import static com.example.b07demosummer2024.Constants.KGtoTONSCONSTANT;
 import static com.example.b07demosummer2024.CountriesConstants.COUNTRIES;
 import static com.example.b07demosummer2024.CountriesConstants.countryConstants;
 
@@ -494,11 +495,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
         double monthlyHousing = 0;
         double monthlyConsumption = 0;
         if (currMonth[0] == null){
-            totalCarbon = monthlyTotal;
-            totalTransportation = monthlyTransportation;
-            totalFood = monthlyFood;
-            totalHousing = monthlyHousing;
-            totalConsumption = monthlyConsumption;
+            totalCarbon = monthlyTotal/KGtoTONSCONSTANT;
+            totalTransportation = monthlyTransportation/KGtoTONSCONSTANT;
+            totalFood = monthlyFood/KGtoTONSCONSTANT;
+            totalHousing = monthlyHousing/KGtoTONSCONSTANT;
+            totalConsumption = monthlyConsumption/KGtoTONSCONSTANT;
         }else {
             for (int i = 0; i < currMonth.length; i++) {
 //          This is ok because there's only one key in each hashmap
@@ -511,11 +512,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
                     monthlyConsumption += currDay[4];
                 }
             }
-            totalCarbon = monthlyTotal;
-            totalTransportation = monthlyTransportation;
-            totalFood = monthlyFood;
-            totalHousing = monthlyHousing;
-            totalConsumption = monthlyConsumption;
+            totalCarbon = monthlyTotal/KGtoTONSCONSTANT;
+            totalTransportation = monthlyTransportation/KGtoTONSCONSTANT;
+            totalFood = monthlyFood/KGtoTONSCONSTANT;
+            totalHousing = monthlyHousing/KGtoTONSCONSTANT;
+            totalConsumption = monthlyConsumption/KGtoTONSCONSTANT;
         }
     }
 
@@ -544,11 +545,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
                     weeklyConsumption += currDay[4];
                 }
             }
-            totalCarbon = weeklyTotal;
-            totalTransportation = weeklyTransportation;
-            totalFood = weeklyFood;
-            totalHousing = weeklyHousing;
-            totalConsumption = weeklyConsumption;
+            totalCarbon = weeklyTotal/KGtoTONSCONSTANT;
+            totalTransportation = weeklyTransportation/KGtoTONSCONSTANT;
+            totalFood = weeklyFood/KGtoTONSCONSTANT;
+            totalHousing = weeklyHousing/KGtoTONSCONSTANT;
+            totalConsumption = weeklyConsumption/KGtoTONSCONSTANT;
         }
     }
 
@@ -566,11 +567,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
         if (lastIndex != -1) {
         for (Object day : currWeek[lastIndex].keySet()) {
             Float[] latestDay = currWeek[lastIndex-1].get(day);
-            totalCarbon =latestDay[0].doubleValue();
-            totalTransportation = latestDay[1].doubleValue();
-            totalFood = latestDay[2].doubleValue();
-            totalHousing = latestDay[3].doubleValue();
-            totalConsumption = latestDay[4].doubleValue();
+            totalCarbon =latestDay[0].doubleValue()/KGtoTONSCONSTANT;
+            totalTransportation = latestDay[1].doubleValue()/KGtoTONSCONSTANT;
+            totalFood = latestDay[2].doubleValue()/KGtoTONSCONSTANT;
+            totalHousing = latestDay[3].doubleValue()/KGtoTONSCONSTANT;
+            totalConsumption = latestDay[4].doubleValue()/KGtoTONSCONSTANT;
         }
         } else {
             totalCarbon = 0.0;

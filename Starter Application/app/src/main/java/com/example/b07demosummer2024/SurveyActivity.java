@@ -79,7 +79,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
        //     Assume that we've already made sure the user hasn't filled a survey
 //       Keeps track of the user so we can add it to the firebase.
 //       survey = new Footprint(userID);  <-- this is the real one that should be used
-       survey = new Footprint("temp"); // <-- Stand in until I connect everything
+       survey = new Footprint(userID); // <-- Stand in until I connect everything
        nextButton = findViewById(R.id.button4);
        backButton = findViewById(R.id.button3);
        backButton.setEnabled(false);
@@ -100,7 +100,6 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
 
 //    This is an override so that the answers from the fragments can talk to the activity
     @Override
-//    TODO --- log everything to the db :)
    public void onOption(int questionID, String selectedOption) {
         switch (questionID) {
             case 1:

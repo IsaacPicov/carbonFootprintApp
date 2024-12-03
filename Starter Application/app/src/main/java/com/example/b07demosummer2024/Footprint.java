@@ -160,7 +160,6 @@ public class Footprint {
 
 
     public void setTotalTransport() {
-//        There is also a problem here
             double placeholder = 0;
             switch((int)q4){
                 case 0:
