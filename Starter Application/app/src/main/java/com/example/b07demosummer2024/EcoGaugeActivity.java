@@ -630,10 +630,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
                                 .child("emissions_by_category").child("consumption").getValue(Float.class);
 
                         HashMap<String, Float[]> dayEntry = new HashMap<>();
+                        Float [] dailyCarbonInfo;
                         if (emissions != null & transportation != null & consumption != null & housing != null & food != null) {
-                            Float [] dailyCarbonInfo = {emissions, transportation, food, housing, consumption};
-                            dayEntry.put(currDateStr, dailyCarbonInfo);
-                        }
+                            dailyCarbonInfo = new Float[]{emissions, transportation, food, housing, consumption};
+                        } else dailyCarbonInfo = new Float[]{0F,0F,0F,0F,0F};
+                        dayEntry.put(currDateStr, dailyCarbonInfo);
 
                         // Check if the week has changed
                         if (daysBetween<7) {
@@ -702,10 +703,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
                                 .child("emissions_by_category").child("consumption").getValue(Float.class);
 
                         HashMap<String, Float[]> dayEntry = new HashMap<>();
+                        Float [] dailyCarbonInfo;
                         if (emissions != null & transportation != null & consumption != null & housing != null & food != null) {
-                            Float [] dailyCarbonInfo = {emissions, transportation, food, housing, consumption};
-                            dayEntry.put(currDateStr, dailyCarbonInfo);
-                        }
+                            dailyCarbonInfo = new Float[]{emissions, transportation, food, housing, consumption};
+                        } else dailyCarbonInfo = new Float[]{0F,0F,0F,0F,0F};
+                        dayEntry.put(currDateStr, dailyCarbonInfo);
 
                         // Check if the month has changed
                         if (ogDate.getYear() == currDate.getYear() &&
