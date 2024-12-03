@@ -324,7 +324,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/contacts/baseline_contacts_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/energy_savings_leaf/baseline_energy_savings_leaf_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -334,7 +334,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="pplicon" />
+                            <entry key="outputName" value="baseline_energy_savings_leaf_24" />
                             <entry key="sourceFile" value="C:\Users\gvbri\StudioProjects\carbonFootprintApp" />
                           </map>
                         </option>

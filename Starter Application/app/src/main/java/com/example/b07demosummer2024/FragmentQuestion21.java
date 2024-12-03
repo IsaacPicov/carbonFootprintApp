@@ -61,10 +61,10 @@ public class FragmentQuestion21 extends Fragment {
 
 
     public void answer(View view){
-        never.setBackgroundColor(Color.MAGENTA);
-        occasionally.setBackgroundColor(Color.MAGENTA);
-        frequently.setBackgroundColor(Color.MAGENTA);
-        always.setBackgroundColor(Color.MAGENTA);
+        never.setBackgroundColor(Color.rgb(0, 153, 153));
+        occasionally.setBackgroundColor(Color.rgb(0, 153, 153));
+        frequently.setBackgroundColor(Color.rgb(0, 153, 153));
+        always.setBackgroundColor(Color.rgb(0, 153, 153));
         never.setActivated(true);
         occasionally.setActivated(true);
         frequently.setActivated(true);

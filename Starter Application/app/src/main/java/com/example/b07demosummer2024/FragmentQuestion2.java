@@ -60,11 +60,11 @@ public class FragmentQuestion2 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        gas.setBackgroundColor(Color.MAGENTA);
-        diesel.setBackgroundColor(Color.MAGENTA);
-        hybrid.setBackgroundColor(Color.MAGENTA);
-        electric.setBackgroundColor(Color.MAGENTA);
-        idk.setBackgroundColor(Color.MAGENTA);
+        gas.setBackgroundColor(Color.rgb(0, 153, 153));
+        diesel.setBackgroundColor(Color.rgb(0, 153, 153));
+        hybrid.setBackgroundColor(Color.rgb(0, 153, 153));
+        electric.setBackgroundColor(Color.rgb(0, 153, 153));
+        idk.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         gas.setActivated(true);
         diesel.setActivated(true);

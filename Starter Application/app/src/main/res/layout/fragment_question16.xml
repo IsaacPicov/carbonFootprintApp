@@ -3,81 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcgradient">
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="402dp"
-        android:layout_height="77dp"
+        style="@style/SurveyTitle"
+        android:layout_width="343dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
-        android:text=" What type of energy do you use to heat water in your home?"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        android:text="What type of energy do you use to heat water in your home?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/q16option1"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
-        android:layout_marginTop="40dp"
         android:text="Natural Gas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/q16option2"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Electricity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/q16option1"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintStart_toStartOf="@+id/q16option1"
+        app:layout_constraintTop_toBottomOf="@+id/q16option1" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/q16option3"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Oil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/q16option2"
-        app:layout_constraintVertical_bias="0.078" />
-    <Button
+        app:layout_constraintStart_toStartOf="@+id/q16option2"
+        app:layout_constraintTop_toBottomOf="@+id/q16option2" />
+
+    <android.widget.Button
         android:id="@+id/q16option4"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Propane"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/q16option3"
-        app:layout_constraintVertical_bias="0.078" />
-    <Button
+        app:layout_constraintStart_toStartOf="@+id/q16option3"
+        app:layout_constraintTop_toBottomOf="@+id/q16option3" />
+
+    <android.widget.Button
         android:id="@+id/q16option5"
+        style="@style/SurveyButton"
         android:layout_width="315dp"
         android:layout_height="76dp"
         android:text="Wood"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/q16option4"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintStart_toStartOf="@+id/q16option4"
+        app:layout_constraintTop_toBottomOf="@+id/q16option4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

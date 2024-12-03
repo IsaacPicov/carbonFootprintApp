@@ -31,6 +31,16 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_survey.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_survey_landing_page.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/eco_gauge_fragment.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -62,7 +72,67 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question10.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question11.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question12.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question13.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question14.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question15.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question16.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question17.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question18.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question19.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question2.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question20.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question21.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
@@ -73,6 +143,46 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question4.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question5.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question6.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question7.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question8.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_1.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_2.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_3.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_4.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
@@ -104,8 +214,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_survey_landing_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_survey_landing_page.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +235,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="valueResourceFile" />
         <option value="resourceFile" />
       </list>
     </option>
@@ -155,28 +267,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Gradle.ExampleUnitTest.checkEmptyInfo.executor": "Run",
-    "Gradle.ExampleUnitTest.executor": "Run",
-    "Gradle.ExampleUnitTest.testHandleLogin_EmptyFields_ShowsError.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "user-story-ui",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.checkEmptyInfo.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.testHandleLogin_EmptyFields_ShowsError.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/user-interface&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gvbri\StudioProjects\carbonFootprintApp\Starter Application\app\src\main\res\drawable" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ExampleUnitTest">
+  <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="B07_Demo_Summer_2024.app.main" />
       <option name="DEPLOY" value="true" />
