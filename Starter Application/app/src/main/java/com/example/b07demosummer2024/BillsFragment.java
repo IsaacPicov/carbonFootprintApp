@@ -83,7 +83,7 @@ public class BillsFragment extends Fragment {
 
         if (id != null) {
             Map<String, Object> activityData = new HashMap<>();
-            activityData.put("activity_type", "energy");
+            activityData.put("activity_type", "bills");
             activityData.put("information", Map.of(
                     "billType", billType,
                     "amount", billAmount
