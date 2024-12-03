@@ -30,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.HashMap;
 
 public class CO2eDisplayFragment extends Fragment {
 
@@ -41,6 +43,8 @@ public class CO2eDisplayFragment extends Fragment {
     private List<Activity> activityLists;
 
     private FirebaseAuth auth;
+
+    private String selectedDate;
 
     private ActivityAdapter activityAdapter;
 
@@ -59,49 +63,47 @@ public class CO2eDisplayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_daily_co2e_display, container, false);
         calendar = Calendar.getInstance();
         calendarView = view.findViewById(R.id.calendarView);
-        LocalDate currentDate = LocalDate.now();
-        setDate(currentDate.getDayOfMonth(), currentDate.getMonthValue(), currentDate.getYear());
-//
+
+
+        selectedDate = LocalDate.now().toString();
+        setDate(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+
         activityRecyclerView = view.findViewById(R.id.activityRecyclerView);
         activityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-        activityLists = new ArrayList<>();
-        activityAdapter = new ActivityAdapter(activityLists, listener -> {
-            // Handle button click for a specific habit
-            // Example: Display a toast or perform an action
-               deleteFromDatabase(listener.getId());
 
-            });
+        activityLists = new ArrayList<>();
+        activityAdapter = new ActivityAdapter(activityLists, new ActivityAdapter.OnActivityClickListener() {
+            @Override
+            public void onActivityDeleteClick(Activity activity) {
+                deleteFromDatabase(activity.getId());
+            }
+
+            @Override
+            public void onActivityEditClick(Activity activity) {
+                System.out.println(selectedDate.toString());
+                EditActivityDialog dialog = new EditActivityDialog(activity, activity.getId(), auth.getCurrentUser().getUid(), selectedDate);
+                dialog.show(getParentFragmentManager(), "EditActivityDialog");
+            }
+        });
         activityRecyclerView.setAdapter(activityAdapter);
 
         add = view.findViewById(R.id.buttonAddActivity);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                setDate(dayOfMonth, month, year);
-                month += 1;
-                String monthValue = String.valueOf(month).length() > 1 ? String.valueOf(month): "0" + month;
-                String dayValue = String.valueOf(dayOfMonth).length() > 1 ? String.valueOf(dayOfMonth): "0" + dayOfMonth;
-                String date = year + "-" + monthValue + "-" + dayValue;
-                System.out.println(date);
-                fetchItemsFromDatabase(date);
-            }
+        add.setOnClickListener(v -> {
+            GlobalVariable.setDate(selectedDate);
+            loadFragment(new EcoTrackerFragment());
         });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GlobalVariable.setDate(calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
-                loadFragment(new EcoTrackerFragment());
-            }
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            setDate(dayOfMonth, month, year);
+            selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+            fetchItemsFromDatabase(selectedDate);
         });
+
+        fetchItemsFromDatabase(selectedDate); // Fetch items for default date on launch
         return view;
     }
 
 
-
-//    private void
     private void setDate(int day, int month, int year){
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -124,12 +126,15 @@ public class CO2eDisplayFragment extends Fragment {
                         System.out.println(snapshot.getKey());
                         System.out.println(snapshot.child("activity_type").getValue());
                         System.out.println(snapshot.child("information").getValue());
-                        Activity activity = new Activity(snapshot.getKey(), snapshot.child("activity_type").getValue().toString(), snapshot.child("information").getValue().toString());
-                        activityLists.add(activity);
+                        Activity activity = new Activity(
+                                snapshot.getKey(), // Activity ID
+                                snapshot.child("activity_type").getValue(String.class),
+                                (Map<String, Object>) snapshot.child("information").getValue() // Information as a map
+                        );                        activityLists.add(activity);
                     }
                 }
                 else{
-                    activityLists.add(new Activity("","No Activity", ""));
+                    activityLists.add(new Activity("", "No Activity", new HashMap<>()));
                 }
 
                 activityAdapter.notifyDataSetChanged();
@@ -183,4 +188,3 @@ public class CO2eDisplayFragment extends Fragment {
         transaction.commit();
     }
 }
-

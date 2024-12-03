@@ -8,18 +8,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import java.util.Map;
 
 public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder> {
     private List<Activity> activityList;
     private OnActivityClickListener listener;
 
-    public ActivityAdapter(List<Activity> activityList, ActivityAdapter.OnActivityClickListener listener) {
+    public ActivityAdapter(List<Activity> activityList, OnActivityClickListener listener) {
         this.activityList = activityList;
         this.listener = listener;
     }
 
     public interface OnActivityClickListener {
-        void onActivityClick(Activity activity);
+        void onActivityDeleteClick(Activity activity);
+        void onActivityEditClick(Activity activity);
     }
 
     @NonNull
@@ -33,11 +35,25 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
     public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position) {
         Activity activity = activityList.get(position);
         holder.textViewActivityType.setText(activity.getActivity_type());
-        holder.textViewInformation.setText(activity.getInformation());
+
+        // Convert the information map to a readable string
+        Map<String, String> informationMap = activity.getInformationAsMap();
+        StringBuilder informationString = new StringBuilder();
+        for (Map.Entry<String, String> entry : informationMap.entrySet()) {
+            informationString.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+
+        holder.textViewInformation.setText(informationString.toString().trim()); // Set the formatted string
 
         holder.delete.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onActivityClick(activity);
+                listener.onActivityDeleteClick(activity);
+            }
+        });
+
+        holder.edit.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onActivityEditClick(activity);
             }
         });
     }
@@ -49,8 +65,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
 
     public static class ActivityViewHolder extends RecyclerView.ViewHolder {
         TextView textViewInformation, textViewActivityType, textViewCO2e;
-
-        Button delete;
+        Button delete, edit;
 
         public ActivityViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +73,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
             textViewInformation = itemView.findViewById(R.id.textViewInformation);
             textViewCO2e = itemView.findViewById(R.id.textViewCO2Emission);
             delete = itemView.findViewById(R.id.buttonDeleteActivity);
+            edit = itemView.findViewById(R.id.buttonEdit);
         }
     }
 }
