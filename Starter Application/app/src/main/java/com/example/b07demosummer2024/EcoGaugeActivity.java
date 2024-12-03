@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -29,6 +30,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +62,6 @@ public class EcoGaugeActivity extends AppCompatActivity {
     Double totalConsumption;
     Double totalTransportation;
     Double totalCarbon;
-    Double[] carbonHistory;
     TextView carbonCount;
     TextView timeframe;
     PieChart breakdown;
@@ -68,9 +70,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
     String userID;
     HashMap<String, Double> countryConstantsMonthly;
     HashMap<String, Double> countryConstantsWeekly;
+    HashMap<String, Double> countryConstantsDaily;
     XAxis xAxisLine;
     ArrayList<HashMap<String, Float[]>[]> weeks = new ArrayList<>();
     ArrayList<HashMap<String, Float[]>[]> months = new ArrayList<>();
+    Spinner countrySpinner = findViewById(R.id.countrySpinner);
 
 
     public static final ArrayList<Integer> graphColours = new ArrayList<>();
@@ -89,10 +93,11 @@ public class EcoGaugeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ecogauge);
 
         fillHashmaps();
+        setVarsDaily();
 
-        weekly = findViewById(R.id.Weekly);
-        monthly = findViewById(R.id.Monthly);
-        yearly = findViewById(R.id.Yearly);
+        weekly = findViewById(R.id.Daily);
+        monthly = findViewById(R.id.Weekly);
+        yearly = findViewById(R.id.Monthly);
         carbonCount = findViewById(R.id.carbonByTimeframe);
         timeframe = findViewById(R.id.month_day_year);
         breakdown = (PieChart) findViewById(R.id.pieChart);
@@ -100,7 +105,6 @@ public class EcoGaugeActivity extends AppCompatActivity {
         userID = getIntent().getStringExtra("USERID");
         countryConstantsMonthly = new HashMap<>();
         countryConstantsWeekly = new HashMap<>();
-        Spinner countrySpinner = findViewById(R.id.countrySpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -159,7 +163,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         ArrayList<BarEntry> compareCountry = new ArrayList<>();
         compareCountry.add(new BarEntry(0f, (totalCarbon.floatValue())));
-        compareCountry.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get("Canada")).floatValue()));
+        compareCountry.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsDaily.get("Canada")).floatValue()));
 
 //        Colours and animations and more text styling
         BarDataSet dataSet = new BarDataSet(compareCountry, "");
@@ -175,7 +179,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
         XAxis xAxis1 = byCountry.getXAxis();
 
         byCountry.getDescription().setEnabled(true);
-        byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita");
+        byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita (Daily)");
         byCountry.getDescription().setTextSize(11f);
         byCountry.getDescription().setTextColor(Color.BLACK);
         byCountry.getDescription().setPosition(720f, 50f);
@@ -224,7 +228,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
 //                Changes the scale of carbon by country depending on if it's weeks,months, years
                 if (counter == 3) {
                     updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
-                    updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get(selectedCountry)).floatValue()));
+                    updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsDaily.get(selectedCountry)).floatValue()));
                 }
                 if (counter == 2) {
                     updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
@@ -235,7 +239,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
                     updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsWeekly.get(selectedCountry)).floatValue()));
                 }
 //                sets the values
-                BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita");
+                BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita (Daily)");
                 newData.setColors(graphColours);
                 newData.setValueTextColor(Color.BLACK);
                 newData.setValueTextSize(16f);
@@ -246,26 +250,39 @@ public class EcoGaugeActivity extends AppCompatActivity {
 
 
 //              Defining Stuff for the line chart
-//                TODO(not a todo just wanted green) From line 221 - 236 + line 242-243 is what you need to put into the other modules
-//                String [] xLabels = arrayOf{ assume I will get all the years from the final product);
-//                TODO implement xLabels once I know how I'm reciving the data
+                HashMap<String, Float[]> lineChartData= getLast30Days();
+                String [] xLabels = new String[lineChartData.keySet().size()];
+                int i = 0;
+                for(String date : lineChartData.keySet()){
+                    xLabels[i] = date;
+                    i++;
+                }
+
+                Arrays.sort(xLabels);
 
                 history = findViewById(R.id.lineChart);
                 ArrayList<Entry> entries = new ArrayList<>();
-                entries.add(new Entry(0, totalCarbon.floatValue())); //for now we only know of year one from carbon survey
-//                TODO add more entries when I know how the data is stored
+                for(int j = 0; j < xLabels.length; j++){
+                    entries.add(new Entry(j, lineChartData.get(xLabels[j])[0]));
+                }
 
-                LineDataSet dataSet = new LineDataSet(entries, "The default is for years");
+                LineDataSet dataSet = new LineDataSet(entries, "Output Last 30 Days");
                 dataSet.setColor(Color.parseColor("#009999"));
                 LineData lineData = new LineData(dataSet);
                 history.setData(lineData);
 
                 xAxisLine = history.getXAxis();
-//                xAxisLine.setValueFormatter(new IndexAxisValueFormatter(xLabels)); TODO implement this line once I have the values from tracker
+                xAxisLine.setValueFormatter(new IndexAxisValueFormatter(xLabels));
                 xAxisLine.setGranularity(1f);
                 xAxisLine.setGranularityEnabled(true);
                 xAxisLine.setPosition(XAxis.XAxisPosition.BOTTOM);
                 xAxisLine.setDrawGridLines(false);
+
+                Description description = new Description();
+                description.setText("History of Last 30 Logs");
+                description.setTextSize(14f);
+                description.setTextColor(Color.BLACK);
+                history.setDescription(description);
 
                 history.animateXY(1000, 1000); //call this for everytime you update
                 history.invalidate();
@@ -280,12 +297,13 @@ public class EcoGaugeActivity extends AppCompatActivity {
 
 
     void onWeekly(View view) {
-//        Reference the firebase with userID as the key and grab the associated data
+
         counter = 1;
         setVarsWeekly();
 //        Emissions Overview
         carbonCount.setText(totalCarbon + "kg C02e");
-        timeframe.setText("This Week");
+        timeframe.setText("On Last Entered Week");
+        String selectedCountry = countrySpinner.getSelectedItem().toString();
 
 //    Pie Chart
         ArrayList<PieEntry> sections = new ArrayList<>();
@@ -305,15 +323,51 @@ public class EcoGaugeActivity extends AppCompatActivity {
         breakdown.animate();
         breakdown.animateY(1000);
 
+//        Bar Chart
+        String[] userLabels = {"Yours", selectedCountry};
+        XAxis xAxis1 = byCountry.getXAxis();
 
+        // Update labels for the X-Axis
+        xAxis1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                int index = (int) value;
+                if (index >= 0 && index < userLabels.length) {
+                    return userLabels[index];
+                } else {
+                    return "";
+                }
+            }
+        });
+
+
+        ArrayList<BarEntry> updateEntries = new ArrayList<>();
+
+        updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
+        updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsWeekly.get(selectedCountry)).floatValue()));
+
+
+        BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita (Weekly)");
+        newData.setColors(graphColours);
+        newData.setValueTextColor(Color.BLACK);
+        newData.setValueTextSize(16f);
+
+        BarData updatedData = new BarData(newData);
+        updatedData.setBarWidth(0.4f);
+        byCountry.setData(updatedData);
+        byCountry.invalidate();
+        byCountry.animateY(1000);
     }
+
+
 
     void onMonthly(View view) {
         counter = 2;
         setVarsMonthly();
+        String selectedCountry = countrySpinner.getSelectedItem().toString();
 //        Emissions Overview
         carbonCount.setText(totalCarbon + "kg C02e");
-        timeframe.setText("This Month");
+        timeframe.setText("On Last Entered Month");
 //       Pie Chart
         ArrayList<PieEntry> sections = new ArrayList<>();
         sections.add(new PieEntry(totalHousing.floatValue(), "Housing"));
@@ -331,21 +385,47 @@ public class EcoGaugeActivity extends AppCompatActivity {
         breakdown.invalidate();
         breakdown.animate();
         breakdown.animateY(1000);
+        String[] userLabels = {"Yours", selectedCountry};
+        XAxis xAxis1 = byCountry.getXAxis();
+
+        // Update labels for the X-Axis
+        xAxis1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                int index = (int) value;
+                if (index >= 0 && index < userLabels.length) {
+                    return userLabels[index];
+                } else {
+                    return "";
+                }
+            }
+        });
+
+        // Bar Chart
+        ArrayList<BarEntry> updateEntries = new ArrayList<>();
+
+        updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
+        updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsMonthly.get(selectedCountry)).floatValue()));
+
+
+        BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita (Monthly)");
+        newData.setColors(graphColours);
+        newData.setValueTextColor(Color.BLACK);
+        newData.setValueTextSize(16f);
+
+        BarData updatedData = new BarData(newData);
+        updatedData.setBarWidth(0.4f);
+        byCountry.setData(updatedData);
+        byCountry.invalidate();
+        byCountry.animateY(1000);
     }
 
     void onDaily(View view) {
         counter = 3;
-        HashMap<String, Float[]>[] currWeek = weeks.get(weeks.size()-1);
-        int i = 0;
-        while(currWeek[i] != null) i++;
-        for(Object day : currWeek[i-1].keySet()){
-            Float[] latestDay = currWeek[i-1].get(day);
-            totalCarbon =latestDay[0].doubleValue();
-            totalTransportation = latestDay[1].doubleValue();
-            totalFood = latestDay[2].doubleValue();
-            totalHousing = latestDay[3].doubleValue();
-            totalConsumption = latestDay[4].doubleValue();
-        }
+        setVarsDaily();
+        String selectedCountry = countrySpinner.getSelectedItem().toString();
+
+
 
 //        Emissions Overview
         carbonCount.setText(totalCarbon + "kg C02e");
@@ -368,6 +448,39 @@ public class EcoGaugeActivity extends AppCompatActivity {
         breakdown.animate();
         breakdown.animateY(1000);
 
+        String[] userLabels = {"Yours", selectedCountry};
+        XAxis xAxis1 = byCountry.getXAxis();
+
+        // Update labels for the X-Axis
+        xAxis1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                int index = (int) value;
+                if (index >= 0 && index < userLabels.length) {
+                    return userLabels[index];
+                } else {
+                    return "";
+                }
+            }
+        });
+
+
+        ArrayList<BarEntry> updateEntries = new ArrayList<>();
+
+        updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
+        updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsDaily.get(selectedCountry)).floatValue()));
+
+
+        BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita (Daily)");
+        newData.setColors(graphColours);
+        newData.setValueTextColor(Color.BLACK);
+        newData.setValueTextSize(16f);
+
+        BarData updatedData = new BarData(newData);
+        updatedData.setBarWidth(0.4f);
+        byCountry.setData(updatedData);
+        byCountry.invalidate();
+        byCountry.animateY(1000);
 
     }
 
@@ -380,22 +493,30 @@ public class EcoGaugeActivity extends AppCompatActivity {
         double monthlyFood = 0;
         double monthlyHousing = 0;
         double monthlyConsumption = 0;
-        for(int i =0; i< currMonth.length; i++){
+        if (currMonth[0] == null){
+            totalCarbon = monthlyTotal;
+            totalTransportation = monthlyTransportation;
+            totalFood = monthlyFood;
+            totalHousing = monthlyHousing;
+            totalConsumption = monthlyConsumption;
+        }else {
+            for (int i = 0; i < currMonth.length; i++) {
 //          This is ok because there's only one key in each hashmap
-            for(String day : currMonth[i].keySet()){
-            Float[] currDay = currMonth[i].get(day);
-                monthlyTotal += currDay[0];
-                monthlyTransportation += currDay[1];
-                monthlyFood += currDay[2];
-                monthlyHousing += currDay[3];
-                monthlyConsumption += currDay[4];
+                for (String day : currMonth[i].keySet()) {
+                    Float[] currDay = currMonth[i].get(day);
+                    monthlyTotal += currDay[0];
+                    monthlyTransportation += currDay[1];
+                    monthlyFood += currDay[2];
+                    monthlyHousing += currDay[3];
+                    monthlyConsumption += currDay[4];
+                }
             }
+            totalCarbon = monthlyTotal;
+            totalTransportation = monthlyTransportation;
+            totalFood = monthlyFood;
+            totalHousing = monthlyHousing;
+            totalConsumption = monthlyConsumption;
         }
-        totalCarbon = monthlyTotal;
-        totalTransportation = monthlyTransportation;
-        totalFood = monthlyFood;
-        totalHousing = monthlyHousing;
-        totalConsumption = monthlyConsumption;
     }
 
     private void setVarsWeekly() {
@@ -405,22 +526,59 @@ public class EcoGaugeActivity extends AppCompatActivity {
         double weeklyFood = 0;
         double weeklyHousing = 0;
         double weeklyConsumption = 0;
-        for(int i =0; i< currWeek.length; i++){
+        if(currWeek[0] == null){
+            totalCarbon = weeklyTotal;
+            totalTransportation = weeklyTransportation;
+            totalFood = weeklyFood;
+            totalHousing = weeklyHousing;
+            totalConsumption = weeklyConsumption;
+        } else {
+            for (int i = 0; i < currWeek.length; i++) {
 //          This is ok because there's only one key in each hashmap
-            for(String day : currWeek[i].keySet()){
-                Float[] currDay = currWeek[i].get(day);
-                weeklyTotal += currDay[0];
-                weeklyTransportation += currDay[1];
-                weeklyFood += currDay[2];
-                weeklyHousing += currDay[3];
-                weeklyConsumption += currDay[4];
+                for (String day : currWeek[i].keySet()) {
+                    Float[] currDay = currWeek[i].get(day);
+                    weeklyTotal += currDay[0];
+                    weeklyTransportation += currDay[1];
+                    weeklyFood += currDay[2];
+                    weeklyHousing += currDay[3];
+                    weeklyConsumption += currDay[4];
+                }
+            }
+            totalCarbon = weeklyTotal;
+            totalTransportation = weeklyTransportation;
+            totalFood = weeklyFood;
+            totalHousing = weeklyHousing;
+            totalConsumption = weeklyConsumption;
+        }
+    }
+
+    private void setVarsDaily(){
+        HashMap<String, Float[]>[] currWeek = weeks.get(weeks.size()-1);
+
+        int lastIndex = -1;
+        for (int i = currWeek.length - 1; i >= 0; i--) {
+            if (currWeek[i] != null) {
+                lastIndex = i;
+                break;
             }
         }
-        totalCarbon = weeklyTotal;
-        totalTransportation = weeklyTransportation;
-        totalFood = weeklyFood;
-        totalHousing = weeklyHousing;
-        totalConsumption = weeklyConsumption;
+
+        if (lastIndex != -1) {
+        for (Object day : currWeek[lastIndex].keySet()) {
+            Float[] latestDay = currWeek[lastIndex-1].get(day);
+            totalCarbon =latestDay[0].doubleValue();
+            totalTransportation = latestDay[1].doubleValue();
+            totalFood = latestDay[2].doubleValue();
+            totalHousing = latestDay[3].doubleValue();
+            totalConsumption = latestDay[4].doubleValue();
+        }
+        } else {
+            totalCarbon = 0.0;
+            totalTransportation = 0.0;
+            totalFood = 0.0;
+            totalHousing = 0.0;
+            totalConsumption = 0.0;
+        }
     }
 
     private void fillHashmaps() {
@@ -428,6 +586,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
             Double value = countryConstants.get(country);
             countryConstantsMonthly.put(country, value / 12);
             countryConstantsWeekly.put(country, value / 52);
+            countryConstantsDaily.put(country, value/365);
         }
     }
 
@@ -579,9 +738,25 @@ public class EcoGaugeActivity extends AppCompatActivity {
 
     }
 
-    private HashMap<String, Float[]>[] getLast30Days (){
-        HashMap <String, Float []>[] last30 = new HashMap [30];
+    private HashMap<String, Float[]> getLast30Days (){
+        HashMap<String, Float[]> [] last30 = new HashMap[30];
+        int entered =0;
 //        Log newest to oldest and then parse in reverse
+         for(int i = months.size() - 1; i >= 0 && entered < 30; i--){
+             HashMap<String, Float[]> []callback = months.get(i);
+             for(int j = 0; j < callback.length && entered < 30; j++){
+                 last30[entered] = callback[j];
+                 entered++;
+             }
+        }
+        HashMap<String, Float[]> combined = new HashMap<>();
+        for (HashMap<String, Float[]> map : last30) {
+            if (map != null) {
+                combined.putAll(map);
+            }
+        }
 
+        return combined;
     }
+
 }

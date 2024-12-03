@@ -63,7 +63,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="11dp"
         android:fontFamily="sans-serif-black"
-        android:text="This Year"
+        android:text="On Most Recent Entry"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
@@ -135,14 +135,27 @@
 
 
         <Button
+            android:id="@+id/Daily"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal"
+            android:text="Daily"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Weekly"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3" />
+
+
+        <Button
             android:id="@+id/Weekly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal"
-            android:text="Home"
+            android:text="Weekly"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/Monthly"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Daily"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.3" />
 
@@ -152,23 +165,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal"
-            android:text="Settings"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Yearly"
-            app:layout_constraintStart_toEndOf="@+id/Weekly"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.3" />
-
-
-        <Button
-            android:id="@+id/Yearly"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal"
-            android:text="Profile"
+            android:text="Monthly"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Monthly"
+            app:layout_constraintStart_toEndOf="@+id/Weekly"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,7 +186,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal"
-            android:text="Other Button"
+            android:text="Home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
