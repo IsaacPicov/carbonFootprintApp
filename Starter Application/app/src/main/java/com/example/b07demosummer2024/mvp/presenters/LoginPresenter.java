@@ -7,8 +7,6 @@ import com.example.b07demosummer2024.mvp.models.LoginModel;
 
 public class LoginPresenter {
     public interface LoginView {
-        void showLoading();
-        void closeLoading();
         void onLoginSuccess();
         void onLoginFail(String message);
     }
@@ -27,19 +25,9 @@ public class LoginPresenter {
             return;
         }
 
-        view.showLoading();
         model.authenticateUser(email, password, new LoginModel.LoginCallback() {
-            @Override
-            public void onLoginSuccess() {
-                view.closeLoading();
-                view.onLoginSuccess();
-            }
-
-            @Override
-            public void onLoginFail(String errorMessage) {
-                view.closeLoading();
-                view.onLoginFail("An error occurred");
-            }
+            public void onLoginSuccess() {view.onLoginSuccess();}
+            public void onLoginFail(String errorMessage) {view.onLoginFail("An error occurred");}
         });
     }
 }

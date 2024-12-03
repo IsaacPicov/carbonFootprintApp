@@ -214,8 +214,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/ForgotPasswordPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/ForgotPasswordPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/presenters/LoginPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -226,7 +228,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gvbri\.android\avd\Medium_Phone_API_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gosqib\.android\avd\Pixel_6a_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/Starter Application">
       <ProjectState />
@@ -280,7 +282,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "Merging feature/user-interface",
+    "git-widget-placeholder": "feature/user-interface",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -289,7 +291,7 @@
       <recent name="C:\Users\gvbri\StudioProjects\carbonFootprintApp\Starter Application\app\src\main\res\drawable" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ExampleUnitTest.testEmptyInfo">
+  <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="B07_Demo_Summer_2024.app.main" />
       <option name="DEPLOY" value="true" />
