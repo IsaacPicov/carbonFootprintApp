@@ -16,6 +16,9 @@ public class LoginPresenter {
     private final LoginModel model;
     private final LoginView view;
 
+    public LoginPresenter() {
+        // throw new UnsupportedOperationException("Presenter should exist");
+    }
     public LoginPresenter(LoginView view) {
         this.view = view;
         this.model = new LoginModel();
@@ -27,19 +30,9 @@ public class LoginPresenter {
             return;
         }
 
-        view.showLoading();
         model.authenticateUser(email, password, new LoginModel.LoginCallback() {
-            @Override
-            public void onLoginSuccess() {
-                view.closeLoading();
-                view.onLoginSuccess();
-            }
-
-            @Override
-            public void onLoginFail(String errorMessage) {
-                view.closeLoading();
-                view.onLoginFail("An error occurred");
-            }
+            public void onLoginSuccess() {view.onLoginSuccess()}
+            public void onLoginFail(String errorMessage) {view.onLoginFail("An error occurred")}
         });
     }
 }

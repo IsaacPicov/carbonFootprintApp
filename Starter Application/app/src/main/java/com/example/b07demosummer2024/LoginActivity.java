@@ -73,16 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.L
 //        Intent intent = new Intent(this, SurveyLandingPageActivity.class);
 //        startActivity(intent);
     }
-
-    @Override
-    public void showLoading() {
-        // progress bar or other
-    }
-
-    @Override
-    public void closeLoading() {
-    }
-
+    
     @Override
     public void onLoginSuccess() {
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
