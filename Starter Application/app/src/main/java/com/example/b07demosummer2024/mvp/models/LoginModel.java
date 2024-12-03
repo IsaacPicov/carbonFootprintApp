@@ -33,31 +33,15 @@ public class LoginModel {
                         try {
                             throw task.getException();
                         }
-                        // } catch (FirebaseAuthInvalidUserException e) {
-                        // callback.onLoginFail("User does not exist");
-                        // } catch (FirebaseAuthInvalidCredentialsException e) {
-                        // callback.onLoginFail("Invalid password");
-                        // } catch (FirebaseAuthException e) {
-                        // callback.onLoginFail("An error occurred");
-                        // } catch (Exception e) {
-                        // callback.onLoginFail("A strange error occurred");
-                        // }
-
-                        // for debugging
-                        catch (Exception e) {
-                            callback.onLoginFail(e.getMessage());
+                        catch (FirebaseAuthInvalidUserException e) {
+                            callback.onLoginFail("User does not exist");
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                            callback.onLoginFail("Invalid password");
+                        } catch (FirebaseAuthException e) {
+                            callback.onLoginFail("An error occurred");
+                        } catch (Exception e) {
+                            callback.onLoginFail("A strange error occurred");
                         }
-                    }
-                });
-    }
-
-    public void sendPasswordReset(String email, final LoginCallback callback) {
-        auth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        callback.onLoginSuccess();
-                    } else {
-                        callback.onLoginFail("An error occurred");
                     }
                 });
     }
