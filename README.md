@@ -8,7 +8,24 @@ By: Chase, Fred, Gabriel, Isaac, Shawn, Zacky
 <sub>Navigation (using images) only. For a more comprehensive description of each feature, scroll down to General/Generic Itemization</sub>
 
 ###### Start of App
-<div style="display: flex; justify-content: center; align-items: center;">
+
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <img src="Readme-images/homepage.png" width="130" />
+      <p>Homepage</p>
+    </td>
+    <td style="text-align: center;">
+      <img src="Readme-images/sign-up.png" width="130" />
+      <p>Sign Up</p>
+    </td>
+    <td style="text-align: center;">
+      <img src="Readme-images/login.png" width="130" />
+      <p>Login</p>
+    </td>
+  </tr>
+</table>
+<!-- <div style="display: flex; justify-content: center; align-items: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
         <img
             style="margin-right: 1rem;"
@@ -33,10 +50,22 @@ By: Chase, Fred, Gabriel, Isaac, Shawn, Zacky
             width="130"/>
         <p>Login</p>
     </div>
-</div>
+</div> -->
 
 ###### First time user experience
-<div style="display: flex; justify-content: center; align-items: center;">
+<table style="display: flex; justify-content: center; align-items: center;">
+  <tr>
+    <td style="text-align: center;">
+      <img src="Readme-images/survey-landing.png" width="130" />
+      <p>Survey Landing</p>
+    </td>
+    <td style="text-align: center;">
+      <img src="Readme-images/survey-question.png" width="130" />
+        <p>Survey Question</p>
+    </td>
+  </tr>
+</table>
+<!-- <div style="display: flex; justify-content: center; align-items: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
         <img
             style="margin-right: 1rem;"
@@ -53,7 +82,7 @@ By: Chase, Fred, Gabriel, Isaac, Shawn, Zacky
             width="130"/>
         <p>Survey Question</p>
     </div>
-</div>
+</div> -->
 
 
 ## General/Generic Itemization
