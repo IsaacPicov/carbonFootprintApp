@@ -5,16 +5,14 @@ import static com.example.b07demosummer2024.CountriesConstants.countryConstants;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -31,18 +29,23 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.temporal.ChronoUnit;
 
 
 public class EcoGaugeActivity extends AppCompatActivity {
@@ -56,18 +59,23 @@ public class EcoGaugeActivity extends AppCompatActivity {
     Double totalConsumption;
     Double totalTransportation;
     Double totalCarbon;
-    Double [] carbonHistory;
+    Double[] carbonHistory;
     TextView carbonCount;
     TextView timeframe;
     PieChart breakdown;
     BarChart byCountry;
     LineChart history;
     String userID;
-    HashMap<String, Double> countryConstantsMonthly ;
+    HashMap<String, Double> countryConstantsMonthly;
     HashMap<String, Double> countryConstantsWeekly;
     XAxis xAxisLine;
-    public static final ArrayList <Integer> graphColours = new ArrayList<>();
-    static{
+    ArrayList<HashMap<String, Float[]>[]> weeks = new ArrayList<>();
+    ArrayList<HashMap<String, Float[]>[]> months = new ArrayList<>();
+
+
+    public static final ArrayList<Integer> graphColours = new ArrayList<>();
+
+    static {
         graphColours.add(Color.parseColor("#009999"));
         graphColours.add(Color.parseColor("#002F4B"));
         graphColours.add(Color.parseColor("#A8DADC"));
@@ -77,6 +85,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 //      Default setting the gauge to display annual
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
         setContentView(R.layout.activity_ecogauge);
 
         fillHashmaps();
@@ -101,7 +110,8 @@ public class EcoGaugeActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/").getReference();
 
 
-        setVarsYearly();
+        getWeeksTimeline(userID);
+        getMonthsTimeline(userID);
 
         carbonCount.setText(totalCarbon + "kg C02e");
         timeframe.setText("This Year");
@@ -212,14 +222,15 @@ public class EcoGaugeActivity extends AppCompatActivity {
                 });
                 ArrayList<BarEntry> updateEntries = new ArrayList<>();
 //                Changes the scale of carbon by country depending on if it's weeks,months, years
-                if(counter == 3){
-                updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
-                updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get(selectedCountry)).floatValue()));}
-                if(counter == 2){
+                if (counter == 3) {
+                    updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
+                    updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get(selectedCountry)).floatValue()));
+                }
+                if (counter == 2) {
                     updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
                     updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsMonthly.get(selectedCountry)).floatValue()));
                 }
-                if(counter == 1){
+                if (counter == 1) {
                     updateEntries.add(new BarEntry(0f, totalCarbon.floatValue()));
                     updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstantsWeekly.get(selectedCountry)).floatValue()));
                 }
@@ -256,7 +267,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
                 xAxisLine.setPosition(XAxis.XAxisPosition.BOTTOM);
                 xAxisLine.setDrawGridLines(false);
 
-                history.animateXY(1000,1000); //call this for everytime you update
+                history.animateXY(1000, 1000); //call this for everytime you update
                 history.invalidate();
             }
 
@@ -267,9 +278,10 @@ public class EcoGaugeActivity extends AppCompatActivity {
     }
 
 
+
     void onWeekly(View view) {
 //        Reference the firebase with userID as the key and grab the associated data
-        counter =1;
+        counter = 1;
         setVarsWeekly();
 //        Emissions Overview
         carbonCount.setText(totalCarbon + "kg C02e");
@@ -296,187 +308,280 @@ public class EcoGaugeActivity extends AppCompatActivity {
 
     }
 
-        void onMonthly(View view) {
-            counter = 2;
-            setVarsMonthly();
+    void onMonthly(View view) {
+        counter = 2;
+        setVarsMonthly();
 //        Emissions Overview
-            carbonCount.setText(totalCarbon + "kg C02e");
-            timeframe.setText("This Month");
+        carbonCount.setText(totalCarbon + "kg C02e");
+        timeframe.setText("This Month");
 //       Pie Chart
-            ArrayList<PieEntry> sections = new ArrayList<>();
-            sections.add(new PieEntry(totalHousing.floatValue(), "Housing"));
-            sections.add(new PieEntry(totalFood.floatValue(), "Food"));
-            sections.add(new PieEntry(totalConsumption.floatValue(), "Consumption"));
-            sections.add(new PieEntry(totalTransportation.floatValue(), "Transportation"));
+        ArrayList<PieEntry> sections = new ArrayList<>();
+        sections.add(new PieEntry(totalHousing.floatValue(), "Housing"));
+        sections.add(new PieEntry(totalFood.floatValue(), "Food"));
+        sections.add(new PieEntry(totalConsumption.floatValue(), "Consumption"));
+        sections.add(new PieEntry(totalTransportation.floatValue(), "Transportation"));
 
-            PieDataSet pieDataSet = new PieDataSet(sections, "");
-            pieDataSet.setColors(graphColours);
-            pieDataSet.setValueTextColor(Color.BLACK);
-            pieDataSet.setValueTextSize(16);
+        PieDataSet pieDataSet = new PieDataSet(sections, "");
+        pieDataSet.setColors(graphColours);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setValueTextSize(16);
 
-            PieData pieData = new PieData(pieDataSet);
-            breakdown.setData(pieData);
-            breakdown.invalidate();
-            breakdown.animate();
-            breakdown.animateY(1000);
+        PieData pieData = new PieData(pieDataSet);
+        breakdown.setData(pieData);
+        breakdown.invalidate();
+        breakdown.animate();
+        breakdown.animateY(1000);
+    }
+
+    void onDaily(View view) {
+        counter = 3;
+        HashMap<String, Float[]>[] currWeek = weeks.get(weeks.size()-1);
+        int i = 0;
+        while(currWeek[i] != null) i++;
+        for(Object day : currWeek[i-1].keySet()){
+            Float[] latestDay = currWeek[i-1].get(day);
+            totalCarbon =latestDay[0].doubleValue();
+            totalTransportation = latestDay[1].doubleValue();
+            totalFood = latestDay[2].doubleValue();
+            totalHousing = latestDay[3].doubleValue();
+            totalConsumption = latestDay[4].doubleValue();
         }
 
-        void onYearly(View view) {
-            counter =3;
-            setVarsYearly();
 //        Emissions Overview
-            carbonCount.setText(totalCarbon + "kg C02e");
-            timeframe.setText("This Year");
+        carbonCount.setText(totalCarbon + "kg C02e");
+        timeframe.setText("On Most Recent Entry");
 //        Pie Chart
-            ArrayList<PieEntry> sections = new ArrayList<>();
-            sections.add(new PieEntry(totalHousing.floatValue(), "Housing"));
-            sections.add(new PieEntry(totalFood.floatValue(), "Food"));
-            sections.add(new PieEntry(totalConsumption.floatValue(), "Consumption"));
-            sections.add(new PieEntry(totalTransportation.floatValue(), "Transportation"));
+        ArrayList<PieEntry> sections = new ArrayList<>();
+        sections.add(new PieEntry(totalHousing.floatValue(), "Housing"));
+        sections.add(new PieEntry(totalFood.floatValue(), "Food"));
+        sections.add(new PieEntry(totalConsumption.floatValue(), "Consumption"));
+        sections.add(new PieEntry(totalTransportation.floatValue(), "Transportation"));
 
-            PieDataSet pieDataSet = new PieDataSet(sections, "");
-            pieDataSet.setColors(graphColours);
-            pieDataSet.setValueTextColor(Color.BLACK);
-            pieDataSet.setValueTextSize(16);
+        PieDataSet pieDataSet = new PieDataSet(sections, "");
+        pieDataSet.setColors(graphColours);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setValueTextSize(16);
 
-            PieData pieData = new PieData(pieDataSet);
-            breakdown.setData(pieData);
-            breakdown.invalidate();
-            breakdown.animate();
-            breakdown.animateY(1000);
+        PieData pieData = new PieData(pieDataSet);
+        breakdown.setData(pieData);
+        breakdown.invalidate();
+        breakdown.animate();
+        breakdown.animateY(1000);
 
 
+    }
 
+    //    Grabbing vars based on timeframe
+
+    private void setVarsMonthly() {
+        HashMap<String, Float[]>[] currMonth= months.get(months.size()-1);
+        double monthlyTotal = 0;
+        double monthlyTransportation = 0;
+        double monthlyFood = 0;
+        double monthlyHousing = 0;
+        double monthlyConsumption = 0;
+        for(int i =0; i< currMonth.length; i++){
+//          This is ok because there's only one key in each hashmap
+            for(String day : currMonth[i].keySet()){
+            Float[] currDay = currMonth[i].get(day);
+                monthlyTotal += currDay[0];
+                monthlyTransportation += currDay[1];
+                monthlyFood += currDay[2];
+                monthlyHousing += currDay[3];
+                monthlyConsumption += currDay[4];
+            }
         }
+        totalCarbon = monthlyTotal;
+        totalTransportation = monthlyTransportation;
+        totalFood = monthlyFood;
+        totalHousing = monthlyHousing;
+        totalConsumption = monthlyConsumption;
+    }
 
-        //    Grabbing vars based on timeframe
-        void setVarsYearly() {
-            ref.child("users").child(userID).child("SurveyData").child("Transportation").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Get the value at "Total"
-                        totalTransportation = dataSnapshot.getValue(Double.class);
-                    } else {
-                        Log.d("Firebase", "No value found at this path!");
-                        totalTransportation = null;
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-                    totalTransportation = null;
-                }
-            });
-            ref.child("users").child(userID).child("SurveyData").child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Get the value at "Total"
-                        totalFood = dataSnapshot.getValue(Double.class);
-                    } else {
-                        Log.d("Firebase", "No value found at this path!");
-                        totalFood = null;
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-                    totalFood = null;
-                }
-            });
-            ref.child("users").child(userID).child("SurveyData").child("Consumption").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Get the value at "Total"
-                        totalConsumption = dataSnapshot.getValue(Double.class);
-                    } else {
-                        Log.d("Firebase", "No value found at this path!");
-                        totalConsumption = null;
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-                    totalConsumption = null;
-                }
-            });
-            ref.child("users").child(userID).child("SurveyData").child("Housing").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Get the value at "Total"
-                        totalHousing = dataSnapshot.getValue(Double.class);
-                    } else {
-                        Log.d("Firebase", "No value found at this path!");
-                        totalHousing = null;
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-                    totalHousing = null;
-                }
-            });
-            ref.child("users").child(userID).child("SurveyData").child("Total").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Get the value at "Total"
-                        totalCarbon = dataSnapshot.getValue(Double.class);
-                    } else {
-                        Log.d("Firebase", "No value found at this path!");
-                        totalCarbon = null;
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-                    totalCarbon = null;
-                }
-            });
-
-//                ref.child("users").child(userID).child(the path to user history for annual data) {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.exists()) {
-//                            // Get the value at "Total"
-//                            carbonHistory = dataSnapshot.getValue(Double.class);
-//                        } else {
-//                            Log.d("Firebase", "No value found at this path!");
-//                            carbonHistory = null;
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                        Log.e("Firebase", "Error fetching data: " + databaseError.getMessage());
-//                        carbonHistory = null;
-//                    }
-//                });
-
+    private void setVarsWeekly() {
+        HashMap<String, Float[]>[] currWeek= weeks.get(weeks.size()-1);
+        double weeklyTotal = 0;
+        double weeklyTransportation = 0;
+        double weeklyFood = 0;
+        double weeklyHousing = 0;
+        double weeklyConsumption = 0;
+        for(int i =0; i< currWeek.length; i++){
+//          This is ok because there's only one key in each hashmap
+            for(String day : currWeek[i].keySet()){
+                Float[] currDay = currWeek[i].get(day);
+                weeklyTotal += currDay[0];
+                weeklyTransportation += currDay[1];
+                weeklyFood += currDay[2];
+                weeklyHousing += currDay[3];
+                weeklyConsumption += currDay[4];
             }
+        }
+        totalCarbon = weeklyTotal;
+        totalTransportation = weeklyTransportation;
+        totalFood = weeklyFood;
+        totalHousing = weeklyHousing;
+        totalConsumption = weeklyConsumption;
+    }
 
-            void setVarsMonthly() {
+    private void fillHashmaps() {
+        for (String country : countryConstants.keySet()) {
+            Double value = countryConstants.get(country);
+            countryConstantsMonthly.put(country, value / 12);
+            countryConstantsWeekly.put(country, value / 52);
+        }
+    }
 
-            }
+    private void getWeeksTimeline(String UserID) {
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/")
+                .getReference("users").child(userID).child("dailyLogs");
 
-            void setVarsWeekly() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            }
+                Map<String, Object> dateMap = (Map<String, Object>) dataSnapshot.getValue();
+                if (dateMap != null) {
+                    ArrayList<String> dateKeys = new ArrayList<>(dateMap.keySet());
+                    Collections.sort(dateKeys);
 
-            void fillHashmaps() {
-                for (String country : countryConstants.keySet()) {
-                    Double value = countryConstants.get(country);
-                    countryConstantsMonthly.put(country, value / 12);
-                    countryConstantsWeekly.put(country, value / 52);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate ogDate = LocalDate.parse(dateKeys.get(0), formatter);
+
+                    HashMap<String, Float[]>[] currWeek = new HashMap[31];
+                    int dayIndex = 0;
+
+
+                    for (String currDateStr : dateKeys) {
+                        LocalDate currDate = LocalDate.parse(currDateStr, formatter);
+
+                        long daysBetween = ChronoUnit.DAYS.between(ogDate, currDate);
+
+
+                        // Handle daily emissions
+
+                        Float emissions = dataSnapshot.child(currDateStr)
+                                .child("total_emissions").getValue(Float.class);
+                        Float transportation = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("transportation").getValue(Float.class);
+                        Float food = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("food").getValue(Float.class);
+                        Float housing = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("bills").getValue(Float.class);
+                        Float consumption = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("consumption").getValue(Float.class);
+
+                        HashMap<String, Float[]> dayEntry = new HashMap<>();
+                        if (emissions != null & transportation != null & consumption != null & housing != null & food != null) {
+                            Float [] dailyCarbonInfo = {emissions, transportation, food, housing, consumption};
+                            dayEntry.put(currDateStr, dailyCarbonInfo);
+                        }
+
+                        // Check if the week has changed
+                        if (daysBetween<7) {
+                            // Add to the current month
+                            currWeek[dayIndex++] = dayEntry;
+                        } else {
+                            // Save the current month and reset
+                            if (dayIndex > 0) {
+                                weeks.add(currWeek);
+                            }
+                            currWeek = new HashMap[7];
+                            dayIndex = 0;
+                            currWeek[dayIndex++] = dayEntry;
+                            ogDate = currDate;
+                        }
+                    }
+
+                    // Add the last month
+                    if (dayIndex > 0) {
+                        weeks.add(currWeek);
+                    }
                 }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                System.err.println("Error: " + databaseError.getMessage());
+            }
+        });
 
+    }
+
+    private void getMonthsTimeline(String userID) {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/")
+                .getReference("users").child(userID).child("dailyLogs");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, Object> dateMap = (Map<String, Object>) dataSnapshot.getValue();
+                if (dateMap != null) {
+                    ArrayList<String> dateKeys = new ArrayList<>(dateMap.keySet());
+                    Collections.sort(dateKeys);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate ogDate = LocalDate.parse(dateKeys.get(0), formatter);
+
+                    HashMap<String, Float[]>[] currMonth = new HashMap[31];
+                    int dayIndex = 0;
+
+
+                    for (String currDateStr : dateKeys) {
+                        LocalDate currDate = LocalDate.parse(currDateStr, formatter);
+
+                        // Handle daily emissions
+
+                        Float emissions = dataSnapshot.child(currDateStr)
+                                .child("total_emissions").getValue(Float.class);
+                        Float transportation = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("transportation").getValue(Float.class);
+                        Float food = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("food").getValue(Float.class);
+                        Float housing = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("bills").getValue(Float.class);
+                        Float consumption = dataSnapshot.child(currDateStr)
+                                .child("emissions_by_category").child("consumption").getValue(Float.class);
+
+                        HashMap<String, Float[]> dayEntry = new HashMap<>();
+                        if (emissions != null & transportation != null & consumption != null & housing != null & food != null) {
+                            Float [] dailyCarbonInfo = {emissions, transportation, food, housing, consumption};
+                            dayEntry.put(currDateStr, dailyCarbonInfo);
+                        }
+
+                        // Check if the month has changed
+                        if (ogDate.getYear() == currDate.getYear() &&
+                                ogDate.getMonth() == currDate.getMonth()) {
+                            // Add to the current month
+                            currMonth[dayIndex++] = dayEntry;
+                        } else {
+                            // Save the current month and reset
+                            if (dayIndex > 0) {
+                                months.add(currMonth);
+                            }
+                            currMonth = new HashMap[31];
+                            dayIndex = 0;
+                            currMonth[dayIndex++] = dayEntry;
+                            ogDate = currDate;
+                        }
+                    }
+
+                    // Add the last month
+                    if (dayIndex > 0) {
+                        months.add(currMonth);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                System.err.println("Error: " + databaseError.getMessage());
+            }
+        });
+
+    }
+
+    private HashMap<String, Float[]>[] getLast30Days (){
+        HashMap <String, Float []>[] last30 = new HashMap [30];
+//        Log newest to oldest and then parse in reverse
+
+    }
 }

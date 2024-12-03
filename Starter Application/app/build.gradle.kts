@@ -47,4 +47,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.4")
+
 }

@@ -35,6 +35,7 @@
         android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -78,7 +79,7 @@
         android:id="@+id/pieChart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=" 0.2"
         app:layout_constraintStart_toStartOf="parent"

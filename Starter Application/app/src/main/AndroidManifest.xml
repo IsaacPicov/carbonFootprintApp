@@ -43,9 +43,9 @@
         <activity
             android:name=".SurveyResultsActivity"
             android:exported="false"/>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"/>
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="false"/>-->
         <activity
             android:name=".SurveyActivity"
             android:exported="true">

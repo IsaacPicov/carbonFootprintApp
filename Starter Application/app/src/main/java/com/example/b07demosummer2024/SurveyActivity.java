@@ -621,6 +621,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
        question--;
        Button back = (Button)view;
        if(question == 1){
+
            back.setBackgroundColor(Color.parseColor("#373f51"));
            back.setTextColor(Color.parseColor("#a9bcd0"));
            back.setEnabled(false);
