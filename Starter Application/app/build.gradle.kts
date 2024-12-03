@@ -41,7 +41,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     testImplementation(libs.junit)
-    testImplementation("org.mockito:mockito-all:1.10.19")
+    testImplementation("org.mockito:mockito-core:5.5.0")
     testImplementation("junit:junit:4.12")
     // testImplementation("org.mockito:mockito-core:2.8.47")
     androidTestImplementation(libs.ext.junit)

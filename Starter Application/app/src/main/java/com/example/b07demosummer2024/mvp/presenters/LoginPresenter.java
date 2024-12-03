@@ -16,9 +16,9 @@ public class LoginPresenter {
     private final LoginModel model;
     private final LoginView view;
 
-    public LoginPresenter(LoginView view) {
+    public LoginPresenter(LoginView view, LoginModel model) {
         this.view = view;
-        this.model = new LoginModel();
+        this.model = model;
     }
 
     public void handleLogin(@NonNull String email, @NonNull String password) {

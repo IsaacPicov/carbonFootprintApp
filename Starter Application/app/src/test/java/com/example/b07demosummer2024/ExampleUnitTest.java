@@ -10,11 +10,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import com.example.b07demosummer2024.mvp.models.LoginModel;
 import com.example.b07demosummer2024.mvp.presenters.LoginPresenter;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static org.junit.Assert.*;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -32,16 +34,29 @@ public class ExampleUnitTest {
 
     @Test
     public void testEmptyInfo(){
-        LoginPresenter presenter = new LoginPresenter(view);
+        LoginPresenter presenter = new LoginPresenter(view, model);
         presenter.handleLogin("", "");
-        verify(view).onLoginFail("Please fill out all fields");
+        verify(view, times(1)).onLoginFail("Please fill out all fields");
     }
 
     @Test
     public void testSuccessLogin() {
-        LoginPresenter presenter = new LoginPresenter(view);
+        LoginPresenter presenter = new LoginPresenter(view, model);
+
+        CompletableFuture<>
         presenter.handleLogin("email", "pwd");
-        verify(view).showLoading();
+        when(model.authenticateUser("email", "pwd", new LoginModel.LoginCallback() {
+                    @Override
+                    public void onLoginSuccess() {
+
+                    }
+
+                    @Override
+                    public void onLoginFail(String errorMessage) {
+
+                    }
+                }
+                verify(view).showLoading();
 
 
     }
