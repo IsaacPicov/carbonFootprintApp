@@ -57,10 +57,9 @@ public class EcoTrackerFragment extends Fragment {
 
 
     private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction(); // Use child FragmentManager for nested fragments
-        transaction.replace(R.id.nested_fragment_container, fragment); // Replace the nested container inside EcoTrackerFragment
-        transaction.addToBackStack(null); // Optionally add to back stack
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
-
 }
