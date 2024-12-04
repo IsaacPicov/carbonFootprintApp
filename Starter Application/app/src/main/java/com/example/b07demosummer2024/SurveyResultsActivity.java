@@ -3,15 +3,20 @@ package com.example.b07demosummer2024;
 import static com.example.b07demosummer2024.CountriesConstants.COUNTRIES;
 import static com.example.b07demosummer2024.CountriesConstants.countryConstants;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -35,11 +40,25 @@ public class SurveyResultsActivity extends AppCompatActivity {
     double totalTransportation;
     double totalConsumption;
     double totalCarbon;
+
+    private Button homeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
+        homeBtn = findViewById(R.id.button);
+        homeBtn.setOnClickListener(v -> {
+            Fragment fragment = new EcoTrackerFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+// Replace or add the fragment to the container (e.g., R.id.fragment_container)
+            fragmentTransaction.replace(R.id.container, fragment);
+            fragmentTransaction.addToBackStack(null); // Optional: Adds to the back stack
+            fragmentTransaction.commit();
+
+
+        });
 //       Stuff for making the PieChart
         Intent carbonValues = getIntent();
         totalHousing = carbonValues.getDoubleExtra("HOUSING",0.0);
@@ -179,5 +198,12 @@ public class SurveyResultsActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+
+
     }
+
+
+
 }
