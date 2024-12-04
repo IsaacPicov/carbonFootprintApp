@@ -5,12 +5,13 @@
     android:layout_height="match_parent">
 
     <TextView
+        style="@style/SurveyTitle"
         android:id="@+id/textElectronicsType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:text="Enter type of electronic device:"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,12 +29,13 @@
         android:layout_marginTop="16dp"/>
 
     <TextView
+        style="@style/SurveyTitle"
         android:id="@+id/textDeviceCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="Enter number of devices purchased:"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +53,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textDeviceCount" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonElectronicsSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

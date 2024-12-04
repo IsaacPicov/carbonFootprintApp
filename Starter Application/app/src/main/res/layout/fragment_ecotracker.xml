@@ -5,10 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/nested_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonTransportation" />
+
+
     <Button
         android:id="@+id/buttonTransportation"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+
         android:text="@string/transportation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,6 +27,7 @@
 
     <Button
         android:id="@+id/buttonFoodConsumption"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/foodConsumption"
@@ -30,6 +40,7 @@
 
     <Button
         android:id="@+id/buttonConsumptionAndShopping"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/consumptionAndShopping"
@@ -42,6 +53,7 @@
 
     <Button
         android:id="@+id/buttonDailyCO2eDisplay"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Daily CO2e Emission Display"
