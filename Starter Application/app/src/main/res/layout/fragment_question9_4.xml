@@ -1,4 +1,4 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -56,15 +56,7 @@
         app:layout_constraintStart_toStartOf="@+id/q9_4option3"
         app:layout_constraintTop_toBottomOf="@+id/q9_4option3" />
 
-        <Button
-            android:id="@+id/q9_4option4"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="Never"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q9_4option3" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
