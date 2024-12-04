@@ -82,6 +82,15 @@ By: Chase, Fred, Gabriel, Isaac, Shawn, Zacky
             width="130"/>
         <p>Survey Question</p>
     </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img
+            style="margin-right: 1rem;"
+            src="Readme-images/ecoTrackerimage.png"
+            alt="ecoTrackerimage"
+            width="130"/>
+        <p>Survey Question</p>
+    </div>
 </div> -->
 
 
