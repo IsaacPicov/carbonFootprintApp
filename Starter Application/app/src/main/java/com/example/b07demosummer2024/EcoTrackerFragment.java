@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class EcoTrackerFragment extends Fragment {
 
-    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping, buttonCO2eDisplay, buttonEcogauge;
+    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping, buttonCO2eDisplay, buttonEcogauge, buttonHabitTracker;
 
     @Nullable
     @Override
@@ -25,7 +25,7 @@ public class EcoTrackerFragment extends Fragment {
         buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
         buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
         buttonCO2eDisplay = view.findViewById(R.id.buttonDailyCO2eDisplay);
-
+        buttonHabitTracker = view.findViewById(R.id.buttonHabitTracker);
         buttonTransportation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +46,13 @@ public class EcoTrackerFragment extends Fragment {
                 loadFragment(new ConsumptionActivitiesFragment());
             }
         });
+
+        buttonHabitTracker.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new HabitTrackerFragment());
+            }
+        }));
 
         buttonCO2eDisplay.setOnClickListener(new View.OnClickListener() {
             @Override

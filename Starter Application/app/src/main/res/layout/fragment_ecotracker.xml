@@ -71,7 +71,21 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/buttonHabitTracker"
+        android:layout_width="206dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/text_border"
+        android:text="Search"
+        android:textColor="@color/teal"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
