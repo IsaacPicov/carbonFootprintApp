@@ -1,63 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light">
 
     <TextView
         android:id="@+id/textMiscType"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="121dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="23dp"
         android:text="Enter type of miscellaneous purchase:"
-        android:textSize="16sp"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPurchaseType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextPurchaseType"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/text_border"
         android:hint="Type of purchase (e.g., furniture)"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/textMiscType"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textPurchaseCount"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMiscType" />
 
     <TextView
         android:id="@+id/textPurchaseCount"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="28dp"
         android:text="Enter number of purchases:"
-        android:textSize="16sp"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPurchaseCount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextPurchaseType" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPurchaseType" />
 
     <EditText
         android:id="@+id/editTextPurchaseCount"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="51dp"
+        android:background="@drawable/text_border"
         android:hint="Number of purchases"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/textPurchaseCount"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMiscSubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPurchaseCount" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonMiscSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SurveyButton"
+        android:layout_width="186dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="58dp"
         android:text="Submit"
-        app:layout_constraintTop_toBottomOf="@id/editTextPurchaseCount"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPurchaseCount" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMiscSubmit"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
