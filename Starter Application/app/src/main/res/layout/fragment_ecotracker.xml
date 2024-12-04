@@ -5,32 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/nested_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonTransportation" />
+
+
     <Button
         android:id="@+id/buttonTransportation"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+
         android:text="@string/transportation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/buttonFoodConsumption"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/foodConsumption"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.414" />
 
     <Button
         android:id="@+id/buttonConsumptionAndShopping"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/consumptionAndShopping"
@@ -39,16 +49,18 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintVertical_bias="0.579" />
 
     <Button
         android:id="@+id/buttonDailyCO2eDisplay"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Daily CO2e Emission Display"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.727" />
 </androidx.constraintlayout.widget.ConstraintLayout>

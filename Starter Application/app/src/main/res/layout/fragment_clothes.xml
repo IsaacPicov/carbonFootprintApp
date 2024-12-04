@@ -6,14 +6,16 @@
 
     <TextView
         android:id="@+id/textClothes"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Enter number of clothing items purchased:"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editTextClothingItems"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/editTextClothingItems" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextClothingItems"
@@ -21,13 +23,17 @@
         android:layout_height="48dp"
         android:hint="Number of items"
         android:inputType="number"
+        android:background="@drawable/text_border"
+
         app:layout_constraintBottom_toTopOf="@id/buttonClothesSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textClothes" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
+        android:background="@drawable/appgradient"
         android:id="@+id/buttonClothesSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -10,12 +10,13 @@
         android:id="@+id/textBills"
         style="@style/SurveyTitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginTop="164dp"
         android:layout_marginBottom="26dp"
         android:text="@string/bills"
         app:layout_constraintBottom_toTopOf="@+id/spinnerBillType"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinnerBillType"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +46,7 @@
         android:paddingStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonBillsSubmit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerBillType" />
 

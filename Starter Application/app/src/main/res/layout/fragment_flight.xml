@@ -7,6 +7,8 @@
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/SurveyTitle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Number of flights taken"
@@ -22,6 +24,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:paddingStart="20dp"
+        android:background="@drawable/text_border"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -31,6 +36,7 @@
 
     <Spinner
         android:id="@+id/spinnerFlight"
+        android:background="@drawable/text_border"
         android:layout_width="238dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,8 +45,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.55" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonFlightSubmit"
+        style="@style/SurveyButton"
+        android:background="@drawable/appgradient"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"

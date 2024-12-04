@@ -6,11 +6,12 @@
 
     <TextView
         android:id="@+id/textMiscType"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="196dp"
         android:text="Enter type of miscellaneous purchase:"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,12 +29,13 @@
         android:layout_marginTop="16dp"/>
 
     <TextView
+        style="@style/SurveyTitle"
         android:id="@+id/textPurchaseCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:text="Enter number of purchases:"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +52,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonMiscSubmit"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
