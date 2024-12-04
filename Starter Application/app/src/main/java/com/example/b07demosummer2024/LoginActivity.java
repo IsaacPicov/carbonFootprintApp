@@ -3,6 +3,7 @@ package com.example.b07demosummer2024;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,24 @@ import com.example.b07demosummer2024.mvp.models.LoginModel;
 import com.example.b07demosummer2024.mvp.presenters.LoginPresenter;
 import com.example.b07demosummer2024.mvp.presenters.ForgotPasswordPresenter;
 import com.example.b07demosummer2024.SurveyLandingPageActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements LoginPresenter.LoginView, ForgotPasswordPresenter.ForgotPasswordView {
     private EditText editEmail, editPassword;
     
     private LoginPresenter loginPresenter;
     private ForgotPasswordPresenter forgotPasswordPresenter;
+
+    private FirebaseDatabase db;
+    private DatabaseReference itemsRef;
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +77,55 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.L
     }
 
     private void loadSurveyActivity() {
-         Intent intent = getIntent();
-         String userID = intent.getStringExtra("USERID");
-         Intent pass = new Intent(this, SurveyLandingPageActivity.class);
-         pass.putExtra("USERID", userID);
-         startActivity(pass);
+        // Initialize FirebaseAuth and FirebaseDatabase
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+        FirebaseUser currentUser = auth.getCurrentUser();
 
-         //other method? Untested
-//        Intent intent = new Intent(this, SurveyLandingPageActivity.class);
-//        startActivity(intent);
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference itemsRef = db.getReference("users/" + userId + "/takenSurvey");
+
+            itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Long value = dataSnapshot.getValue(Long.class); // Retrieve as String
+                        if (value != null) {
+                            navigateToActivity(value == 1 ? 1 : 0, userId);
+                        } else {
+                            Log.d("FirebaseCheck", "takenSurvey is null.");
+                        }
+                    } else {
+                        Log.d("FirebaseCheck", "takenSurvey does not exist.");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("FirebaseCheck", "Error reading takenSurvey: ", databaseError.toException());
+                }
+            });
+        } else {
+            Log.e("FirebaseCheck", "No authenticated user.");
+        }
     }
-    
+
+    // Helper function to navigate to an activity
+    private void navigateToActivity(int indicator, String userId) {
+        Intent intent;
+        if (indicator == 1){
+            intent = new Intent(this, EcoTrackerActivity.class);
+        }
+        else{
+            intent = new Intent(this, SurveyLandingPageActivity.class);
+        }
+
+        intent.putExtra("USERID", userId);
+        startActivity(intent);
+    }
+
+
     @Override
     public void onLoginSuccess() {
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();

@@ -70,6 +70,7 @@ public class RegistrationFragment extends Fragment{
         String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString();
         String confirmPassword = editConfirmPassword.getText().toString();
+        int takenSurvey = 0;
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(getContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
@@ -88,7 +89,7 @@ public class RegistrationFragment extends Fragment{
                     user.sendEmailVerification().addOnCompleteListener(emailTask -> {
                         if (emailTask.isSuccessful()) {
                             Toast.makeText(getContext(), "Verification email sent. Please check your inbox", Toast.LENGTH_LONG).show();
-                            saveUserToDatabase(user.getUid(), firstName, lastName, email);
+                            saveUserToDatabase(user.getUid(), firstName, lastName, email, takenSurvey);
                         } else {
                             Toast.makeText(getContext(), "Failed to send verification email.", Toast.LENGTH_SHORT).show();
                         }
@@ -103,10 +104,10 @@ public class RegistrationFragment extends Fragment{
         });
     }
 
-    private void saveUserToDatabase(String userId, String firstName, String lastName, String email) {
+    private void saveUserToDatabase(String userId, String firstName, String lastName, String email, int takenSurvery) {
         itemsRef = db.getReference("users/" + userId);
 
-        Item item = new Item(userId, firstName, lastName, email, null);
+        User item = new User(userId, firstName, lastName, email, takenSurvery);
 
         itemsRef.setValue(item).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
