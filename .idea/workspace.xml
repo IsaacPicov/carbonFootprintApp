@@ -218,11 +218,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" afterDir="false" />
-    </list>
+    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -297,7 +293,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "fred-test",
+    "git-widget-placeholder": "Fix-maniest-error-main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/gosqib/Desktop/carbonFootprintApp/Readme-images"
   }
