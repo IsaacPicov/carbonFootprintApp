@@ -91,7 +91,7 @@ public class PersonalVehicleFragment extends Fragment {
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-                    Calculate.calculateAndUpdateDailyTotal(userId);
+                    //Calculate.calculateAndUpdateDailyTotal(userId);
                 } else {
                     Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
                 }

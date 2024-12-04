@@ -11,6 +11,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.HashMap;
 
 public class CO2eDisplayFragment extends Fragment {
 
@@ -42,12 +45,16 @@ public class CO2eDisplayFragment extends Fragment {
 
     private FirebaseAuth auth;
 
+    private String selectedDate;
+
     private ActivityAdapter activityAdapter;
 
     private Button add;
     private FirebaseDatabase db;
     private DatabaseReference itemsRef;
 
+    private TextView emissionDisplay;
+    private Button btnGetEmission;
 
     @Nullable
     @Override
@@ -55,53 +62,61 @@ public class CO2eDisplayFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String userId = currentUser.getUid();
 
         View view = inflater.inflate(R.layout.fragment_daily_co2e_display, container, false);
         calendar = Calendar.getInstance();
         calendarView = view.findViewById(R.id.calendarView);
-        LocalDate currentDate = LocalDate.now();
-        setDate(currentDate.getDayOfMonth(), currentDate.getMonthValue(), currentDate.getYear());
-//
+        emissionDisplay = view.findViewById(R.id.emissionDisplay);
+
+        btnGetEmission = view.findViewById(R.id.buttonGetEmission);
+        btnGetEmission.setOnClickListener(v -> {
+            fetchTotalEmission(selectedDate);
+        });
+
+        selectedDate = LocalDate.now().toString();
+        Calculate.calculateAndUpdateDailyTotal(userId, selectedDate);
+        System.out.println("Daily Total is Calculated");
+        setDate(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+
         activityRecyclerView = view.findViewById(R.id.activityRecyclerView);
         activityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-        activityLists = new ArrayList<>();
-        activityAdapter = new ActivityAdapter(activityLists, listener -> {
-            // Handle button click for a specific habit
-            // Example: Display a toast or perform an action
-               deleteFromDatabase(listener.getId());
 
-            });
+        activityLists = new ArrayList<>();
+        activityAdapter = new ActivityAdapter(activityLists, new ActivityAdapter.OnActivityClickListener() {
+            @Override
+            public void onActivityDeleteClick(Activity activity) {
+                deleteFromDatabase(activity.getId());
+            }
+
+            @Override
+            public void onActivityEditClick(Activity activity) {
+                System.out.println(selectedDate.toString());
+                EditActivityDialog dialog = new EditActivityDialog(activity, activity.getId(), auth.getCurrentUser().getUid(), selectedDate);
+                dialog.show(getParentFragmentManager(), "EditActivityDialog");
+            }
+        });
         activityRecyclerView.setAdapter(activityAdapter);
 
         add = view.findViewById(R.id.buttonAddActivity);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                setDate(dayOfMonth, month, year);
-                month += 1;
-                String monthValue = String.valueOf(month).length() > 1 ? String.valueOf(month): "0" + month;
-                String dayValue = String.valueOf(dayOfMonth).length() > 1 ? String.valueOf(dayOfMonth): "0" + dayOfMonth;
-                String date = year + "-" + monthValue + "-" + dayValue;
-                System.out.println(date);
-                fetchItemsFromDatabase(date);
-            }
+        add.setOnClickListener(v -> {
+            GlobalVariable.setDate(selectedDate);
+            loadFragment(new EcoTrackerFragment());
         });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GlobalVariable.setDate(calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
-                loadFragment(new EcoTrackerFragment());
-            }
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            setDate(dayOfMonth, month, year);
+            selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+            fetchItemsFromDatabase(selectedDate);
+            Calculate.calculateAndUpdateDailyTotal(userId, selectedDate);
+            System.out.println("Daily Total is Calculated");
         });
+
         return view;
     }
 
 
-
-//    private void
     private void setDate(int day, int month, int year){
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -110,6 +125,24 @@ public class CO2eDisplayFragment extends Fragment {
         calendarView.setDate(milli);
     }
 
+    private void fetchTotalEmission(String date) {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String userId = currentUser.getUid();
+        DatabaseReference emissionRef = db.getReference("users/" + userId + "/dailylogs/" + date + "/total_emissions/");
+        emissionRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    emissionDisplay.setText("Daily Emission: " + snapshot.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     private void fetchItemsFromDatabase(String date) {
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -121,15 +154,22 @@ public class CO2eDisplayFragment extends Fragment {
                 activityLists.clear();
                 if(dataSnapshot.exists()){
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        System.out.println(snapshot.getKey());
-                        System.out.println(snapshot.child("activity_type").getValue());
-                        System.out.println(snapshot.child("information").getValue());
-                        Activity activity = new Activity(snapshot.getKey(), snapshot.child("activity_type").getValue().toString(), snapshot.child("information").getValue().toString());
-                        activityLists.add(activity);
+                        System.out.println("KEY: " + snapshot.getKey());
+                        System.out.println("VALUE: " + snapshot.child("activity_type").getValue());
+                        System.out.println("VALUE: " + snapshot.child("information").getValue());
+                        System.out.println("VALUE: " + snapshot.getValue());
+
+
+
+                        Activity activity = new Activity(
+                                snapshot.getKey(), // Activity ID
+                                snapshot.child("activity_type").getValue(String.class),
+                                (Map<String, Object>) snapshot.child("information").getValue() // Information as a map
+                        );                        activityLists.add(activity);
                     }
                 }
                 else{
-                    activityLists.add(new Activity("","No Activity", ""));
+                    activityLists.add(new Activity("", "No Activity", new HashMap<>()));
                 }
 
                 activityAdapter.notifyDataSetChanged();
@@ -183,4 +223,3 @@ public class CO2eDisplayFragment extends Fragment {
         transaction.commit();
     }
 }
-

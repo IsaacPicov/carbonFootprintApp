@@ -54,14 +54,7 @@ public class ElectronicsFragment extends Fragment {
     }
 
     private void addToDatabase(String userId, String deviceType, String deviceCount) {
-
-        DatabaseReference logRef;
-
-        if (GlobalVariable.getDate() == null) {
-            logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
-        } else {
-            logRef = db.getReference("users").child(userId).child("dailylogs").child(GlobalVariable.getDate());
-        }
+        DatabaseReference logRef = db.getReference("users").child(userId).child("dailylogs").child(LocalDate.now().toString());
         String id = logRef.push().getKey();
 
         if (id != null) {
@@ -75,7 +68,7 @@ public class ElectronicsFragment extends Fragment {
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-                    Calculate.calculateAndUpdateDailyTotal(userId);
+                    //Calculate.calculateAndUpdateDailyTotal(userId);
                 } else {
                     Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
                 }

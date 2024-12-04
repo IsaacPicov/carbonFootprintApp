@@ -83,7 +83,7 @@ public class BillsFragment extends Fragment {
 
         if (id != null) {
             Map<String, Object> activityData = new HashMap<>();
-            activityData.put("activity_type", "bills");
+            activityData.put("activity_type", "energy");
             activityData.put("information", Map.of(
                     "billType", billType,
                     "amount", billAmount
@@ -92,7 +92,6 @@ public class BillsFragment extends Fragment {
             logRef.child(id).setValue(activityData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-                    Calculate.calculateAndUpdateDailyTotal(userId);
                 } else {
                     Toast.makeText(getContext(), "Failed to save user data", Toast.LENGTH_SHORT).show();
                 }
@@ -102,5 +101,3 @@ public class BillsFragment extends Fragment {
         }
     }
 }
-
-

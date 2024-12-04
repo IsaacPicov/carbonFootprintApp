@@ -42,7 +42,7 @@ public class EditActivityDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_edit_activity, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_activity, container, false);
 
         dynamicFieldContainer = view.findViewById(R.id.dynamicFieldContainer);
         saveButton = view.findViewById(R.id.buttonSave);
@@ -55,20 +55,32 @@ public class EditActivityDialog extends DialogFragment {
     }
 
     private void populateFields(Map<String, String> informationAsMap) {
-        if (informationAsMap != null) {
-            for (Map.Entry<String, String> entry : informationAsMap.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-
-                EditText inputField = new EditText(getContext());
-                inputField.setHint(key);
-                inputField.setText(value);
-
-                dynamicFieldContainer.addView(inputField);
-                fieldInputs.put(key, inputField);
-            }
+        if (informationAsMap == null) {
+            System.out.println("populateFields: informationAsMap is null.");
+            return;
         }
+        if (informationAsMap.isEmpty()) {
+            System.out.println("populateFields: informationAsMap is empty.");
+            return;
+        }
+
+        System.out.println("populateFields: Adding fields...");
+        for (Map.Entry<String, String> entry : informationAsMap.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            System.out.println("Adding field - Key: " + key + ", Value: " + value);
+
+            EditText inputField = new EditText(getContext());
+            inputField.setHint(key);
+            inputField.setText(value);
+
+            dynamicFieldContainer.addView(inputField);
+            fieldInputs.put(key, inputField);
+        }
+        System.out.println("populateFields: All fields added successfully.");
     }
+
 
     private void saveChanges() {
         Map<String, Object> updatedFields = new HashMap<>();
@@ -87,4 +99,3 @@ public class EditActivityDialog extends DialogFragment {
         });
     }
 }
-

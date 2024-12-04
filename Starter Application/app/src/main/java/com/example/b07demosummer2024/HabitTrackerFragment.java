@@ -45,6 +45,8 @@ public class HabitTrackerFragment extends Fragment {
     private SearchView searchBar;
     private TextView resultView;
 
+    private String largestConsumption;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Habits");
 
@@ -87,23 +89,23 @@ public class HabitTrackerFragment extends Fragment {
                 navigateToFlight();
             }
 
-            if (habit.getType().equals("Food & Consumption Activities") && habit.getTitle().equals("Meal")){
+            if (habit.getType().equals("food consumption") && habit.getTitle().equals("Meal")){
                 navigateToMeal();
             }
 
-            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Buy New Clothes") ){
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy New Clothes") ){
                 navigateToBuyClothes();
             }
 
-            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Buy Electronics")){
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Buy Electronics")){
                 navigateToBuyElectronics();
             }
 
-            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Other purchases")){
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Other purchases")){
                 navigateToOtherPurchases();
             }
 
-            if (habit.getType().equals("Consumption & Shopping Activities") && habit.getTitle().equals("Energy Bills")){
+            if (habit.getType().equals("consumption and shopping activities") && habit.getTitle().equals("Energy Bills")){
                 navigateToEnergyBills();
             }
         });
@@ -112,11 +114,14 @@ public class HabitTrackerFragment extends Fragment {
 
         // Spinner setup
         String[] items = {"Food & Consumption Activities", "Consumption & Shopping Activities", "transportation"};
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(),
                 android.R.layout.simple_spinner_item,
                 items
         );
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -151,11 +156,28 @@ public class HabitTrackerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Get the selected item from the spinner
-                String selectedItem = spinner.getSelectedItem().toString();
-                // Fetch habits based on the selected item
-                fetchHabitsByType(selectedItem);
+                fetchLargestCategoryForUser("temp", new OnCategoryFetchedListener() {
+                    @Override
+                    public void onCategoryFetched(String largestCategory) {
+                        String selectedItem = spinner.getSelectedItem().toString();
+                        String help = "transportation";
+
+                        // Check the largest category to determine which type to fetch
+                        if (largestCategory.equals("totalConsumption")) {
+                            help = "Consumption & Shopping Activities";
+                        } else if (largestCategory.equals("totalFood")) {
+                            help = "Food & Consumption Activities";
+                        } else if (largestCategory.equals("totalTransport")) {
+                            help = "transportation";
+                        }
+
+                        // Fetch habits based on the selected item
+                        fetchHabitsByType(help);
+                    }
+                });
             }
         });
+
 
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -226,6 +248,8 @@ public class HabitTrackerFragment extends Fragment {
                 } else {
                     resultView.setText(""); // Clear the result view if habits are displayed
                 }
+
+
             }
 
             @Override
@@ -375,5 +399,53 @@ public class HabitTrackerFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+    public void fetchLargestCategoryForUser(String userId, OnCategoryFetchedListener listener) {
+        // Reference to the user's SurveyData node
+        DatabaseReference surveyDataRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("SurveyData");
+
+        surveyDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Get the SurveyData values for the user
+                Double totalConsumption = snapshot.child("totalConsumption").getValue(Double.class);
+                Double totalFood = snapshot.child("totalFood").getValue(Double.class);
+                Double totalTransport = snapshot.child("totalTransport").getValue(Double.class);
+
+                if (totalConsumption == null) totalConsumption = 0.0;
+                if (totalFood == null) totalFood = 0.0;
+                if (totalTransport == null) totalTransport = 0.0;
+
+                // Determine the largest category
+                String largestCategory = getLargestCategory(totalConsumption, totalFood, totalTransport);
+
+                // Return the result using the listener
+                listener.onCategoryFetched(largestCategory);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors (e.g., user not found)
+                Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public interface OnCategoryFetchedListener {
+        void onCategoryFetched(String largestCategory);
+    }
+
+
+    private String getLargestCategory(Double totalConsumption, Double totalFood, Double totalTransport) {
+        if (totalConsumption >= totalFood && totalConsumption >= totalTransport) {
+            return "totalConsumption";
+        } else if (totalFood >= totalTransport) {
+            return "totalFood";
+        } else {
+            return "totalTransport";
+        }
+    }
+
+
 
 }
