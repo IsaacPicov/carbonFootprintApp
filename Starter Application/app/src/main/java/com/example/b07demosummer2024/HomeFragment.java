@@ -70,15 +70,15 @@ public class HomeFragment extends Fragment {
         });
         */
 
-        buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { loadFragment(new EcoTrackerFragment());}
-        });
+        // buttonEcoTracker.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //     public void onClick(View v) { loadFragment(new EcoTrackerFragment());}
+        // });
 
-        buttonHabitTracker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { loadFragment(new HabitTrackerFragment());}
-        });
+        // buttonHabitTracker.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //     public void onClick(View v) { loadFragment(new HabitTrackerFragment());}
+        // });
 
         return view;
     }
