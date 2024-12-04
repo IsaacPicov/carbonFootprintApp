@@ -9,58 +9,68 @@
     <TextView
         android:id="@+id/textBills"
         style="@style/SurveyTitle"
-        android:layout_width="394dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="164dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/bills" />
+        android:layout_marginBottom="26dp"
+        android:text="@string/bills"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerBillType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/spinnerBillType"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerBillType"
         android:layout_width="265dp"
-        android:background="@drawable/text_border"
-        android:paddingStart="10dp"
-        android:layout_height="91dp"
+        android:layout_height="0dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/text_border"
         android:entries="@array/meal_types"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextBillAmount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textBills" />
 
     <EditText
         android:id="@+id/editTextBillAmount"
-        android:layout_width="361dp"
-        android:layout_height="92dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="57dp"
         android:background="@drawable/text_border"
         android:hint="@string/bills_prompt"
         android:inputType="numberDecimal"
         android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBillsSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBillType" />
 
     <android.widget.Button
         android:id="@+id/buttonBillsSubmit"
         style="@style/SurveyButton"
         android:layout_width="209dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/appgradient"
         android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBillAmount" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="320dp"
-        android:layout_height="124dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBillsSubmit"
         app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
