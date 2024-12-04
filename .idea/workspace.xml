@@ -213,34 +213,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question10.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question13.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question14.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question14.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question15.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question15.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question16.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question17.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question18.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question19.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question20.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question21.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_4.xml" afterDir="false" />
-    </list>
+    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
