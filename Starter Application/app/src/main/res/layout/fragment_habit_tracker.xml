@@ -17,19 +17,22 @@
     <!-- TextView to display the selected item -->
     <TextView
         android:id="@+id/selection"
+        style="@style/SurveyTitle"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Select a habit type from the spinner above"
         android:textSize="16sp"
         android:padding="8dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/appgradient"
         android:textColor="@android:color/white" />
 
     <!-- Button to fetch habits (optional, if you want manual action) -->
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/btnFetchHabit"
-        android:layout_width="wrap_content"
+        android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Fetch Highest Impact Activities" />

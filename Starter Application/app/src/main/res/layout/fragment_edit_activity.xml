@@ -12,6 +12,7 @@
         <!-- Title -->
         <TextView
             android:id="@+id/textViewTitle"
+            style="@style/SurveyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -29,12 +30,13 @@
             android:paddingBottom="16dp" />
 
         <!-- Save Button -->
-        <Button
+        <android.widget.Button
+            style="@style/SurveyButton"
             android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:backgroundTint="?android:attr/colorAccent"
+            android:background="@drawable/appgradient"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp" />
     </LinearLayout>

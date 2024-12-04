@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/textBills"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
@@ -39,7 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonBillsSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

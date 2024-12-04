@@ -28,7 +28,8 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
         app:layout_constraintVertical_bias="0.192" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonAddActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,8 +41,9 @@
         app:layout_constraintTop_toBottomOf="@+id/activityRecyclerView"
         app:layout_constraintVertical_bias="0.629" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonGetEmission"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get daily Emission"
@@ -57,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
+        style="@style/SurveyTitle"
         android:text="Daily Emissions: --"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/activityRecyclerView"

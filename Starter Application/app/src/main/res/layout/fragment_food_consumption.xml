@@ -29,7 +29,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerMealType" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonSubmitMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

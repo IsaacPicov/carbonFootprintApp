@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonTransportation"
+        style="@style/SurveyButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/transportation"
@@ -17,7 +18,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.28" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonFoodConsumption"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -29,7 +31,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.466" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonConsumptionAndShopping"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -40,8 +43,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.663" />
-
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
         android:id="@+id/buttonDailyCO2eDisplay"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
