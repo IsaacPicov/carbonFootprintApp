@@ -3,50 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light">
 
     <TextView
         android:id="@+id/textBills"
+        style="@style/SurveyTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginBottom="26dp"
         android:text="@string/bills"
-        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerBillType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/spinnerBillType"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerBillType"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_width="265dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/text_border"
         android:entries="@array/meal_types"
-        app:layout_constraintTop_toBottomOf="@id/textBills"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextBillAmount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textBills" />
 
     <EditText
         android:id="@+id/editTextBillAmount"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/text_border"
         android:hint="@string/bills_prompt"
         android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/spinnerBillType"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBillsSubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBillType" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonBillsSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SurveyButton"
+        android:layout_width="209dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/appgradient"
         android:text="@string/submit"
-        app:layout_constraintTop_toBottomOf="@id/editTextBillAmount"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBillAmount" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBillsSubmit"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
