@@ -52,12 +52,17 @@ public class SurveyResultsActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-// Replace or add the fragment to the container (e.g., R.id.fragment_container)
             fragmentTransaction.replace(R.id.container, fragment);
-            fragmentTransaction.addToBackStack(null); // Optional: Adds to the back stack
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
-
+            // Hide views manually
+            findViewById(R.id.pieChart).setVisibility(View.GONE);
+            findViewById(R.id.barChart).setVisibility(View.GONE);
+            findViewById(R.id.textView5).setVisibility(View.GONE);
+            findViewById(R.id.textView7).setVisibility(View.GONE);
+            findViewById(R.id.button).setVisibility(View.GONE);
+            findViewById(R.id.countrySpinner).setVisibility(View.GONE);
         });
 //       Stuff for making the PieChart
         Intent carbonValues = getIntent();
