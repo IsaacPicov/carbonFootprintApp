@@ -87,7 +87,7 @@ By: Chase, Fred, Gabriel, Isaac, Shawn, Zacky
         <img
             style="margin-right: 1rem;"
             src="Readme-images/ecoTrackerimage.png"
-            alt="survey-question-image"
+            alt="ecoTrackerimage"
             width="130"/>
         <p>Survey Question</p>
     </div>
