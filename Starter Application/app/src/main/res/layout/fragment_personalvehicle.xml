@@ -3,75 +3,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light">
 
     <TextView
         android:id="@+id/textDistanceDriven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SurveyTitle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="20dp"
         android:text="Distance Driven"
         app:layout_constraintBottom_toTopOf="@+id/editTextDistanceTravel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextDistanceTravel"
-        android:layout_width="190dp"
-        android:layout_height="57dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/text_border"
+        android:hint="Enter distance"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerUnits"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintTop_toBottomOf="@+id/textDistanceDriven" />
 
     <Spinner
         android:id="@+id/spinnerUnits"
-        android:layout_width="282dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/text_border"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textVehicleType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDistanceTravel"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDistanceTravel" />
 
     <TextView
         android:id="@+id/textVehicleType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SurveyTitle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="4dp"
         android:text="Choose Vehicle Type"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerVehicleType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerUnits" />
 
     <Spinner
         android:id="@+id/spinnerVehicleType"
-        android:layout_width="324dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/text_border"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPersonalVehicleSubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintTop_toBottomOf="@+id/textVehicleType" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonPersonalVehicleSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SurveyButton"
+        android:layout_width="209dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/appgradient"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerVehicleType"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerVehicleType" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="312dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPersonalVehicleSubmit"
+        app:srcCompat="@drawable/logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
