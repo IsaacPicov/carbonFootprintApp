@@ -7,12 +7,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -30,6 +32,13 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -42,27 +51,40 @@ public class SurveyResultsActivity extends AppCompatActivity {
     double totalCarbon;
 
     private Button homeBtn;
+
+    private FirebaseDatabase db;
+    private DatabaseReference itemsRef;
+
+    private FirebaseAuth auth;
+
+    private void setUserTakenSurvery(){
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        db = FirebaseDatabase.getInstance("https://b07finalproject-4e3be-default-rtdb.firebaseio.com/");
+        String userId = currentUser.getUid();
+        itemsRef = db.getReference("users/" + userId);
+        System.out.println(itemsRef);
+        // Set the value of "takenSurvey" to 1
+        itemsRef.child("takenSurvey").setValue(1).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("FirebaseUpdate", "takenSurvey set to 1 successfully.");
+            } else {
+                Log.e("FirebaseUpdate", "Error setting takenSurvey: ", task.getException());
+            }
+        });
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         homeBtn = findViewById(R.id.button);
         homeBtn.setOnClickListener(v -> {
-            Fragment fragment = new EcoTrackerFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            fragmentTransaction.replace(R.id.container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            // Hide views manually
-            findViewById(R.id.pieChart).setVisibility(View.GONE);
-            findViewById(R.id.barChart).setVisibility(View.GONE);
-            findViewById(R.id.textView5).setVisibility(View.GONE);
-            findViewById(R.id.textView7).setVisibility(View.GONE);
-            findViewById(R.id.button).setVisibility(View.GONE);
-            findViewById(R.id.countrySpinner).setVisibility(View.GONE);
+            Intent intent = getIntent();
+            Intent pass = new Intent(this, EcoTrackerActivity.class);
+            setUserTakenSurvery();
+            startActivity(pass);
         });
 //       Stuff for making the PieChart
         Intent carbonValues = getIntent();
