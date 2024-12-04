@@ -55,10 +55,10 @@ public class FragmentQuestion8 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        vegetarian.setBackgroundColor(Color.MAGENTA);
-        vegan.setBackgroundColor(Color.MAGENTA);
-        pescatarian.setBackgroundColor(Color.MAGENTA);
-        meatbased.setBackgroundColor(Color.MAGENTA);
+        vegetarian.setBackgroundColor(Color.rgb(0, 153, 153));
+        vegan.setBackgroundColor(Color.rgb(0, 153, 153));
+        pescatarian.setBackgroundColor(Color.rgb(0, 153, 153));
+        meatbased.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         vegetarian.setActivated(true);
         vegan.setActivated(true);

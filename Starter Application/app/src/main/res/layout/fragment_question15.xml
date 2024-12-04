@@ -4,66 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@drawable/welcgradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/SurveyTitle"
+        android:layout_width="333dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="sans-serif-black"
+        android:text="What is your average monthly electricity bill?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="406dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="52dp"
-            android:fontFamily="sans-serif-black"
-            android:text="What is your average monthly electricity bill?"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q15option1"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="Under $50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <Button
-            android:id="@+id/q15option1"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="Under $50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    <android.widget.Button
+        android:id="@+id/q15option2"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="$50-$100"
+        app:layout_constraintStart_toStartOf="@+id/q15option1"
+        app:layout_constraintTop_toBottomOf="@+id/q15option1" />
 
-        <Button
-            android:id="@+id/q15option2"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="$50-$100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q15option1" />
+    <android.widget.Button
+        android:id="@+id/q15option3"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="$100-$150"
+        app:layout_constraintStart_toStartOf="@+id/q15option2"
+        app:layout_constraintTop_toBottomOf="@+id/q15option2" />
 
-        <Button
-            android:id="@+id/q15option3"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="$100-$150"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q15option2" />
+    <android.widget.Button
+        android:id="@+id/q15option4"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="$150-$200"
+        app:layout_constraintStart_toStartOf="@+id/q15option3"
+        app:layout_constraintTop_toBottomOf="@+id/q15option3" />
 
-        <Button
-            android:id="@+id/q15option4"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="$150-$200"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q15option3" />
+    <android.widget.Button
+        android:id="@+id/q15option5"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="Over $200"
+        app:layout_constraintStart_toStartOf="@+id/q15option4"
+        app:layout_constraintTop_toBottomOf="@+id/q15option4" />
 
         <Button
             android:id="@+id/q15option5"

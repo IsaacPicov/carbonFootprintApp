@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.b07demosummer2024.mvp.models.LoginModel;
 import com.example.b07demosummer2024.mvp.presenters.LoginPresenter;
 import com.example.b07demosummer2024.mvp.presenters.ForgotPasswordPresenter;
 import com.example.b07demosummer2024.SurveyLandingPageActivity;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.L
          Button buttonLogin = findViewById(R.id.buttonLogin);
          Button buttonForgotPassword = findViewById(R.id.buttonForgotPassword);
 
-         loginPresenter = new LoginPresenter(this);
+         loginPresenter = new LoginPresenter(this, new LoginModel());
          forgotPasswordPresenter = new ForgotPasswordPresenter(this);
 
          loginBackButton.setOnClickListener(v -> {
@@ -73,16 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.L
 //        Intent intent = new Intent(this, SurveyLandingPageActivity.class);
 //        startActivity(intent);
     }
-
-    @Override
-    public void showLoading() {
-        // progress bar or other
-    }
-
-    @Override
-    public void closeLoading() {
-    }
-
+    
     @Override
     public void onLoginSuccess() {
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();

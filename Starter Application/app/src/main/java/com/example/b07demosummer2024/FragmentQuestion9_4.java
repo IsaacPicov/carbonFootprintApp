@@ -60,10 +60,10 @@ public class FragmentQuestion9_4 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        fish_never.setBackgroundColor(Color.MAGENTA);
-        fish_daily.setBackgroundColor(Color.MAGENTA);
-        fish_frequent.setBackgroundColor(Color.MAGENTA);
-        fish_occasional.setBackgroundColor(Color.MAGENTA);
+        fish_never.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_daily.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_frequent.setBackgroundColor(Color.rgb(0, 153, 153));
+        fish_occasional.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         fish_never.setActivated(true);
         fish_daily.setActivated(true);

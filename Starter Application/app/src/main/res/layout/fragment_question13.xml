@@ -4,56 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@drawable/welcgradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/SurveyTitle"
+        android:layout_width="349dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="136dp"
+        android:fontFamily="sans-serif-black"
+        android:text="What is the size of your home?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="400dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="52dp"
-            android:fontFamily="sans-serif-black"
-            android:text="What is the size of your home?"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q13option1"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="48dp"
+        android:text="Under 1000 sq. ft."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <Button
-            android:id="@+id/q13option1"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="Under 1000 sq. ft."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    <android.widget.Button
+        android:id="@+id/q13option2"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="1000-2000 sq. ft."
+        app:layout_constraintStart_toStartOf="@+id/q13option1"
+        app:layout_constraintTop_toBottomOf="@+id/q13option1" />
 
-        <Button
-            android:id="@+id/q13option2"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="1000-2000 sq. ft."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q13option1" />
-
-        <Button
-            android:id="@+id/q13option3"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="Over 2000 sq. ft."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/q13option2" />
+    <android.widget.Button
+        android:id="@+id/q13option3"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="Over 2000 sq. ft."
+        app:layout_constraintStart_toStartOf="@+id/q13option2"
+        app:layout_constraintTop_toBottomOf="@+id/q13option2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

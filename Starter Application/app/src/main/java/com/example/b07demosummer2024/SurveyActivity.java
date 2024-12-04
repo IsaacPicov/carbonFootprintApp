@@ -82,9 +82,8 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
        survey = new Footprint("temp"); // <-- Stand in until I connect everything
        nextButton = findViewById(R.id.button4);
        backButton = findViewById(R.id.button3);
-       backButton.setEnabled(false);
-       backButton.setTextColor(Color.parseColor("a9bcd0"));
-       backButton.setBackgroundColor(Color.parseColor("#373f51"));
+       // backButton.setEnabled(false);//this doesn't work? fix this
+       // backButton.setBackgroundColor(Color.GRAY);
        frame = findViewById(R.id.frameLayout);
 
        if(savedInstanceState == null){
@@ -604,8 +603,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
 //         We disabled the back button on the first question b/c can't go back
            if (question == 1){
                backButton.setEnabled(true);
-               backButton.setBackgroundColor(Color.parseColor("#009999"));
-               backButton.setTextColor(Color.WHITE);
+               // backButton.setBackgroundColor(Color.GRAY);
                if(survey.getQ1() == 0) question = 3;
            }
            else if (question == 8 && (survey.getQ8() != 0)) question = 12;
@@ -620,11 +618,10 @@ public class SurveyActivity extends AppCompatActivity implements SurveyResponseL
        if(question == 13 && (survey.getQ8() != 0)) question = 9;
        question--;
        Button back = (Button)view;
-       if(question == 1){
-           back.setBackgroundColor(Color.parseColor("#373f51"));
-           back.setTextColor(Color.parseColor("#a9bcd0"));
-           back.setEnabled(false);
-       }
+       // if(question == 1){
+           // back.setBackgroundColor(Color.GRAY);
+           // back.setEnabled(false);
+       // }
        getSupportFragmentManager().beginTransaction()
                .replace(R.id.frameLayout, questions[question-1])
                .commit();

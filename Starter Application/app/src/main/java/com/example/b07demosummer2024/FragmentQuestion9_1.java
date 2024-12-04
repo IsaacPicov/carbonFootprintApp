@@ -61,10 +61,10 @@ public class FragmentQuestion9_1 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        beef_never.setBackgroundColor(Color.MAGENTA);
-        beef_daily.setBackgroundColor(Color.MAGENTA);
-        beef_frequent.setBackgroundColor(Color.MAGENTA);
-        beef_occasional.setBackgroundColor(Color.MAGENTA);
+        beef_never.setBackgroundColor(Color.rgb(0, 153, 153));
+        beef_daily.setBackgroundColor(Color.rgb(0, 153, 153));
+        beef_frequent.setBackgroundColor(Color.rgb(0, 153, 153));
+        beef_occasional.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         beef_never.setActivated(true);
         beef_daily.setActivated(true);
