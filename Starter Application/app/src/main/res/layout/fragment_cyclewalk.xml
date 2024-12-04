@@ -9,6 +9,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/SurveyTitle"
         android:text="Distance Cycled or Walked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,6 +20,7 @@
 
     <EditText
         android:id="@+id/editTextDistanceCycleWalk"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -31,6 +33,8 @@
         app:layout_constraintVertical_bias="0.427" />
 
     <Spinner
+        android:background="@drawable/text_border"
+
         android:id="@+id/spinnerCycleWalkUnits"
         android:layout_width="228dp"
         android:layout_height="39dp"
@@ -41,8 +45,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.625" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonCycleWalkSubmit"
+        style="@style/SurveyButton"
+        android:background="@drawable/appgradient"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
