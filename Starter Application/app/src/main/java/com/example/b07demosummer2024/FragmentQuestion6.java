@@ -58,11 +58,11 @@ public class FragmentQuestion6 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        None.setBackgroundColor(Color.MAGENTA);
-        flights1.setBackgroundColor(Color.MAGENTA);
-        flights2.setBackgroundColor(Color.MAGENTA);
-        flights3.setBackgroundColor(Color.MAGENTA);
-        flights4.setBackgroundColor(Color.MAGENTA);
+        None.setBackgroundColor(Color.rgb(0, 153, 153));
+        flights1.setBackgroundColor(Color.rgb(0, 153, 153));
+        flights2.setBackgroundColor(Color.rgb(0, 153, 153));
+        flights3.setBackgroundColor(Color.rgb(0, 153, 153));
+        flights4.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         None.setActivated(true);
         flights1.setActivated(true);

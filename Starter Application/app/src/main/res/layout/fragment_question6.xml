@@ -1,79 +1,74 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@drawable/welcgradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/SurveyTitle"
+        android:layout_width="307dp"
+        android:layout_height="200dp"
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="406dp"
-            android:layout_height="99dp"
-            android:layout_marginTop="52dp"
-            android:fontFamily="sans-serif-black"
-            android:text="How many short-haul flights (less than 1,500 km / 932 miles) have you taken in the past year?"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="36dp"
+        android:text="How many short-haul flights (less than 1,500 km / 932 miles) have you
+ taken in the past year?"
 
-        <Button
-            android:id="@+id/q6option1"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:text="None"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/q6option2"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:text="1-2 Flights"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/q6option1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q6option1"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="8dp"
+        android:text="None"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <Button
-            android:id="@+id/q6option3"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:text="3-5 Flights"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/q6option2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q6option2"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="1-2 Flights"
+        app:layout_constraintStart_toStartOf="@+id/q6option1"
+        app:layout_constraintTop_toBottomOf="@+id/q6option1" />
 
-        <Button
-            android:id="@+id/q6option4"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:text="6-10 Flights"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/q6option3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q6option3"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="3-5 Flights"
+        app:layout_constraintStart_toStartOf="@+id/q6option2"
+        app:layout_constraintTop_toBottomOf="@+id/q6option2" />
 
-        <Button
-            android:id="@+id/q6option5"
-            android:layout_width="315dp"
-            android:layout_height="76dp"
-            android:text="More Than 10 Flights"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/q6option4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <android.widget.Button
+        android:id="@+id/q6option4"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="6-10 Flights"
+        app:layout_constraintStart_toStartOf="@+id/q6option3"
+        app:layout_constraintTop_toBottomOf="@+id/q6option3" />
+
+    <android.widget.Button
+        android:id="@+id/q6option5"
+        style="@style/SurveyButton"
+        android:layout_width="315dp"
+        android:layout_height="76dp"
+        android:text="More Than 10 Flights"
+        app:layout_constraintStart_toStartOf="@+id/q6option4"
+        app:layout_constraintTop_toBottomOf="@+id/q6option4" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+

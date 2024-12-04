@@ -5,25 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="287dp"
-        android:layout_height="479dp"
-        android:text="FILLER : Explain the purpose of this survey. But fill in later"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="338dp"
+        android:layout_height="344dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="72dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surveyHomeTitle"
+        app:srcCompat="@drawable/mountain" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="586dp"
+        android:layout_height="574dp"
+        android:layout_marginTop="376dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:srcCompat="@drawable/irreg" />
 
-    <Button
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="436dp"
+        android:layout_height="473dp"
+        android:layout_marginBottom="120dp"
+        android:rotationY="180"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/irreg" />
+
+    <android.widget.Button
         android:id="@+id/button2"
-        android:layout_width="239dp"
-        android:layout_height="65dp"
+        android:layout_width="236dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="152dp"
+        android:background="@drawable/surveybuttpn"
+        android:drawableLeft="@drawable/baseline_energy_savings_leaf_24"
+        android:drawablePadding="20dp"
         android:onClick="next"
-        android:text="next"
+        android:paddingLeft="20dp"
+        android:text="Get Started"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/teal"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/surveyDesc"
+        android:layout_width="295dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        android:text="Answer some questions to calculate your current carbon footprint. You need only do this once."
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/surveyHomeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/surveyHomeTitle" />
+
+    <TextView
+        android:id="@+id/surveyHomeTitle"
+        android:layout_width="306dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="124dp"
+        android:text="Footprint Calculation"
+        android:textColor="@color/teal"
+        android:textSize="35dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

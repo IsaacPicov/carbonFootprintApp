@@ -46,11 +46,6 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/eco_gauge_fragment.xml">
-        <config>
-          <theme>@style/Theme.B07DemoSummer2024</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_add_item.xml">
         <config>
           <state>landscape</state>
@@ -219,9 +214,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question10.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question14.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question14.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question15.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question15.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question16.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question17.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question18.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question19.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question20.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_question9_4.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +249,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gosqib\.android\avd\Pixel_6a_API_35.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\gvbri\.android\avd\Pixel_9_Pro_API_34.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/Starter Application">
       <ProjectState />
@@ -282,26 +300,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Android Instrumented Tests.ExampleInstrumentedTest.executor": "Run",
-    "Gradle.ExampleUnitTest.checkEmptyInfo.executor": "Run",
-    "Gradle.ExampleUnitTest.executor": "Coverage",
-    "Gradle.ExampleUnitTest.testEmptyInfo.executor": "Run",
-    "Gradle.ExampleUnitTest.testHandleLogin_EmptyFields_ShowsError.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "ScreenshotViewer.SavePath": "C:/Users/gosqib/Desktop/carbonFootprintApp/Readme-images",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "fred-test",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/gosqib/Desktop/carbonFootprintApp/Readme-images"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.ExampleInstrumentedTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.checkEmptyInfo.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.ExampleUnitTest.testEmptyInfo.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExampleUnitTest.testHandleLogin_EmptyFields_ShowsError.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;ScreenshotViewer.SavePath&quot;: &quot;C:/Users/gosqib/Desktop/carbonFootprintApp/Readme-images&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fred-test&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gosqib/Desktop/carbonFootprintApp/Readme-images&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gvbri\StudioProjects\carbonFootprintApp\Starter Application\app\src\main\res\drawable" />
@@ -553,17 +571,6 @@
       <updated>1731306023111</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/mvp/models/LoginModel.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/B07_Demo_Summer_2024$ExampleUnitTest.ic" NAME="ExampleUnitTest Coverage Results" MODIFIED="1733218028759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

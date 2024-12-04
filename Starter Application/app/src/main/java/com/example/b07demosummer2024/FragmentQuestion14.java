@@ -63,11 +63,11 @@ public class FragmentQuestion14 extends Fragment {
 
 
     public void answer(View view){
-        naturalGas.setBackgroundColor(Color.MAGENTA);
-        electricity.setBackgroundColor(Color.MAGENTA);
-        oil.setBackgroundColor(Color.MAGENTA);
-        propane.setBackgroundColor(Color.MAGENTA);
-        wood.setBackgroundColor(Color.MAGENTA);
+        naturalGas.setBackgroundColor(Color.rgb(0, 153, 153));
+        electricity.setBackgroundColor(Color.rgb(0, 153, 153));
+        oil.setBackgroundColor(Color.rgb(0, 153, 153));
+        propane.setBackgroundColor(Color.rgb(0, 153, 153));
+        wood.setBackgroundColor(Color.rgb(0, 153, 153));
         naturalGas.setActivated(true);
         electricity.setActivated(true);
         oil.setActivated(true);

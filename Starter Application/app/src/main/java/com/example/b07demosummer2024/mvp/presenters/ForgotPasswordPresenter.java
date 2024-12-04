@@ -6,8 +6,6 @@ import com.example.b07demosummer2024.mvp.models.ForgotPasswordModel;
 
 public class ForgotPasswordPresenter {
     public interface ForgotPasswordView {
-        void showLoading();
-        void closeLoading();
         void onForgotPasswordSuccess();
         void onForgotPasswordFail(String message);
     }
@@ -26,19 +24,9 @@ public class ForgotPasswordPresenter {
             return;
         }
 
-        view.showLoading();
         model.sendPasswordReset(email, new ForgotPasswordModel.ForgotPasswordCallback() {
-            @Override
-            public void onForgotPasswordSuccess() {
-                view.closeLoading();
-                view.onForgotPasswordSuccess();
-            }
-
-            @Override
-            public void onForgotPasswordFail(String errorMessage) {
-                view.closeLoading();
-                view.onForgotPasswordFail("An error occurred");
-            }
+            public void onForgotPasswordSuccess() {view.onForgotPasswordSuccess();}
+            public void onForgotPasswordFail(String errorMessage) {view.onForgotPasswordFail("An error occurred");}
         });
     }
 }

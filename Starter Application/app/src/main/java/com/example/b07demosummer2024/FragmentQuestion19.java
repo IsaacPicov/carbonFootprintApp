@@ -58,9 +58,9 @@ public class FragmentQuestion19 extends Fragment {
 
 
     public void answer(View view){
-        regularly.setBackgroundColor(Color.MAGENTA);
-        occasionally.setBackgroundColor(Color.MAGENTA);
-        no.setBackgroundColor(Color.MAGENTA);
+        regularly.setBackgroundColor(Color.rgb(0, 153, 153));
+        occasionally.setBackgroundColor(Color.rgb(0, 153, 153));
+        no.setBackgroundColor(Color.rgb(0, 153, 153));
 
         regularly.setActivated(true);
         occasionally.setActivated(true);

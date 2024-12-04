@@ -55,10 +55,10 @@ public class FragmentQuestion10 extends Fragment {
 
     public void answer(View view){
 //        Reset the colours so that user can see they unselected the previous button
-        never.setBackgroundColor(Color.MAGENTA);
-        rarely.setBackgroundColor(Color.MAGENTA);
-        occasionally.setBackgroundColor(Color.MAGENTA);
-        frequently.setBackgroundColor(Color.MAGENTA);
+        never.setBackgroundColor(Color.rgb(0, 153, 153));
+        rarely.setBackgroundColor(Color.rgb(0, 153, 153));
+        occasionally.setBackgroundColor(Color.rgb(0, 153, 153));
+        frequently.setBackgroundColor(Color.rgb(0, 153, 153));
 //      Reset the usability of all buttons, so user can press any other button
         never.setActivated(true);
         rarely.setActivated(true);
