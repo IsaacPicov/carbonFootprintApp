@@ -48,21 +48,10 @@ public class SurveyResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graph);
         homeBtn = findViewById(R.id.button);
         homeBtn.setOnClickListener(v -> {
-            Fragment fragment = new EcoTrackerFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            fragmentTransaction.replace(R.id.container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            // Hide views manually
-            findViewById(R.id.pieChart).setVisibility(View.GONE);
-            findViewById(R.id.barChart).setVisibility(View.GONE);
-            findViewById(R.id.textView5).setVisibility(View.GONE);
-            findViewById(R.id.textView7).setVisibility(View.GONE);
-            findViewById(R.id.button).setVisibility(View.GONE);
-            findViewById(R.id.countrySpinner).setVisibility(View.GONE);
+            Intent intent = getIntent();
+            Intent pass = new Intent(this, EcoTrackerActivity.class);
+            startActivity(pass);
+            System.out.println("Please work");
         });
 //       Stuff for making the PieChart
         Intent carbonValues = getIntent();

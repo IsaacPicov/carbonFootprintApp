@@ -40,6 +40,12 @@
         <activity
             android:name=".SurveyLandingPageActivity"
             android:exported="false"/>
+
+        <activity
+            android:name=".EcoTrackerActivity"
+            android:exported="false"/>
+
+
         <activity
             android:name=".SurveyResultsActivity"
             android:exported="false"/>
