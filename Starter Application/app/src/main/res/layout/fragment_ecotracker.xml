@@ -3,55 +3,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/appgradient">
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="416dp"
+        android:layout_height="756dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle" />
+
 
     <android.widget.Button
         android:id="@+id/buttonTransportation"
         style="@style/SurveyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="140dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="288dp"
         android:text="@string/transportation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
-        style="@style/SurveyButton"
         android:id="@+id/buttonFoodConsumption"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        style="@style/SurveyButton"
+        android:layout_width="140dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="28dp"
         android:text="@string/foodConsumption"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintStart_toEndOf="@+id/buttonConsumptionAndShopping"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDailyCO2eDisplay" />
 
     <android.widget.Button
-        style="@style/SurveyButton"
         android:id="@+id/buttonConsumptionAndShopping"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="@string/consumptionAndShopping"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
-    <android.widget.Button
         style="@style/SurveyButton"
+        android:layout_width="140dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="44dp"
+        android:text="@string/consumptionAndShopping"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTransportation" />
+
+    <android.widget.Button
         android:id="@+id/buttonDailyCO2eDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        style="@style/SurveyButton"
+        android:layout_width="140dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="288dp"
         android:text="Daily CO2e Emission Display"
+        app:layout_constraintStart_toEndOf="@+id/buttonTransportation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/button11"
+        android:layout_width="206dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/text_border"
+        android:text="Eco \nGauge"
+        android:textColor="@color/teal"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/SurveyTitle"
+        android:layout_width="342dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:text="Eco \nTracker"
+        android:textColor="@color/light"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="328dp"
+        android:layout_height="143dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:srcCompat="@drawable/logo" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

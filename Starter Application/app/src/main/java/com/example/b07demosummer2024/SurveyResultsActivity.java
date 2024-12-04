@@ -57,6 +57,15 @@ public class SurveyResultsActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
+    public static final ArrayList<Integer> graphColours = new ArrayList<>();
+
+    static {
+        graphColours.add(Color.parseColor("#009999"));
+        graphColours.add(Color.parseColor("#002F4B"));
+        graphColours.add(Color.parseColor("#A8DADC"));
+        graphColours.add(Color.parseColor("#4F83CC"));
+    }
+
     private void setUserTakenSurvery(){
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -105,16 +114,11 @@ public class SurveyResultsActivity extends AppCompatActivity {
 
 //        Styling the pie chart
         PieDataSet pieDataSet = new PieDataSet(sections, "");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setColors(graphColours);
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(16);
 
-//        TODO-- Front end designer redo the colour scheme, here are the colours
-//        setColors(int [] colors, Context c): Sets the colors that should be used fore this DataSet. Colors are reused as soon as the number of Entries the DataSet represents is higher than the size of the colors array. You can use “new int[] { R.color.red, R.color.green, … }” to provide colors for this method. Internally, the colors are resolved using getResources().getColor(…).
-//        setColors(int [] colors): Sets the colors that should be used fore this DataSet. Colors are reused as soon as the number of Entries the DataSet represents is higher than the size of the colors array. Make sure that the colors are already prepared (by calling getResources().getColor(…)) before adding them to the DataSet.
-//        setColors(ArrayList<Integer> colors): Sets the colors that should be used fore this DataSet. Colors are reused as soon as the number of Entries the DataSet represents is higher than the size of the colors array. Make sure that the colors are already prepared (by calling getResources().getColor(…)) before adding them to the DataSet.
-//        setColor(int color): Sets the one and ONLY color that should be used for this DataSet. Internally, this recreates the colors array and adds the specified color.
-
+//
 //        Adding the PieChart to the activity
         PieData pieData = new PieData(pieDataSet);
 
@@ -146,7 +150,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
             compareCountry.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get("Canada")).floatValue()));
 
             BarDataSet dataSet = new BarDataSet(compareCountry, "");
-            dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            dataSet.setColors(graphColours);
             dataSet.setValueTextColor(Color.BLACK);
             dataSet.setValueTextSize(16f);
             BarData data = new BarData(dataSet);
@@ -161,7 +165,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
             byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita");
             byCountry.getDescription().setTextSize(11f);
             byCountry.getDescription().setTextColor(Color.BLACK);
-             byCountry.getDescription().setPosition(720f, 50f);
+             byCountry.getDescription().setPosition(830f, 50f);
 
             byCountry.getLegend().setEnabled(false);
 
@@ -214,7 +218,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
                 updateEntries.add(new BarEntry(0f, (float)totalCarbon));
                 updateEntries.add(new BarEntry(1f, Objects.requireNonNull(countryConstants.get(selectedCountry)).floatValue()));
                 BarDataSet newData = new BarDataSet(updateEntries, "Your Carbon Output vs. Global Emissions per Capita");
-                newData.setColors(ColorTemplate.MATERIAL_COLORS);
+                newData.setColors(graphColours);
                 newData.setValueTextColor(Color.BLACK);
                 newData.setValueTextSize(16f);
                 BarData updatedData = new BarData(newData);

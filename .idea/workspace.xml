@@ -11,6 +11,11 @@
       </config>
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_ecogauge.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_graph.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -272,6 +277,11 @@
           <theme>@style/Theme.B07DemoSummer2024</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_transportation.xml">
+        <config>
+          <theme>@style/Theme.B07DemoSummer2024</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Starter Application/app/src/main/res/layout/item_layout.xml">
         <config>
           <theme>@style/Theme.B07DemoSummer2024</theme>
@@ -283,10 +293,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="feat: fixed overlap again">
+    <list default="true" id="49ceca24-3eb7-4d1e-a65a-c2d52ea41675" name="Changes" comment="feat: add in ecogauge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/EcoGaugeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/EcoGaugeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/EcoTrackerFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/EcoTrackerFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/SurveyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/SurveyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/SurveyResultsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/java/com/example/b07demosummer2024/SurveyResultsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_ecogauge.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/activity_ecogauge.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_ecotracker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_ecotracker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_transportation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Starter Application/app/src/main/res/layout/fragment_transportation.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -633,12 +649,21 @@
       <option name="project" value="LOCAL" />
       <updated>1733296696561</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: add in ecogauge">
+      <option name="closed" value="true" />
+      <created>1733303605096</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733303605096</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: fixed overlap again" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: fixed overlap again" />
+    <MESSAGE value="feat: add in ecogauge" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add in ecogauge" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/B07_Demo_Summer_2024$ExampleUnitTest.ic" NAME="ExampleUnitTest Coverage Results" MODIFIED="1733218028759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

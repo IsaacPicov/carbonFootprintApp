@@ -190,7 +190,7 @@ public class EcoGaugeActivity extends AppCompatActivity {
         XAxis xAxis1 = byCountry.getXAxis();
 
         byCountry.getDescription().setEnabled(true);
-        byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita (Daily)");
+        byCountry.getDescription().setText("Your Carbon Output vs. Global Emissions per Capita");
         byCountry.getDescription().setTextSize(11f);
         byCountry.getDescription().setTextColor(Color.BLACK);
         byCountry.getDescription().setPosition(720f, 50f);

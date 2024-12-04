@@ -1,5 +1,6 @@
 package com.example.b07demosummer2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +14,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class EcoTrackerFragment extends Fragment {
 
-    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping, buttonCO2eDisplay;
+    private Button buttonTransportation, buttonFoodConsumption, buttonConsumptionAndShopping, buttonCO2eDisplay, buttonEcogauge;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ecotracker, container, false);
-
+        buttonEcogauge = view.findViewById(R.id.button11);
         buttonTransportation = view.findViewById(R.id.buttonTransportation);
         buttonFoodConsumption = view.findViewById(R.id.buttonFoodConsumption);
         buttonConsumptionAndShopping= view.findViewById(R.id.buttonConsumptionAndShopping);
@@ -51,6 +52,14 @@ public class EcoTrackerFragment extends Fragment {
             public void onClick(View v) {
                 loadFragment(new CO2eDisplayFragment());
             }
+        });
+
+        buttonEcogauge.setOnClickListener(v -> {
+            // Create an Intent to start the target activity
+            Intent intent = new Intent(getActivity(), EcoGaugeActivity.class);
+            // Optional: Add data to the intent
+            intent.putExtra("EXTRA_MESSAGE", "Hello from Fragment!");
+            startActivity(intent);
         });
         return view;
     }

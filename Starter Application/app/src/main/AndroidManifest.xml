@@ -60,6 +60,8 @@
         </activity>
 
         <activity android:name=".LoginActivity" />
+        <activity android:name=".EcoGaugeActivity"/>
+
         
         <activity
             android:name=".MainActivity"

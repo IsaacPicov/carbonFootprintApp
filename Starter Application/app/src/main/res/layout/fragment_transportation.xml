@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
+
         android:id="@+id/buttonPersonalVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +17,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.254" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
+
         android:id="@+id/buttonPublicTransport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +30,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.423" />
 
-    <Button
+    <android.widget.Button
+        style="@style/SurveyButton"
+
         android:id="@+id/buttonCyclingWalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,8 +43,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.594" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/buttonFlight"
+        style="@style/SurveyButton"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/flight"
